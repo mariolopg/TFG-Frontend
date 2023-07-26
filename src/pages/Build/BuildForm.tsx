@@ -7,7 +7,7 @@ import TextAreaForm from '../../components/inputs/TextAreaForm';
 import SelectForm from '../../components/inputs/SelectForm';
 
 
-const NewBuild: React.FC = () => {
+const BuildForm: React.FC = () => {
 
   const { data: cpus } = useGetCPUsQuery(null);
   const { data: motherboards } = useGetMotherboardsQuery(null);
@@ -43,10 +43,11 @@ const NewBuild: React.FC = () => {
       if(value.error){
         setErrors(value.error.data)
       }
-      else{
-        alert("Build guardada")
-      }
     })
+  }
+
+  if(response.isSuccess){
+    window.location.replace(`/build/${response.data.id}`)
   }
 
   return (
@@ -90,4 +91,4 @@ const NewBuild: React.FC = () => {
   );
 };
 
-export default NewBuild;
+export default BuildForm;

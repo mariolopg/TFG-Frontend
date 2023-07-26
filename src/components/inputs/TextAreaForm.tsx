@@ -1,4 +1,4 @@
-import { IonItem, IonLabel, IonTextarea } from '@ionic/react';
+import { IonLabel, IonTextarea } from '@ionic/react';
 import InputErrorMsg from './InputErrorMsg';
 
 interface InputProps{

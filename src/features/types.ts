@@ -28,12 +28,3 @@ export interface BuildErrorsInterface {
     storage_drive: []
     case: [];
 }
-
-export interface CPUInterface {
-    id: string,
-    name: string,
-    socket: string,
-    cores: string,
-    integrated_graphics: boolean,
-    threads: string
-}

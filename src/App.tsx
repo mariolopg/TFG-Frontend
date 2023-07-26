@@ -4,7 +4,6 @@ import { store } from './store';
 import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import Home from './pages/Home';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -24,8 +23,9 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import Builds from './pages/Build/BuildList';
 import Build from './pages/Build/Build';
-import NewBuild from './pages/Build/NewBuild';
+import BuildForm from './pages/Build/BuildForm';
 
 setupIonicReact();
 
@@ -34,18 +34,12 @@ const App: React.FC = () => (
     <IonApp>
       <IonReactRouter>
         <IonRouterOutlet>
-          <Route exact path="/home">
-            <Home />
-          </Route>
           <Route exact path="/">
-            <Redirect to="/home" />
+            <Redirect to="/build" />
           </Route>
-          <Route exact path="/build">
-            <Build />
-          </Route>
-          <Route exact path="/build/new">
-            <NewBuild />
-          </Route>
+          <Route exact path="/build" component={Builds}/>
+          <Route exact path="/build/:id" component={Build}/>
+          <Route exact path="/build/new" component={BuildForm}/>
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>
