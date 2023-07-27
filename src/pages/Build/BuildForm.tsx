@@ -46,17 +46,13 @@ const BuildForm: React.FC = () => {
     })
   }
 
-  if(response.isSuccess){
-    window.location.replace(`/build/${response.data.id}`)
-  }
-
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
           <IonTitle>Nueva Build</IonTitle>
           <IonButtons slot='end'>
-            <IonButton shape='round' fill='outline' onClick={handleSubmit} color='primary'>
+            <IonButton shape='round' fill='outline' onClick={handleSubmit} href={response.isSuccess? `/build/${response.data.id}`: undefined} color='primary'>
               Guardar
             </IonButton>
           </IonButtons>

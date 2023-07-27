@@ -1,6 +1,6 @@
 import { IonButton, IonButtons, IonContent, IonGrid, IonHeader, IonPage, IonRow, IonTitle, IonToolbar } from '@ionic/react';
 import './Build.css';
-import { useGetBuildQuery } from '../../features/api/apiSlice';
+import { useDeleteBuildMutation, useGetBuildQuery } from '../../features/api/apiSlice';
 import { useParams } from 'react-router';
 import ComponentCard from '../../components/ComponentCard';
 import IonSubtitle from '../../components/inputs/IonSubtitle';
@@ -11,6 +11,15 @@ const Build: React.FC = () => {
 
   const { id } = useParams<params>()
   const { data: build } = useGetBuildQuery(id);
+  const [deleteBuild, response] = useDeleteBuildMutation();
+
+  function handleDelete() {
+    deleteBuild(id)
+  }
+
+  if (response.isSuccess){
+    window.location.replace('/build')
+  }
 
   function GetCoolerCard() {
     if (build.air_cooler_data)
@@ -38,6 +47,7 @@ const Build: React.FC = () => {
         <IonToolbar>
           <IonTitle>{build ? build.name : ""}</IonTitle>
           <IonButtons slot='end'>
+            <IonButton fill='outline' shape='round' color='danger' onClick={handleDelete}>Borrar build</IonButton>
             <IonButton fill='outline' shape='round' color='primary' href='/build/new'>Nueva build</IonButton>
           </IonButtons>
         </IonToolbar>
@@ -54,7 +64,6 @@ const Build: React.FC = () => {
                 <ComponentCard title='Procesador' subtitle={build.cpu_data.name}/>
                 <ComponentCard title='Placa Base' subtitle={build.motherboard_data.name}/>
                 <ComponentCard title='Memoria RAM' subtitle={build.ram_data.name}/>
-                <ComponentCard title='Tarjeta gráfica' subtitle={build.gpu_data.name}/>
                 <GetCoolerCard/>
                 <GetHDDCard/>
                 <GetSSDCard/>

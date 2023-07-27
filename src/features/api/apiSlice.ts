@@ -7,14 +7,20 @@ export const apiSlice = createApi({
       getBuilds: builder.query({
         query: () => `build/`
       }),
-      getBuild: builder.query({
-        query: (id) => `build/${id}/`
-      }),
       createBuild: builder.mutation({
         query: (body) => ({
           url: `build/`,
           method: 'POST',
           body
+        })
+      }),
+      getBuild: builder.query({
+        query: (id) => `build/${id}/`
+      }),
+      deleteBuild: builder.mutation({
+        query: (id) => ({
+          url: `build/${id}/`,
+          method: 'DELETE',
         })
       }),
       getCPUs: builder.query({
@@ -50,4 +56,4 @@ export const apiSlice = createApi({
     }),
   });
   
-  export const { useGetBuildsQuery, useGetBuildQuery, useCreateBuildMutation, useGetCPUsQuery, useGetMotherboardsQuery, useGetRAMSQuery, useGetGPUsQuery, useGetAirCoolersQuery, useGetLiquidCoolersQuery, useGetHDDsQuery, useGetSSDsQuery, useGetPSUsQuery, useGetCasesQuery } = apiSlice;
+  export const { useGetBuildsQuery, useCreateBuildMutation, useGetBuildQuery, useDeleteBuildMutation, useGetCPUsQuery, useGetMotherboardsQuery, useGetRAMSQuery, useGetGPUsQuery, useGetAirCoolersQuery, useGetLiquidCoolersQuery, useGetHDDsQuery, useGetSSDsQuery, useGetPSUsQuery, useGetCasesQuery } = apiSlice;
