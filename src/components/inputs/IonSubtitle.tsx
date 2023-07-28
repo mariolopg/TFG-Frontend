@@ -1,4 +1,4 @@
-import './IonSubtitle.css'
+import './ionSubtitle.css'
 
 interface IonSubtitleProps{
     text: string,

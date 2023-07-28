@@ -1,4 +1,4 @@
-import './CustomInputs.css'
+import './customInputs.css'
 
 interface InputErrorMsgProps{
     errors: []

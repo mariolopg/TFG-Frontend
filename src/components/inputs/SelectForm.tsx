@@ -1,7 +1,7 @@
 import Select from 'react-select';
 import { IonLabel } from '@ionic/react';
 import InputErrorMsg from './InputErrorMsg';
-import './CustomInputs.css'
+import './customInputs.css'
 
 interface InputProps{
     label: string,
