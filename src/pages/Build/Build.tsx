@@ -2,7 +2,7 @@ import { IonButton, IonButtons, IonContent, IonGrid, IonHeader, IonPage, IonRow,
 import './Build.css';
 import { useDeleteBuildMutation, useGetBuildQuery } from '../../features/api/apiSlice';
 import { useParams } from 'react-router';
-import ComponentCard from '../../components/ComponentCard';
+import ComponentCard from './components/ComponentCard';
 import IonSubtitle from '../../components/inputs/IonSubtitle';
 
 
