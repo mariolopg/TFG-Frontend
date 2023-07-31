@@ -63,8 +63,8 @@ const BuildForm: React.FC = () => {
         <IonGrid fixed>
           <IonRow>
             <IonCol>
-              <InputForm label="Nombre" value={build.name} onIonChange={(e: any) => { setBuild({ ...build, name: e.target.value as string }) }} errors={errors ? errors.name : []} />
-              <TextAreaForm label="Descripción" value={build.description} onIonChange={(e: any) => { setBuild({ ...build, description: e.target.value as string }) }} errors={errors ? errors.description : []} />
+              <InputForm label="Nombre" value={build.name} onIonInput={(e: any) => { setBuild({ ...build, name: e.target.value as string }) }} errors={errors ? errors.name : []} />
+              <TextAreaForm label="Descripción" value={build.description} onIonInput={(e: any) => { setBuild({ ...build, description: e.target.value as string }) }} errors={errors ? errors.description : []} />
 
               <SelectForm label="Procesador" placeholder='Selecciona un procesador...' options={cpus ? cpus : []} onIonChange={(e: any) => { e ? setBuild({ ...build, cpu: e['value'] as string }) : setBuild({ ...build, cpu: "" }) }} errors={errors ? errors.cpu : []} />
 

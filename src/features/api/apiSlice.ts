@@ -23,6 +23,13 @@ export const apiSlice = createApi({
           method: 'DELETE',
         })
       }),
+      createComment: builder.mutation({
+        query: (body) => ({
+          url: `comment/`,
+          method: 'POST',
+          body
+        })
+      }),
       getCPUs: builder.query({
         query: () => `cpu/`
       }),
@@ -56,4 +63,4 @@ export const apiSlice = createApi({
     }),
   });
   
-  export const { useGetBuildsQuery, useCreateBuildMutation, useGetBuildQuery, useDeleteBuildMutation, useGetCPUsQuery, useGetMotherboardsQuery, useGetRAMSQuery, useGetGPUsQuery, useGetAirCoolersQuery, useGetLiquidCoolersQuery, useGetHDDsQuery, useGetSSDsQuery, useGetPSUsQuery, useGetCasesQuery } = apiSlice;
+  export const { useGetBuildsQuery, useCreateBuildMutation, useGetBuildQuery, useLazyGetBuildQuery, useDeleteBuildMutation, useCreateCommentMutation, useGetCPUsQuery, useGetMotherboardsQuery, useGetRAMSQuery, useGetGPUsQuery, useGetAirCoolersQuery, useGetLiquidCoolersQuery, useGetHDDsQuery, useGetSSDsQuery, useGetPSUsQuery, useGetCasesQuery } = apiSlice;

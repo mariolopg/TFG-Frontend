@@ -28,3 +28,13 @@ export interface BuildErrorsInterface {
     storage_drive: []
     case: [];
 }
+
+export interface CommentInterface {
+    build: string;
+    comment: string;
+}
+
+export interface CommentErrorsInterface {
+    build: [],
+    comment: []
+}

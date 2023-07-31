@@ -4,14 +4,14 @@ import InputErrorMsg from './InputErrorMsg';
 interface InputProps{
     label: string,
     value: string,
-    onIonChange?: any,
+    onIonInput?: any,
     errors?: any
 }
 
 const TextAreaForm = (props: InputProps) => {
   return (
     <IonLabel>
-      <IonTextarea fill='outline' shape='round' autoGrow={true} label={props.label} value={props.value} onIonChange={props.onIonChange}></IonTextarea>
+      <IonTextarea fill='outline' shape='round' autoGrow={true} label={props.label} value={props.value} onIonInput={props.onIonInput}/>
       <InputErrorMsg errors={props.errors} />
     </IonLabel>
   );
