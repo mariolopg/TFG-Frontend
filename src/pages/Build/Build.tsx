@@ -27,7 +27,7 @@ const Build: React.FC = () => {
   })
   const [errors, setErrors] = useState<CommentErrorsInterface | undefined>(undefined);
 
-  function handleSubmitComment(event: any) {
+  function handleSubmitComment() {
     postComment(commentInput).then((value: any) => {
       if (value.error) {
         setErrors(value.error.data)
@@ -91,7 +91,7 @@ const Build: React.FC = () => {
             {
               build ?
                 <>
-                  <IonFabButton color='medium'>
+                  <IonFabButton color='medium' href={`/build/${id}/edit`}>
                     <IonIcon icon={create}></IonIcon>
                   </IonFabButton>
                   <IonFabButton color={'danger'} onClick={handleDelete}>

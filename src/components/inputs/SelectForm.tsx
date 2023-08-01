@@ -6,6 +6,7 @@ import './customInputs.css'
 interface InputProps{
     label: string,
     placeholder: string,
+    value?: any,
     onIonChange?: any,
     options?: any,
     errors?: any,
@@ -28,6 +29,7 @@ const SelectForm = (props: InputProps) => {
                 options={options}
                 onChange={props.onIonChange}
                 noOptionsMessage={NoOptionsMessage}
+                value={options[props.value]}
                 isClearable={true}
                 theme={(theme) => ({
                   ...theme,

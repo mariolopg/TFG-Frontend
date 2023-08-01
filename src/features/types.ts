@@ -1,4 +1,5 @@
 export interface BuildInterface {
+    id?: string,
     name: string;
     description: string;
     cpu: string;
@@ -11,6 +12,16 @@ export interface BuildInterface {
     ssd: string;
     psu: string;
     case: string;
+    // cpu_data?: any;
+    // motherboard_data?: any;
+    // gpu_data?: any;
+    // ram_data?: any;
+    // air_cooler_data?: any;
+    // liquid_cooler_data?: any;
+    // hdd_data?: any;
+    // ssd_data?: any;
+    // psu_data?: any;
+    // case_data?: any;
 }
 
 export interface BuildErrorsInterface {
