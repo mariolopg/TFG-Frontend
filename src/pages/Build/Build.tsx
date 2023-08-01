@@ -1,4 +1,4 @@
-import { IonButton, IonButtons, IonContent, IonFab, IonFabButton, IonFabList, IonGrid, IonIcon, IonItem, IonLabel, IonPage, IonRow, IonTitle } from '@ionic/react';
+import { IonButton, IonButtons, IonContent, IonFab, IonFabButton, IonFabList, IonGrid, IonIcon, IonItem, IonLabel, IonLoading, IonPage, IonRow, IonTitle } from '@ionic/react';
 import './Build.css';
 import { useCreateCommentMutation, useDeleteBuildMutation, useGetBuildQuery } from '../../features/api/apiSlice';
 import { useParams } from 'react-router';
@@ -6,7 +6,7 @@ import Comment from '../../components/comment/Comment';
 import IonSubtitle from '../../components/inputs/IonSubtitle';
 import { add, create, options, trash } from 'ionicons/icons';
 import CommentInput from '../../components/comment/CommentInput';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { CommentErrorsInterface, CommentInterface } from '../../features/types';
 import InputErrorMsg from '../../components/inputs/InputErrorMsg';
 import BuildComponents from './components/BuildComponents';
@@ -16,7 +16,7 @@ const Build: React.FC = () => {
   type params = { id: string }
 
   const { id } = useParams<params>()
-  const { data: build } = useGetBuildQuery(id);
+  const { data: build, isLoading } = useGetBuildQuery(id);
   const [deleteBuild, response_delete] = useDeleteBuildMutation();
   const [postComment, response_comment] = useCreateCommentMutation();
 
@@ -46,6 +46,12 @@ const Build: React.FC = () => {
 
   if(response_delete.isSuccess) {
     window.location.replace('/build')
+  }
+
+  if(isLoading){
+    return(
+      <IonLoading message="Loading..." spinner="bubbles" isOpen={true} />
+    )
   }
 
   return (

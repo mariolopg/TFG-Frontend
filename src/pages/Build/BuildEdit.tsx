@@ -55,7 +55,7 @@ const BuildEdit: React.FC = () => {
         <IonToolbar>
           <IonTitle>{build? build.name : ""}</IonTitle>
           <IonButtons slot='end'>
-            <IonButton shape='round' fill='outline' onClick={handleSubmit} href={response.isSuccess ? `/build/${id}` : undefined} color='primary'>
+            <IonButton shape='round' fill='outline' onClick={handleSubmit} color='primary'>
               Guardar cambios
             </IonButton>
           </IonButtons>
@@ -65,7 +65,7 @@ const BuildEdit: React.FC = () => {
         <IonGrid fixed>
           <IonRow>
             <IonCol>
-                  <BuildForm build={buildUpdates} errors={errors ? errors : []} setBuild={setBuildUpdates} />
+                  <BuildForm build={buildUpdates} errors={errors ?? []} setBuild={setBuildUpdates} />
             </IonCol>
           </IonRow>
         </IonGrid>

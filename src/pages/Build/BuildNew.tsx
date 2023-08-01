@@ -33,13 +33,17 @@ const BuildNew: React.FC = () => {
     })
   }
 
+  if(response.isSuccess){
+    window.location.replace(`/build/${response.data.id}`)
+  }
+
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
           <IonTitle>Nueva Build</IonTitle>
           <IonButtons slot='end'>
-            <IonButton shape='round' fill='outline' onClick={handleSubmit} href={response.isSuccess ? `/build/${response.data.id}` : undefined} color='primary'>
+            <IonButton shape='round' fill='outline' onClick={handleSubmit} color='primary'>
               Guardar
             </IonButton>
           </IonButtons>
@@ -49,7 +53,7 @@ const BuildNew: React.FC = () => {
         <IonGrid fixed>
           <IonRow>
             <IonCol>
-              <BuildForm build={build} errors={errors ? errors : []} setBuild={setBuild} />
+              <BuildForm build={build} errors={errors ?? []} setBuild={setBuild} />
             </IonCol>
           </IonRow>
         </IonGrid>
