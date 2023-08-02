@@ -1,9 +1,10 @@
-import { IonButton, IonButtons, IonCol, IonContent, IonGrid, IonHeader, IonPage, IonRow, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButton, IonButtons, IonCol, IonContent, IonGrid, IonRow, IonToolbar } from '@ionic/react';
 import { useGetBuildQuery, useUpdateBuildMutation } from '../../features/api/apiSlice';
 import { useEffect, useState } from 'react';
 import { BuildErrorsInterface, BuildInterface } from '../../features/types';
 import BuildForm from './components/BuildForm';
 import { useParams } from 'react-router';
+import PageTitle from '../../components/PageTitle';
 
 
 const BuildEdit: React.FC = () => {
@@ -13,6 +14,7 @@ const BuildEdit: React.FC = () => {
   const { data: build, isLoading } = useGetBuildQuery(id);
   const [updateBuild, response] = useUpdateBuildMutation();  
   const [errors, setErrors] = useState<BuildErrorsInterface | undefined>(undefined);
+  let showButton = false
 
   const [buildUpdates, setBuildUpdates] = useState<BuildInterface>({
     id: id,
@@ -31,8 +33,10 @@ const BuildEdit: React.FC = () => {
   });
 
   useEffect(()=>{
-    if(build)
+    if(build){
       setBuildUpdates(build)
+
+    }
 	}, [build])
 
   function handleSubmit() {
@@ -50,27 +54,30 @@ const BuildEdit: React.FC = () => {
   }
 
   return (
-    <IonPage>
-      <IonHeader>
+    <IonContent className="ion-padding">
+      <IonGrid fixed>
         <IonToolbar>
-          <IonTitle>{build? build.name : ""}</IonTitle>
-          <IonButtons slot='end'>
-            <IonButton shape='round' fill='outline' onClick={handleSubmit} color='primary'>
-              Guardar cambios
-            </IonButton>
-          </IonButtons>
+          {
+            build ?
+              <>
+                <PageTitle title={build.name}/>
+                <IonButtons slot='end' hidden={showButton}>
+                  <IonButton shape='round' fill='outline' onClick={handleSubmit} color='primary'>
+                    Guardar cambios
+                  </IonButton>
+                </IonButtons>
+              </>
+              :
+              null
+          }
         </IonToolbar>
-      </IonHeader>
-      <IonContent className="ion-padding">
-        <IonGrid fixed>
-          <IonRow>
-            <IonCol>
-                  <BuildForm build={buildUpdates} errors={errors ?? []} setBuild={setBuildUpdates} />
-            </IonCol>
-          </IonRow>
-        </IonGrid>
-      </IonContent>
-    </IonPage>
+        <IonRow>
+          <IonCol>
+            <BuildForm build={buildUpdates} errors={errors ?? []} setBuild={setBuildUpdates} />
+          </IonCol>
+        </IonRow>
+      </IonGrid>
+    </IonContent>
   );
 };
 

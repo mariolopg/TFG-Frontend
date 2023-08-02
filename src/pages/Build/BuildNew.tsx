@@ -1,4 +1,4 @@
-import { IonButton, IonButtons, IonCol, IonContent, IonGrid, IonHeader, IonPage, IonRow, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButton, IonButtons, IonCol, IonContent, IonGrid, IonRow, IonTitle, IonToolbar } from '@ionic/react';
 import { useCreateBuildMutation } from '../../features/api/apiSlice';
 import { useState } from 'react';
 import { BuildErrorsInterface, BuildInterface } from '../../features/types';
@@ -38,8 +38,8 @@ const BuildNew: React.FC = () => {
   }
 
   return (
-    <IonPage>
-      <IonHeader>
+    <IonContent className="ion-padding">
+      <IonGrid fixed>
         <IonToolbar>
           <IonTitle>Nueva Build</IonTitle>
           <IonButtons slot='end'>
@@ -48,17 +48,13 @@ const BuildNew: React.FC = () => {
             </IonButton>
           </IonButtons>
         </IonToolbar>
-      </IonHeader>
-      <IonContent className="ion-padding">
-        <IonGrid fixed>
-          <IonRow>
-            <IonCol>
-              <BuildForm build={build} errors={errors ?? []} setBuild={setBuild} />
-            </IonCol>
-          </IonRow>
-        </IonGrid>
-      </IonContent>
-    </IonPage>
+        <IonRow>
+          <IonCol>
+            <BuildForm build={build} errors={errors ?? []} setBuild={setBuild} />
+          </IonCol>
+        </IonRow>
+      </IonGrid>
+    </IonContent>
   );
 };
 
