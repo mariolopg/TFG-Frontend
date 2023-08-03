@@ -1,10 +1,11 @@
 import React from 'react';
-import { IonButton, IonButtons, IonCol, IonContent, IonGrid, IonRow, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButton, IonButtons, IonCol, IonContent, IonGrid, IonRow, IonToolbar } from '@ionic/react';
 import { useCreateBuildMutation } from '../../features/api/apiSlice';
 import { useState } from 'react';
 import { BuildErrorsInterface, BuildInterface } from '../../features/types';
 import '../../theme/app.css'
 import BuildForm from './components/BuildForm';
+import PageTitle from '../../components/PageTitle';
 
 
 const BuildNew: React.FC = () => {
@@ -42,7 +43,7 @@ const BuildNew: React.FC = () => {
     <IonContent>
       <IonGrid fixed>
         <IonToolbar>
-          <IonTitle>Nueva Build</IonTitle>
+          <PageTitle title='Nueva Build' />
           <IonButtons slot='end'>
             <IonButton shape='round' fill='outline' onClick={handleSubmit} color='primary'>
               Guardar
