@@ -9,14 +9,19 @@ const Builds: React.FC = () => {
 
   if (!isSuccess) return <LoadingSpinner />
 
+  function getImageURL(build: any) {
+    if (build.images.length == 0) return "https://ionicframework.com/docs/img/demos/card-media.png"
+    return build.images[0].image
+  }
+
   return (
     <IonContent>
       <IonGrid fixed>
-        <IonRow >
+        <IonRow>
           {builds?.map((build: any) => (
-            <IonCol sizeXs='6' sizeMd='3'>
+            <IonCol sizeXs='6' sizeMd='3' key={build.id}>
               <IonCard href={`/build/${build.id}`} button>
-                <img alt={build.name} src="https://ionicframework.com/docs/img/demos/card-media.png" />
+                <img alt={build.name} src={getImageURL(build)} className='card-img' />
                 <IonCardHeader>
                   <IonCardSubtitle>Autor</IonCardSubtitle>
                   <IonCardTitle>{build.name}</IonCardTitle>

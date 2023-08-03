@@ -60,7 +60,7 @@ const BuildEdit: React.FC = () => {
     <IonContent>
       <IonGrid fixed>
         <IonToolbar>
-          <PageTitle title={build.name} />
+          <h1>{build.name}</h1>
           <IonButtons slot='end' hidden={showButton}>
             <IonButton shape='round' fill='outline' onClick={handleSubmit} color='primary'>
               Guardar cambios

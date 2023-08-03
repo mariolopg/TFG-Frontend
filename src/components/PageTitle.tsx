@@ -6,7 +6,7 @@ interface PageTitleProps {
 }
 
 const PageTitle = (props: PageTitleProps) => {
-  return <h1>{props.title}</h1>
+  return <IonTitle><h1>{props.title}</h1></IonTitle>
 };
 
 export default React.memo(PageTitle);
