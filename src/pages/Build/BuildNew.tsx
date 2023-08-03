@@ -1,3 +1,4 @@
+import React from 'react';
 import { IonButton, IonButtons, IonCol, IonContent, IonGrid, IonRow, IonTitle, IonToolbar } from '@ionic/react';
 import { useCreateBuildMutation } from '../../features/api/apiSlice';
 import { useState } from 'react';
@@ -33,12 +34,12 @@ const BuildNew: React.FC = () => {
     })
   }
 
-  if(response.isSuccess){
+  if (response.isSuccess) {
     window.location.replace(`/build/${response.data.id}`)
   }
 
   return (
-    <IonContent className="ion-padding">
+    <IonContent>
       <IonGrid fixed>
         <IonToolbar>
           <IonTitle>Nueva Build</IonTitle>
@@ -58,4 +59,4 @@ const BuildNew: React.FC = () => {
   );
 };
 
-export default BuildNew;
+export default React.memo(BuildNew);

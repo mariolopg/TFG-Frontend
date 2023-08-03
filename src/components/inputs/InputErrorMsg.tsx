@@ -1,7 +1,8 @@
+import React from 'react';
 import './customInputs.css'
 
-interface InputErrorMsgProps{
-    errors: []
+interface InputErrorMsgProps {
+  errors: []
 }
 
 const InputErrorMsg = (props: InputErrorMsgProps) => {
@@ -9,11 +10,11 @@ const InputErrorMsg = (props: InputErrorMsgProps) => {
     <div className="message-error">
       {props.errors
         ? props.errors.map((error) => {
-            return <p>{error}</p>;
-          })
+          return <p>{error}</p>;
+        })
         : ""}
     </div>
   );
 };
 
-export default InputErrorMsg;
+export default React.memo(InputErrorMsg);

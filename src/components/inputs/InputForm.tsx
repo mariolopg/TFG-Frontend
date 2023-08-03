@@ -1,11 +1,12 @@
+import React from 'react';
 import { IonInput, IonLabel } from '@ionic/react';
 import InputErrorMsg from './InputErrorMsg';
 
-interface InputProps{
-    label: string,
-    value: string,
-    onIonInput?: any,
-    errors?: any,
+interface InputProps {
+  label: string,
+  value: string,
+  onIonInput?: any,
+  errors?: any,
 }
 
 const InputForm = (props: InputProps) => {
@@ -17,4 +18,4 @@ const InputForm = (props: InputProps) => {
   );
 };
 
-export default InputForm;
+export default React.memo(InputForm);

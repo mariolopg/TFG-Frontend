@@ -25,7 +25,7 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import Builds from './pages/Build/BuildList';
 import Build from './pages/Build/Build';
-import BuildNew from './pages/Build/Buildnew';
+import BuildNew from './pages/Build/BuildNew';
 import BuildEdit from './pages/Build/BuildEdit';
 
 setupIonicReact();
@@ -38,10 +38,10 @@ const App: React.FC = () => (
           <Route exact path="/">
             <Redirect to="/build" />
           </Route>
-          <Route exact path="/build" component={Builds}/>
-          <Route exact path="/build/:id" component={Build}/>
-          <Route exact path="/build/new" component={BuildNew}/>
-          <Route exact path="/build/:id/edit" component={BuildEdit}/>
+          <Route exact path="/build" component={Builds} />
+          <Route exact path="/build/:id" component={Build} />
+          <Route exact path="/build/new" component={BuildNew} />
+          <Route exact path="/build/:id/edit" component={BuildEdit} />
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>

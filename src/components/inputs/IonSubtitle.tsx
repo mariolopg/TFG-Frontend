@@ -1,7 +1,8 @@
+import React from 'react';
 import './ionSubtitle.css'
 
-interface IonSubtitleProps{
-    text: string,
+interface IonSubtitleProps {
+  text: string,
 }
 
 const IonSubtitle = (props: IonSubtitleProps) => {
@@ -10,4 +11,4 @@ const IonSubtitle = (props: IonSubtitleProps) => {
   );
 };
 
-export default IonSubtitle;
+export default React.memo(IonSubtitle);

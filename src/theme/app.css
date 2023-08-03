@@ -1,26 +1,26 @@
 ion-button {
-    --border-radius: 20px;
-    text-transform: none;
+  --border-radius: 20px;
+  text-transform: none;
 }
 
 ion-modal {
-    --border-radius: 20px;
-    --height: fit-content;
-    --width: fit-content;
+  --border-radius: 20px;
+  --height: fit-content;
+  --width: fit-content;
 }
 
 ion-modal > .ion-page {
-    padding: 20px;
+  padding: 20px;
 }
 
 ion-modal ion-title {
-    padding-bottom: 20px;
+  padding-bottom: 20px;
 }
 
 h1 {
-    margin: 20px 0;
+  margin: 20px 0;
 }
 
 .loading-wrapper.sc-ion-loading-md {
-    border-radius: 10px;
+  border-radius: 10px;
 }

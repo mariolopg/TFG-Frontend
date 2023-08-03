@@ -1,5 +1,6 @@
-import Select from 'react-select';
+import React from 'react';
 import { IonLabel } from '@ionic/react';
+import Select from 'react-select';
 import InputErrorMsg from './InputErrorMsg';
 import './customInputs.css'
 
@@ -23,7 +24,7 @@ const SelectForm = (props: InputProps) => {
   }
 
   if (props.value) {
-    index = options.findIndex((option: {value: any;}) => option.value === props.value)
+    index = options.findIndex((option: { value: any; }) => option.value === props.value)
   }
 
   const NoOptionsMessage = () => (<span>No hay opciones disponibles</span>);
@@ -49,4 +50,4 @@ const SelectForm = (props: InputProps) => {
   );
 };
 
-export default SelectForm;
+export default React.memo(SelectForm);

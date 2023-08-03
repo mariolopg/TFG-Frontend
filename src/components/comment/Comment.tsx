@@ -1,7 +1,8 @@
+import React from 'react';
 import { IonAvatar, IonItem, IonLabel } from '@ionic/react';
 import './comment.css'
 
-interface CommentProps{
+interface CommentProps {
     img: string,
     alt: string,
     author: string,
@@ -22,4 +23,4 @@ const Comment = (props: CommentProps) => {
     );
 };
 
-export default Comment;
+export default React.memo(Comment);

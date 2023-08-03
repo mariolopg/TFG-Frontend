@@ -1,3 +1,4 @@
+import React from 'react';
 import { IonButton, IonButtons, IonCol, IonContent, IonGrid, IonRow, IonToolbar } from '@ionic/react';
 import { useGetBuildQuery, useUpdateBuildMutation } from '../../features/api/apiSlice';
 import { useEffect, useState } from 'react';
@@ -11,8 +12,8 @@ const BuildEdit: React.FC = () => {
   type params = { id: string }
 
   const { id } = useParams<params>()
-  const { data: build, isLoading } = useGetBuildQuery(id);
-  const [updateBuild, response] = useUpdateBuildMutation();  
+  const { data: build, isSuccess } = useGetBuildQuery(id);
+  const [updateBuild, response] = useUpdateBuildMutation();
   const [errors, setErrors] = useState<BuildErrorsInterface | undefined>(undefined);
   let showButton = false
 
@@ -32,15 +33,15 @@ const BuildEdit: React.FC = () => {
     case: ""
   });
 
-  useEffect(()=>{
-    if(build){
+  useEffect(() => {
+    if (build) {
       setBuildUpdates(build)
 
     }
-	}, [build])
+  }, [build])
 
   function handleSubmit() {
-    updateBuild({id: id, body: buildUpdates}).then((value: any) => {
+    updateBuild({ id: id, body: buildUpdates }).then((value: any) => {
       console.log(value)
       console.log(buildUpdates)
       if (value.error) {
@@ -49,27 +50,22 @@ const BuildEdit: React.FC = () => {
     })
   }
 
-  if(response.isSuccess) {
+  if (response.isSuccess) {
     window.location.replace(`/build/${id}`)
   }
 
+  if (!isSuccess) return null
+
   return (
-    <IonContent className="ion-padding">
+    <IonContent>
       <IonGrid fixed>
         <IonToolbar>
-          {
-            build ?
-              <>
-                <PageTitle title={build.name}/>
-                <IonButtons slot='end' hidden={showButton}>
-                  <IonButton shape='round' fill='outline' onClick={handleSubmit} color='primary'>
-                    Guardar cambios
-                  </IonButton>
-                </IonButtons>
-              </>
-              :
-              null
-          }
+          <PageTitle title={build.name} />
+          <IonButtons slot='end' hidden={showButton}>
+            <IonButton shape='round' fill='outline' onClick={handleSubmit} color='primary'>
+              Guardar cambios
+            </IonButton>
+          </IonButtons>
         </IonToolbar>
         <IonRow>
           <IonCol>
@@ -81,4 +77,4 @@ const BuildEdit: React.FC = () => {
   );
 };
 
-export default BuildEdit;
+export default React.memo(BuildEdit);
