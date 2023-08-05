@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonButton, IonButtons, IonContent, IonFab, IonFabButton, IonFabList, IonGrid, IonIcon, IonItem, IonLabel, IonRow, IonTitle } from '@ionic/react';
+import { IonButton, IonButtons, IonContent, IonFab, IonFabButton, IonFabList, IonGrid, IonIcon, IonItem, IonLabel, IonModal, IonRow, IonTitle } from '@ionic/react';
 import { useCreateCommentMutation, useDeleteBuildMutation, useGetBuildQuery } from '../../features/api/apiSlice';
 import { useParams } from 'react-router';
 import Comment from '../../components/comment/Comment';
@@ -13,6 +13,7 @@ import BuildComponents from './components/BuildComponents';
 import PageTitle from '../../components/PageTitle';
 import DeleteModal from '../../components/DeleteModal';
 import LoadingSpinner from '../../components/LoadingSpinner';
+import ImageSlider from '../../components/ImageSlider/ImageSlider';
 
 
 const Build: React.FC = () => {
@@ -65,6 +66,7 @@ const Build: React.FC = () => {
         <IonRow>
           <BuildComponents build={build} />
         </IonRow>
+        <ImageSlider images={build.images} />
         <IonTitle>Comentarios</IonTitle>
         <CommentInput img='https://ionicframework.com/docs/img/demos/avatar.svg' alt='Avatar de autor' placeholder='Añade un comentario...' value={commentInput.comment} onIonInput={(e: any) => { setCommentInput({ ...commentInput, comment: e.target.value as string }) }} />
         <IonItem lines='none'>
