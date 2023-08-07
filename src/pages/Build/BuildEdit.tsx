@@ -1,11 +1,11 @@
 import React from 'react';
 import { IonButton, IonButtons, IonCol, IonContent, IonGrid, IonRow, IonToolbar } from '@ionic/react';
-import { useGetBuildQuery, useUpdateBuildMutation } from '../../features/api/apiSlice';
+import { useCreateImageMutation, useGetBuildQuery, useUpdateBuildMutation } from '../../features/api/apiSlice';
 import { useEffect, useState } from 'react';
 import { BuildErrorsInterface, BuildInterface } from '../../features/types';
 import BuildForm from './components/BuildForm';
 import { useParams } from 'react-router';
-import PageTitle from '../../components/PageTitle';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
 
 const BuildEdit: React.FC = () => {
@@ -14,8 +14,7 @@ const BuildEdit: React.FC = () => {
   const { id } = useParams<params>()
   const { data: build, isSuccess } = useGetBuildQuery(id);
   const [updateBuild, response] = useUpdateBuildMutation();
-  const [errors, setErrors] = useState<BuildErrorsInterface | undefined>(undefined);
-  let showButton = false
+  const [postImage, responseImage] = useCreateImageMutation();
 
   const [buildUpdates, setBuildUpdates] = useState<BuildInterface>({
     id: id,
@@ -33,35 +32,40 @@ const BuildEdit: React.FC = () => {
     case: ""
   });
 
+  const [images, setImages] = useState<File[] | undefined>();
+  const [errors, setErrors] = useState<BuildErrorsInterface | undefined>(undefined);
+
   useEffect(() => {
     if (build) {
       setBuildUpdates(build)
-
     }
   }, [build])
 
   function handleSubmit() {
     updateBuild({ id: id, body: buildUpdates }).then((value: any) => {
-      console.log(value)
-      console.log(buildUpdates)
       if (value.error) {
         setErrors(value.error.data)
+      }
+      else {
+        images?.map((image) => {
+          var formData = new FormData();
+          formData.append('build', value.data.id);
+          formData.append('image', image);
+          postImage(formData)
+        })
+        window.location.replace(`/build/${id}`)
       }
     })
   }
 
-  if (response.isSuccess) {
-    window.location.replace(`/build/${id}`)
-  }
-
-  if (!isSuccess) return null
+  if (!isSuccess) return <LoadingSpinner />
 
   return (
     <IonContent>
       <IonGrid fixed>
         <IonToolbar>
           <h1>{build.name}</h1>
-          <IonButtons slot='end' hidden={showButton}>
+          <IonButtons slot='end'>
             <IonButton shape='round' fill='outline' onClick={handleSubmit} color='primary'>
               Guardar cambios
             </IonButton>
@@ -69,7 +73,7 @@ const BuildEdit: React.FC = () => {
         </IonToolbar>
         <IonRow>
           <IonCol>
-            <BuildForm build={buildUpdates} errors={errors ?? []} setBuild={setBuildUpdates} />
+            <BuildForm build={buildUpdates} images={images} errors={errors ?? []} setBuild={setBuildUpdates} setImages={setImages} editable />
           </IonCol>
         </IonRow>
       </IonGrid>

@@ -4,11 +4,16 @@ import SelectForm from "../../../components/inputs/SelectForm";
 import TextAreaForm from "../../../components/inputs/TextAreaForm";
 import { useGetAirCoolersQuery, useGetCPUsQuery, useGetCasesQuery, useGetGPUsQuery, useGetHDDsQuery, useGetLiquidCoolersQuery, useGetMotherboardsQuery, useGetPSUsQuery, useGetRAMSQuery, useGetSSDsQuery } from "../../../features/api/apiSlice";
 import LoadingSpinner from "../../../components/LoadingSpinner";
+import ImagesInput from "../../../components/inputs/ImagesInput";
+import ImageSlider from "../../../components/ImageSlider/ImageSlider";
 
 interface BuildFormProps {
   build: any,
+  images: File[] | undefined,
   errors: any,
-  setBuild: Function
+  editable?: boolean,
+  setBuild: Function,
+  setImages: Function,
 }
 
 const BuildForm = (props: BuildFormProps) => {
@@ -27,6 +32,15 @@ const BuildForm = (props: BuildFormProps) => {
   const isSuccess = isSuccessCPUS && isSuccessMBS && isSuccessRAMS && isSuccessGPUS && isSuccessACLRS && isSuccessLCLRS && isSuccessHDDS && isSuccessSSDS && isSuccessPSUS && isSuccessCases
 
   if (!isSuccess) return <LoadingSpinner />
+
+  const GetImageSlider: React.FC = () => {
+    if (!props.build.images) return null;
+    return <ImageSlider label="Imágenes guardadas" images={props.build.images} editable={props.editable} />
+  }
+
+  const handleChange = (newFiles: any) => {
+    props.setImages(newFiles);
+  }
 
   return (
     <>
@@ -52,6 +66,10 @@ const BuildForm = (props: BuildFormProps) => {
       <SelectForm label="Fuente de alimentación" placeholder='Selecciona una fuente de alimentación...' options={psus} value={props.build.psu} onIonChange={(e: any) => props.setBuild({ ...props.build, psu: e ? e['value'] : '' })} errors={props.errors.psu} />
 
       <SelectForm label="Chasis" placeholder='Selecciona un chasis...' options={cases} value={props.build.case} onIonChange={(e: any) => props.setBuild({ ...props.build, case: e ? e['value'] : '' })} errors={props.errors.case} />
+
+      <ImagesInput value={props.images} handleChange={handleChange} />
+
+      <GetImageSlider />
     </>
   );
 

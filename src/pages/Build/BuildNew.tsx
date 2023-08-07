@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { IonButton, IonButtons, IonCol, IonContent, IonGrid, IonRow, IonToolbar } from '@ionic/react';
-import { useCreateBuildMutation } from '../../features/api/apiSlice';
+import { useCreateBuildMutation, useCreateImageMutation } from '../../features/api/apiSlice';
 import { useState } from 'react';
 import { BuildErrorsInterface, BuildInterface } from '../../features/types';
 import '../../theme/app.css'
 import BuildForm from './components/BuildForm';
 import PageTitle from '../../components/PageTitle';
 
-
 const BuildNew: React.FC = () => {
   const [postBuild, response] = useCreateBuildMutation();
-  const [errors, setErrors] = useState<BuildErrorsInterface | undefined>(undefined);
+  const [postImage, responseImage] = useCreateImageMutation();
 
   const [build, setBuild] = useState<BuildInterface>({
     name: "",
@@ -27,16 +26,24 @@ const BuildNew: React.FC = () => {
     case: ""
   });
 
+  const [images, setImages] = useState([]);
+  const [errors, setErrors] = useState<BuildErrorsInterface | undefined>(undefined);
+
   function handleSubmit() {
     postBuild(build).then((value: any) => {
       if (value.error) {
         setErrors(value.error.data)
       }
+      else {
+        images?.map((image) => {
+          var formData = new FormData();
+          formData.append('build', value.data.id);
+          formData.append('image', image);
+          postImage(formData)
+        })
+        window.location.replace(`/build/${value.data.id}`)
+      }
     })
-  }
-
-  if (response.isSuccess) {
-    window.location.replace(`/build/${response.data.id}`)
   }
 
   return (
@@ -52,7 +59,7 @@ const BuildNew: React.FC = () => {
         </IonToolbar>
         <IonRow>
           <IonCol>
-            <BuildForm build={build} errors={errors ?? []} setBuild={setBuild} />
+            <BuildForm build={build} setBuild={setBuild} errors={errors ?? []} images={images} setImages={setImages} />
           </IonCol>
         </IonRow>
       </IonGrid>

@@ -22,8 +22,8 @@ const Build: React.FC = () => {
 
   const { id } = useParams<params>()
   const { data: build, isSuccess } = useGetBuildQuery(id);
-  const [deleteBuild, response_delete] = useDeleteBuildMutation();
-  const [postComment, response_comment] = useCreateCommentMutation();
+  const [deleteBuild, responseDelete] = useDeleteBuildMutation();
+  const [postComment, responseComment] = useCreateCommentMutation();
 
   const [comments, setComments] = useState<JSX.Element[]>([])
   const [commentInput, setCommentInput] = useState<CommentInterface>({
@@ -49,7 +49,7 @@ const Build: React.FC = () => {
     deleteBuild(id)
   }
 
-  if (response_delete.isSuccess) {
+  if (responseDelete.isSuccess) {
     window.location.replace('/build')
   }
 

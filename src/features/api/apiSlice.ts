@@ -37,6 +37,20 @@ export const apiSlice = createApi({
         body,
       }),
     }),
+    createImage: builder.mutation({
+      query: (body) => ({
+        url: `build_image/`,
+        method: "POST",
+        body,
+        formData: true,
+      }),
+    }),
+    deleteBuildImage: builder.mutation({
+      query: (id) => ({
+        url: `build_image/${id}/`,
+        method: "DELETE",
+      }),
+    }),
     getCPUs: builder.query({
       query: () => `cpu/`,
     }),
@@ -77,6 +91,8 @@ export const {
   useUpdateBuildMutation,
   useDeleteBuildMutation,
   useCreateCommentMutation,
+  useCreateImageMutation,
+  useDeleteBuildImageMutation,
   useGetCPUsQuery,
   useGetMotherboardsQuery,
   useGetRAMSQuery,
