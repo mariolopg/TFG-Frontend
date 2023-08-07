@@ -8,12 +8,12 @@ interface ImagesInputProps {
   handleChange: any;
 }
 
-const ImagesInput: React.FC<ImagesInputProps> = ({ value, handleChange }) => {
+const ImagesInput = (props: ImagesInputProps) => {
 
   return (
     <IonLabel>
       <h2>Imágenes</h2>
-      <MuiFileInput className='image-file-input' multiple value={value ?? []} onChange={handleChange} placeholder='Selecciona una o varias imágenes...'
+      <MuiFileInput className='image-file-input' multiple value={props.value ?? []} onChange={props.handleChange} placeholder='Selecciona una o varias imágenes...'
         InputProps={{
           style: {
             borderRadius: "30px",
