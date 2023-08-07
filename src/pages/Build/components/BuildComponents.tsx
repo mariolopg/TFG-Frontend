@@ -6,6 +6,12 @@ interface BuildComponentsProps {
 }
 
 const BuildComponents = (props: BuildComponentsProps) => {
+	function GetGPUCard() {
+		if (props.build.gpu)
+			return <ComponentCard title='Tarjeta gráfica' subtitle={props.build.gpu_data.name} />
+		return null
+	}
+
 	function GetCoolerCard() {
 		if (props.build.air_cooler_data)
 			return <ComponentCard title='Refrigeración por aire' subtitle={props.build.air_cooler_data.name} />
@@ -31,6 +37,7 @@ const BuildComponents = (props: BuildComponentsProps) => {
 			<ComponentCard title='Procesador' subtitle={props.build.cpu_data.name} />
 			<ComponentCard title='Placa Base' subtitle={props.build.motherboard_data.name} />
 			<ComponentCard title='Memoria RAM' subtitle={props.build.ram_data.name} />
+			<GetGPUCard />
 			<GetCoolerCard />
 			<GetHDDCard />
 			<GetSSDCard />

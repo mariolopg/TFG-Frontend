@@ -27,7 +27,6 @@ const ImageSlider = (props: ImageSliderProps) => {
   const modalIMG = useRef<HTMLIonModalElement>(null);
 
   function handleOpenModal(imageURL: string) {
-    console.log(slidesPerView)
     setImageURL(imageURL)
     setImgModalOpen(true);
   }
