@@ -2,7 +2,7 @@ import { Provider } from 'react-redux';
 import { store } from './store';
 
 import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
+import { IonApp, IonIcon, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 
 /* Core CSS required for Ionic components to work properly */
@@ -23,10 +23,18 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import Builds from './pages/Build/BuildList';
-import Build from './pages/Build/Build';
-import BuildNew from './pages/Build/BuildNew';
-import BuildEdit from './pages/Build/BuildEdit';
+import './theme/app.css';
+
+/* Pages */
+import Login from './pages/Auth/Login/Login';
+import Register from './pages/Auth/Register/Register';
+import BuildList from './pages/Build/BuildList/BuildList';
+import BuildDetail from './pages/Build/BuildDetail/BuildDetail';
+import Configutator from './pages/Build/Configurator/Configurator';
+import BuildEdit from './pages/Build/BuildEdit/BuildEdit';
+import Layout from './pages/Layout/Layout';
+import { BUILD_DETAIL_EDIT_PATH, BUILD_DETAIL_PATH, BUILD_LIST_PATH, CONFIGURATOR_PATH, LOGIN_PATH, REGISTER_PATH, ROOT_PATH } from './constants';
+import AuthRoute from './routes/AuthRoute';
 
 setupIonicReact();
 
@@ -35,13 +43,27 @@ const App: React.FC = () => (
     <IonApp>
       <IonReactRouter>
         <IonRouterOutlet>
-          <Route exact path="/">
-            <Redirect to="/build" />
-          </Route>
-          <Route exact path="/build" component={Builds} />
-          <Route exact path="/build/:id" component={Build} />
-          <Route exact path="/build/new" component={BuildNew} />
-          <Route exact path="/build/:id/edit" component={BuildEdit} />
+          <Layout>
+            <>
+              <Route exact path={ROOT_PATH}>
+                <Redirect to={BUILD_LIST_PATH} />
+              </Route>
+              <Route exact path={LOGIN_PATH} component={Login} />
+              <Route exact path={REGISTER_PATH} component={Register} />
+              <Route exact path={BUILD_LIST_PATH}>
+                <AuthRoute><BuildList /></AuthRoute>
+              </Route>
+              <Route exact path={CONFIGURATOR_PATH} >
+                <AuthRoute sessionRequired><Configutator /></AuthRoute>
+              </Route>
+              <Route exact path={BUILD_DETAIL_PATH} >
+                <AuthRoute><BuildDetail /></AuthRoute>
+              </Route>
+              <Route exact path={BUILD_DETAIL_EDIT_PATH} >
+                <AuthRoute sessionRequired><BuildEdit /></AuthRoute>
+              </Route>
+            </>
+          </Layout>
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>

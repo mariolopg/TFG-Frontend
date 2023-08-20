@@ -7,7 +7,7 @@ import 'swiper/css/navigation';
 
 import './ImageSlider.css'
 import { trash } from "ionicons/icons";
-import { useDeleteBuildImageMutation } from "../../features/api/apiSlice";
+import { useDeleteBuildImageMutation } from "../../domain/api/apiSlice";
 
 
 interface ImageSliderProps {

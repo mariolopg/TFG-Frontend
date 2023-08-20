@@ -7,12 +7,13 @@ interface InputProps {
   value: string,
   onIonInput?: any,
   errors?: any,
+  type?: any
 }
 
 const InputForm = (props: InputProps) => {
   return (
     <IonLabel>
-      <IonInput fill='outline' shape='round' label={props.label} value={props.value} onIonInput={props.onIonInput}></IonInput>
+      <IonInput fill='outline' shape='round' label={props.label} value={props.value} onIonInput={props.onIonInput} type={props.type ?? ""}></IonInput>
       <InputErrorMsg errors={props.errors} />
     </IonLabel>
   );

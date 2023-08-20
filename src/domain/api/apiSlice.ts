@@ -1,8 +1,19 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { API_BASE_URL, REDUCER_PATH } from "../../constants";
+import { RootState } from "../../store";
 
 export const apiSlice = createApi({
-  reducerPath: "api",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8000/api/" }),
+  reducerPath: REDUCER_PATH,
+  baseQuery: fetchBaseQuery({
+    baseUrl: API_BASE_URL,
+    prepareHeaders: (headers, { getState }) => {
+      const { token } = (getState() as RootState).auth;
+      if (!!token) {
+        headers.set("Authorization", `Token ${token}`);
+      }
+      return headers;
+    },
+  }),
   endpoints: (builder) => ({
     getBuilds: builder.query({
       query: () => `build/`,
@@ -20,7 +31,7 @@ export const apiSlice = createApi({
     updateBuild: builder.mutation({
       query: ({ id, body }) => ({
         url: `build/${id}/`,
-        method: "PUT",
+        method: "PATCH",
         body,
       }),
     }),
@@ -81,8 +92,39 @@ export const apiSlice = createApi({
     getCases: builder.query({
       query: () => `case/`,
     }),
+    register: builder.mutation({
+      query: (body) => ({
+        url: `auth/register/`,
+        method: "POST",
+        body,
+      }),
+    }),
+    login: builder.mutation({
+      query: (body) => ({
+        url: `auth/login/`,
+        method: "POST",
+        body,
+      }),
+    }),
+    logout: builder.mutation({
+      query: () => ({
+        url: `auth/logout/`,
+        method: "POST",
+      }),
+    }),
+    userDelete: builder.mutation({
+      query: () => ({
+        url: `auth/deactivate/`,
+        method: "DELETE",
+      }),
+    }),
+    userProfile: builder.query({
+      query: (id) => `auth/users/${id}/`,
+    }),
   }),
 });
+
+export const { login, logout } = apiSlice.endpoints;
 
 export const {
   useGetBuildsQuery,
@@ -103,4 +145,9 @@ export const {
   useGetSSDsQuery,
   useGetPSUsQuery,
   useGetCasesQuery,
+  useRegisterMutation,
+  useLoginMutation,
+  useLogoutMutation,
+  useUserDeleteMutation,
+  useUserProfileQuery,
 } = apiSlice;

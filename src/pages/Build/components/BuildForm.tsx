@@ -1,10 +1,10 @@
 import React from "react";
-import InputForm from "../../../components/inputs/InputForm";
-import SelectForm from "../../../components/inputs/SelectForm";
-import TextAreaForm from "../../../components/inputs/TextAreaForm";
-import { useGetAirCoolersQuery, useGetCPUsQuery, useGetCasesQuery, useGetGPUsQuery, useGetHDDsQuery, useGetLiquidCoolersQuery, useGetMotherboardsQuery, useGetPSUsQuery, useGetRAMSQuery, useGetSSDsQuery } from "../../../features/api/apiSlice";
+import InputForm from "../../../components/Inputs/InputForm";
+import SelectForm from "../../../components/Inputs/SelectForm";
+import TextAreaForm from "../../../components/Inputs/TextAreaForm";
+import { useGetAirCoolersQuery, useGetCPUsQuery, useGetCasesQuery, useGetGPUsQuery, useGetHDDsQuery, useGetLiquidCoolersQuery, useGetMotherboardsQuery, useGetPSUsQuery, useGetRAMSQuery, useGetSSDsQuery } from "../../../domain/api/apiSlice";
 import LoadingSpinner from "../../../components/LoadingSpinner";
-import ImagesInput from "../../../components/inputs/ImagesInput";
+import ImagesInput from "../../../components/Inputs/ImagesInput";
 import ImageSlider from "../../../components/ImageSlider/ImageSlider";
 
 interface BuildFormProps {
