@@ -21,3 +21,5 @@ export const DEFAULT_AVATAR_IMG =
   "https://ionicframework.com/docs/img/demos/avatar.svg";
 export const DEFAULT_CARD_IMG =
   "https://ionicframework.com/docs/img/demos/card-media.png";
+
+export const TOAST_TIMEOUT = 5000;

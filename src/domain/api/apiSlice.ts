@@ -124,7 +124,7 @@ export const apiSlice = createApi({
   }),
 });
 
-export const { login, logout } = apiSlice.endpoints;
+export const { login, register, logout } = apiSlice.endpoints;
 
 export const {
   useGetBuildsQuery,

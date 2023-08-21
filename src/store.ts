@@ -2,10 +2,12 @@ import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { apiSlice } from "./domain/api/apiSlice";
 import authSlice from "./redux/authSlice";
+import toastSlice from "./redux/toastSlide";
 
 export const store = configureStore({
   reducer: {
     [authSlice.name]: authSlice.reducer,
+    [toastSlice.name]: toastSlice.reducer,
     [apiSlice.reducerPath]: apiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
