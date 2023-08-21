@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { useLogoutMutation } from "../../../domain/api/apiSlice";
 import { ROOT_PATH } from "../../../constants";
-import { useHistory } from "react-router";
 
 const useNavBar = () => {
-  const navigate = useHistory();
   const [logout, response] = useLogoutMutation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
@@ -19,9 +17,11 @@ const useNavBar = () => {
   };
 
   const handleLogout = () => {
-    logout(null).then(() => {
-      setAnchorEl(null);
-      navigate.push(ROOT_PATH);
+    logout(null).then((value: any) => {
+      if (!value.error) {
+        setAnchorEl(null);
+        window.location.replace(ROOT_PATH);
+      }
     });
   };
 

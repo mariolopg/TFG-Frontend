@@ -3,11 +3,15 @@ import {
   RegisterErrorsInterface,
   RegisterInterface,
 } from "../../../../domain/types";
-import { useRegisterMutation } from "../../../../domain/api/apiSlice";
+import {
+  useLoginMutation,
+  useRegisterMutation,
+} from "../../../../domain/api/apiSlice";
 import { LOGIN_PATH, ROOT_PATH } from "../../../../constants";
 
 const useRegister = () => {
-  const [createUser, response] = useRegisterMutation();
+  const [register, responseRegister] = useRegisterMutation();
+  const [login, responseLogin] = useLoginMutation();
 
   const [user, setUser] = useState<RegisterInterface>({
     username: "",
@@ -23,10 +27,22 @@ const useRegister = () => {
   );
 
   function handleSubmitRegister() {
-    createUser(user).then((value: any) => {
+    register(user).then((value: any) => {
       if (value.error) {
         setErrors(value.error.data);
       } else {
+        logUser();
+      }
+    });
+  }
+
+  function logUser() {
+    const loginUserData = {
+      username: user.username,
+      password: user.password1,
+    };
+    login(loginUserData).then((value: any) => {
+      if (!value.error) {
         window.location.replace(ROOT_PATH);
       }
     });
@@ -36,7 +52,10 @@ const useRegister = () => {
     setUser({ ...user, [field]: event.target.value });
   };
 
-  if (response.isSuccess) {
+  if (responseRegister.isSuccess) {
+  }
+
+  if (responseLogin.isSuccess) {
     window.location.replace(LOGIN_PATH);
   }
 

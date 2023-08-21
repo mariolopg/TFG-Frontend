@@ -24,8 +24,6 @@ const BuildDetail: React.FC = () => {
     return <LoadingSpinner />
   }
 
-
-
   function GetCommentInput() {
     if (!!!useAppSelector(selectToken)) return null
     const { comments, errors, comment, setValue, handleSubmitComment } = useBuildDetail()
@@ -81,6 +79,8 @@ const BuildDetail: React.FC = () => {
     <>
       <IonGrid fixed>
         <PageTitle title={build.name} />
+        <IonTitle>Autor</IonTitle>
+        <IonSubtitle text={build.builder_data.username} />
         <IonTitle>Descripción</IonTitle>
         <IonSubtitle text={build.description} />
         <IonTitle>Componentes</IonTitle>

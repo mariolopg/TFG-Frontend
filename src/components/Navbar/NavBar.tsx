@@ -11,10 +11,30 @@ import useNavBar from './hooks/useNavBar';
 import { PiDesktopTower } from "react-icons/pi"
 import { LiaToolsSolid, LiaUserCircle } from "react-icons/lia"
 import { BsShop } from "react-icons/bs"
-import { BUILD_LIST_PATH, CONFIGURATOR_PATH } from '../../constants';
+import { BUILD_LIST_PATH, CONFIGURATOR_PATH, LOGIN_PATH, REGISTER_PATH, USER_PATH } from '../../constants';
+import { useAppSelector } from '../../hooks/appHooks';
+import { selectToken } from '../../redux/authSlice';
 
 const NavBar: React.FC = () => {
   const { menuId, anchorEl, isMenuOpen, handleProfileMenuOpen, handleMenuClose, handleLogout } = useNavBar();
+
+  function GetmenuItems() {
+    const token = useAppSelector(selectToken)
+    if (!!!token) {
+      return (
+        <>
+          <MenuItem href={LOGIN_PATH}><a className='menu-item-link' href={LOGIN_PATH}>Iniciar sesión</a></MenuItem>
+          <MenuItem href={LOGIN_PATH}><a className='menu-item-link' href={REGISTER_PATH}>Crear cuenta</a></MenuItem>
+        </>
+      )
+    }
+    return (
+      <>
+        <MenuItem href={LOGIN_PATH}><a className='menu-item-link' href={USER_PATH}>Perfil</a></MenuItem>
+        <MenuItem onClick={handleLogout}>Cerrar Sesión</MenuItem>
+      </>
+    )
+  }
 
   const renderMenu = (
     <Menu
@@ -32,8 +52,7 @@ const NavBar: React.FC = () => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Perfil</MenuItem>
-      <MenuItem onClick={handleLogout}>Cerrar Sesión</MenuItem>
+      <GetmenuItems />
     </Menu>
   );
 

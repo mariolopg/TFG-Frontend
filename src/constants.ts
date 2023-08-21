@@ -13,6 +13,8 @@ export const BUILD_LIST_PATH = BUILD_BASE_PATH;
 export const BUILD_DETAIL_PATH = "/build/:id";
 export const BUILD_DETAIL_EDIT_PATH = "/build/:id/edit";
 export const CONFIGURATOR_PATH = "/configurator";
+// export const USER_PATH = "/user/:id";
+export const USER_PATH = "";
 
 // IMAGES
 export const DEFAULT_AVATAR_IMG =
