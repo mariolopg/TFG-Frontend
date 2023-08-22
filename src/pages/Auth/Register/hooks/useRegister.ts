@@ -7,14 +7,16 @@ import {
   useLoginMutation,
   useRegisterMutation,
 } from "../../../../domain/api/apiSlice";
-import { LOGIN_PATH, ROOT_PATH } from "../../../../constants";
+import { ROOT_PATH } from "../../../../constants";
 import { useAppSelector } from "../../../../hooks/appHooks";
-import { selectToken } from "../../../../redux/authSlice";
+import { selectIsLogged } from "../../../../redux/authSlice";
+import { useHistory } from "react-router";
 
 const useRegister = () => {
+  const history = useHistory();
   const [register, responseRegister] = useRegisterMutation();
   const [login, responseLogin] = useLoginMutation();
-  const token = useAppSelector(selectToken);
+  const isLogged = useAppSelector(selectIsLogged);
 
   const [user, setUser] = useState<RegisterInterface>({
     username: "",
@@ -46,7 +48,8 @@ const useRegister = () => {
     };
     login(loginUserData).then((value: any) => {
       if (!value.error) {
-        window.location.replace(ROOT_PATH);
+        history.push(ROOT_PATH);
+        location.reload();
       }
     });
   }
@@ -55,17 +58,10 @@ const useRegister = () => {
     setUser({ ...user, [field]: event.target.value });
   };
 
-  if (responseRegister.isSuccess) {
-  }
-
-  if (responseLogin.isSuccess) {
-    window.location.replace(LOGIN_PATH);
-  }
-
   return {
     user,
     errors,
-    spinner: !!token,
+    isLogged,
     setValue,
     handleSubmitRegister,
   };

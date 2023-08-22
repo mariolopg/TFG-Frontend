@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { LoginErrorsInterface, LoginInterface } from "../../../../domain/types";
 import { useLoginMutation } from "../../../../domain/api/apiSlice";
-import { useHistory } from "react-router";
+
 import { ROOT_PATH } from "../../../../constants";
 import { useAppSelector } from "../../../../hooks/appHooks";
-import { selectToken } from "../../../../redux/authSlice";
+import { selectIsLogged } from "../../../../redux/authSlice";
+import { useHistory } from "react-router";
 
 const useLogin = () => {
-  const navigate = useHistory();
-  const token = useAppSelector(selectToken);
+  const history = useHistory();
+  const isLogged = useAppSelector(selectIsLogged);
 
   const [user, setUser] = useState<LoginInterface>({
     username: "",
@@ -25,8 +26,6 @@ const useLogin = () => {
     loginUser(user).then((value: any) => {
       if (value.error) {
         setErrors(value.error.data);
-      } else {
-        navigate.push(ROOT_PATH);
       }
     });
   };
@@ -35,11 +34,12 @@ const useLogin = () => {
     setUser({ ...user, [field]: event.target.value });
   };
 
-  if (!!token) {
-    window.location.replace(ROOT_PATH);
+  if (isLogged || response.isSuccess) {
+    history.push(ROOT_PATH);
+    location.reload();
   }
 
-  return { user, errors, spinner: !!token, setValue, handleSubmitLogin };
+  return { user, errors, isLogged, response, setValue, handleSubmitLogin };
 };
 
 export default useLogin;

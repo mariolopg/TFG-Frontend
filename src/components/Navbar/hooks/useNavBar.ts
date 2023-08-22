@@ -1,8 +1,13 @@
 import { useState } from "react";
+import { useAppSelector } from "../../../hooks/appHooks";
+import { selectToken } from "../../../redux/authSlice";
 import { useLogoutMutation } from "../../../domain/api/apiSlice";
 import { ROOT_PATH } from "../../../constants";
+import { useHistory } from "react-router";
 
 const useNavBar = () => {
+  const history = useHistory();
+  const isLogged = useAppSelector(selectToken);
   const [logout, response] = useLogoutMutation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
@@ -20,14 +25,16 @@ const useNavBar = () => {
     logout(null).then((value: any) => {
       if (!value.error) {
         setAnchorEl(null);
-        window.location.replace(ROOT_PATH);
+        history.push(ROOT_PATH);
+        location.reload();
       }
     });
   };
 
-  const menuId = "primary-search-account-menu";
+  const menuId = "accoutn-menu";
 
   return {
+    isLogged,
     menuId,
     anchorEl,
     isMenuOpen,

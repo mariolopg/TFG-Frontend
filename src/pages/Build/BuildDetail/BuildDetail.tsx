@@ -11,26 +11,23 @@ import LoadingSpinner from '../../../components/LoadingSpinner';
 import ImageSlider from '../../../components/ImageSlider/ImageSlider';
 import InputErrorMsg from '../../../components/Inputs/InputErrorMsg';
 import useBuildDetail from './hooks/useBuildDetail';
-import { BUILD_BASE_PATH, BUILD_LIST_PATH, DEFAULT_AVATAR_IMG } from '../../../constants';
-import { useAppSelector } from '../../../hooks/appHooks';
-import { selectToken, selectUserId, selectUserUsername } from '../../../redux/authSlice';
-
+import { BUILD_BASE_PATH, DEFAULT_AVATAR_IMG } from '../../../constants';
 
 const BuildDetail: React.FC = () => {
 
-  const { id, build, isSuccess } = useBuildDetail()
+  const { id, build, isLogged, builderId, builderUsername, isSuccess } = useBuildDetail()
 
   if (!isSuccess) {
     return <LoadingSpinner />
   }
 
   function GetCommentInput() {
-    if (!!!useAppSelector(selectToken)) return null
+    if (!isLogged) { return null }
+
     const { comments, errors, comment, setValue, handleSubmitComment } = useBuildDetail()
-    const builder_username = useAppSelector(selectUserUsername)
     return (
       <>
-        <CommentInput img={DEFAULT_AVATAR_IMG} alt={`Avatar de ${builder_username}`} placeholder='Añade un comentario...' value={comment} onIonInput={(e: any) => { setValue("comment", e) }} />
+        <CommentInput img={DEFAULT_AVATAR_IMG} alt={`Avatar de ${builderUsername}`} placeholder='Añade un comentario...' value={comment} onIonInput={(e: any) => { setValue("comment", e) }} />
         <IonItem lines='none'>
           <IonLabel slot='end'>
             <InputErrorMsg errors={errors?.comment!} />
@@ -40,19 +37,17 @@ const BuildDetail: React.FC = () => {
           </IonButtons>
         </IonItem>
         {comments.slice().reverse().map((comment: any) => (
-          <Comment img={DEFAULT_AVATAR_IMG} alt={`Avatar de ${builder_username}`} author={builder_username} comment={comment.comment} />
+          <Comment img={DEFAULT_AVATAR_IMG} alt={`Avatar de ${builderUsername}`} author={builderUsername} comment={comment.comment} />
         ))}
       </>
     )
   }
 
   function GetEditOptions() {
-    if (useAppSelector(selectUserId) != build.builder) return null
+    const isOwner = build.builder == builderId
+    if (!isLogged || !isOwner) { return null }
 
-    const { modal, handleDelete, isSuccessDelete } = useBuildDetail()
-    if (isSuccessDelete) {
-      window.location.replace(BUILD_LIST_PATH)
-    }
+    const { modal, handleDelete } = useBuildDetail()
 
     return (
       <>

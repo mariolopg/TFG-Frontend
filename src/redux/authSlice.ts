@@ -83,6 +83,7 @@ export const { setSession, setStatus } = authSlice.actions;
 
 export const selectSessionStatus = (state: RootState) => state.auth.status;
 export const selectToken = (state: RootState) => state.auth.token;
+export const selectIsLogged = (state: RootState) => !!state.auth.token;
 export const selectUserId = (state: RootState) =>
   state.auth.user ? state.auth.user.pk : "";
 export const selectUserUsername = (state: RootState) =>

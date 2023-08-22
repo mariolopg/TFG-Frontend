@@ -11,20 +11,19 @@ import useNavBar from './hooks/useNavBar';
 import { PiDesktopTower } from "react-icons/pi"
 import { LiaToolsSolid, LiaUserCircle } from "react-icons/lia"
 import { BsShop } from "react-icons/bs"
-import { BUILD_LIST_PATH, CONFIGURATOR_PATH, LOGIN_PATH, REGISTER_PATH, USER_PATH } from '../../constants';
-import { useAppSelector } from '../../hooks/appHooks';
-import { selectToken } from '../../redux/authSlice';
+import { BUILD_LIST_PATH, CONFIGURATOR_PATH, LOGIN_PATH, REGISTER_PATH, ROOT_PATH, USER_PATH } from '../../constants';
+import { Redirect } from 'react-router';
+import { IonRouterLink } from '@ionic/react';
 
 const NavBar: React.FC = () => {
-  const { menuId, anchorEl, isMenuOpen, handleProfileMenuOpen, handleMenuClose, handleLogout } = useNavBar();
+  const { isLogged, menuId, anchorEl, isMenuOpen, handleProfileMenuOpen, handleMenuClose, handleLogout } = useNavBar();
 
   function GetmenuItems() {
-    const token = useAppSelector(selectToken)
-    if (!!!token) {
+    if (!isLogged) {
       return (
         <>
-          <MenuItem href={LOGIN_PATH}><a className='menu-item-link' href={LOGIN_PATH}>Iniciar sesión</a></MenuItem>
-          <MenuItem href={LOGIN_PATH}><a className='menu-item-link' href={REGISTER_PATH}>Crear cuenta</a></MenuItem>
+          <MenuItem><a className='menu-item-link' href={LOGIN_PATH}>Iniciar sesión</a></MenuItem>
+          <MenuItem><a className='menu-item-link' href={REGISTER_PATH}>Crear cuenta</a></MenuItem>
         </>
       )
     }
@@ -33,6 +32,19 @@ const NavBar: React.FC = () => {
         <MenuItem href={LOGIN_PATH}><a className='menu-item-link' href={USER_PATH}>Perfil</a></MenuItem>
         <MenuItem onClick={handleLogout}>Cerrar Sesión</MenuItem>
       </>
+    )
+  }
+
+  function GetConfiguratorLink() {
+    if (!isLogged) { return null }
+    return (
+      <IconButton style={{ margin: "0 5px" }}
+        edge="end"
+        color="inherit"
+        href={CONFIGURATOR_PATH}
+      >
+        <LiaToolsSolid />
+      </IconButton>
     )
   }
 
@@ -65,7 +77,7 @@ const NavBar: React.FC = () => {
             noWrap
             component="div"
           >
-            PC BUILDER
+            <IonRouterLink color="light" href={ROOT_PATH} >PC BUILDER</IonRouterLink>
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Box>
@@ -76,13 +88,7 @@ const NavBar: React.FC = () => {
             >
               <PiDesktopTower />
             </IconButton>
-            <IconButton style={{ margin: "0 5px" }}
-              edge="end"
-              color="inherit"
-              href={CONFIGURATOR_PATH}
-            >
-              <LiaToolsSolid />
-            </IconButton>
+            <GetConfiguratorLink />
             {/* <IconButton style={{ margin: "0 5px" }}
               edge="end"
               color="inherit"

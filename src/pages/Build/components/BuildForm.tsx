@@ -31,7 +31,9 @@ const BuildForm = (props: BuildFormProps) => {
 
   const isSuccess = isSuccessCPUS && isSuccessMBS && isSuccessRAMS && isSuccessGPUS && isSuccessACLRS && isSuccessLCLRS && isSuccessHDDS && isSuccessSSDS && isSuccessPSUS && isSuccessCases
 
-  if (!isSuccess) return <LoadingSpinner />
+  if (!isSuccess) {
+    return <LoadingSpinner />
+  }
 
   const GetImageSlider: React.FC = () => {
     if (!props.build.images) return null;

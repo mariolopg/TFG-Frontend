@@ -1,18 +1,20 @@
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
+
 import {
   useCreateImageMutation,
   useGetBuildQuery,
   useUpdateBuildMutation,
 } from "../../../../domain/api/apiSlice";
 import { useEffect, useState } from "react";
-
 import { BuildErrorsInterface, BuildInterface } from "../../../../domain/types";
 import { BUILD_BASE_PATH } from "../../../../constants";
 
 const useBuildEdit = () => {
   type params = { id: string };
-
   const { id } = useParams<params>();
+
+  const history = useHistory();
+
   const { data: build, isSuccess } = useGetBuildQuery(id);
   const [updateBuild, response] = useUpdateBuildMutation();
   const [postImage, responseImage] = useCreateImageMutation();
@@ -49,7 +51,6 @@ const useBuildEdit = () => {
           formData.append("image", image);
           postImage(formData);
         });
-        // window.location.replace(`${BUILD_BASE_PATH}/${id}`);
       }
     });
   };
@@ -59,6 +60,11 @@ const useBuildEdit = () => {
       setBuildUpdates(build);
     }
   }, [build]);
+
+  if (response.isSuccess) {
+    history.push(`${BUILD_BASE_PATH}/${id}`);
+    location.reload();
+  }
 
   return {
     build,

@@ -9,7 +9,9 @@ const BuildList: React.FC = () => {
 
   const { builds, isSuccess, getImageURL } = useBuildList()
 
-  if (!isSuccess) return <LoadingSpinner />
+  if (!isSuccess) {
+    return <LoadingSpinner />
+  }
 
   return (
     <IonGrid fixed>

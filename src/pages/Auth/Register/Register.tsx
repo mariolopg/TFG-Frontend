@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonButton, IonGrid, IonText } from '@ionic/react';
+import { IonButton, IonGrid, IonRouterLink, IonText } from '@ionic/react';
 import PageTitle from '../../../components/PageTitle';
 import InputForm from '../../../components/Inputs/InputForm';
 import '../auth.css'
@@ -9,9 +9,9 @@ import LoadingSpinner from '../../../components/LoadingSpinner';
 
 const Register: React.FC = () => {
 
-  const { user, errors, spinner, setValue, handleSubmitRegister } = useLogin();
+  const { user, errors, isLogged, setValue, handleSubmitRegister } = useLogin();
 
-  if (spinner) {
+  if (isLogged) {
     return <LoadingSpinner />
   }
 
@@ -28,7 +28,7 @@ const Register: React.FC = () => {
         <IonButton onClick={handleSubmitRegister}>Crear cuenta</IonButton>
       </div>
       <div className='center-content'>
-        <IonText>¿Ya tienes cuenta? <a href={LOGIN_PATH}>Iniciar sesión</a></IonText>
+        <IonText>¿Ya tienes cuenta? <IonRouterLink color="primary" href={LOGIN_PATH} >Iniciar sesión</IonRouterLink></IonText>
       </div>
     </IonGrid>
   )

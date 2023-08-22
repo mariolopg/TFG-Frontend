@@ -7,8 +7,10 @@ import { BuildErrorsInterface, BuildInterface } from "../../../../domain/types";
 import { BUILD_BASE_PATH } from "../../../../constants";
 import { useAppSelector } from "../../../../hooks/appHooks";
 import { selectUserId } from "../../../../redux/authSlice";
+import { useHistory } from "react-router";
 
 const useConfigurator = () => {
+  const history = useHistory();
   const [postBuild, response] = useCreateBuildMutation();
   const [postImage, responseImage] = useCreateImageMutation();
 
@@ -44,7 +46,8 @@ const useConfigurator = () => {
           formData.append("image", image);
           postImage(formData);
         });
-        window.location.replace(`${BUILD_BASE_PATH}/${value.data.id}`);
+        history.push(`${BUILD_BASE_PATH}/${value.data.id}`);
+        location.reload();
       }
     });
   }

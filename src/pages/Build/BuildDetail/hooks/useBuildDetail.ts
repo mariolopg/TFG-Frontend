@@ -8,23 +8,34 @@ import {
   CommentErrorsInterface,
   CommentInterface,
 } from "../../../../domain/types";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { BUILD_LIST_PATH } from "../../../../constants";
 import { useAppSelector } from "../../../../hooks/appHooks";
-import { selectUserId } from "../../../../redux/authSlice";
+import {
+  selectIsLogged,
+  selectUserId,
+  selectUserUsername,
+} from "../../../../redux/authSlice";
 
-const useBuildDetail = () => {
+export const useBuildDetail = () => {
   type params = { id: string };
   const { id } = useParams<params>();
+
+  const history = useHistory();
+
+  const builderUsername = useAppSelector(selectUserUsername);
+  const builderId = useAppSelector(selectUserId);
+  const isLogged = useAppSelector(selectIsLogged);
 
   const modal = useRef<HTMLIonModalElement>(null);
 
   const [comments, setComments] = useState<CommentInterface[]>([]);
   const [commentInput, setCommentInput] = useState<CommentInterface>({
     build: id,
-    builder: useAppSelector(selectUserId),
+    builder: builderId,
     comment: "",
   });
+
   const [errors, setErrors] = useState<CommentErrorsInterface | undefined>(
     undefined
   );
@@ -53,7 +64,8 @@ const useBuildDetail = () => {
   };
 
   if (responseDelete.isSuccess) {
-    window.location.replace(BUILD_LIST_PATH);
+    history.push(BUILD_LIST_PATH);
+    location.reload();
   }
 
   return {
@@ -62,12 +74,14 @@ const useBuildDetail = () => {
     comments,
     errors,
     modal,
+    isLogged,
+    builderId,
+    builderUsername,
     comment: commentInput.comment,
     setValue,
     handleSubmitComment,
     handleDelete,
     isSuccess,
-    isSuccessDelete: responseDelete.isSuccess,
   };
 };
 
