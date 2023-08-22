@@ -3,6 +3,7 @@ import React, { ReactElement, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../hooks/appHooks';
 import { checkSession, selectSessionStatus } from '../../../redux/authSlice';
 import { QueryStatus } from '@reduxjs/toolkit/dist/query';
+import LoadingSpinner from '../../../components/LoadingSpinner';
 
 interface SessionWrapperProps {
   children: ReactElement;

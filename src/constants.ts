@@ -22,4 +22,4 @@ export const DEFAULT_AVATAR_IMG =
 export const DEFAULT_CARD_IMG =
   "https://ionicframework.com/docs/img/demos/card-media.png";
 
-export const TOAST_TIMEOUT = 5000;
+export const TOAST_TIMEOUT = 3000;

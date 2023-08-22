@@ -5,6 +5,7 @@ import { LOGIN_PATH } from '../constants';
 import { useAppSelector } from '../hooks/appHooks';
 import { selectToken } from '../redux/authSlice';
 import SessionWrapper from './components/SessionWrapper/SessionWrapper';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const AuthRoute = ({ children, sessionRequired }: { children: JSX.Element, sessionRequired?: boolean }) => {
   const session = Cookies.get('session');
@@ -20,6 +21,7 @@ const AuthRoute = ({ children, sessionRequired }: { children: JSX.Element, sessi
 
   if (!session && sessionRequired) {
     < Redirect exact to={LOGIN_PATH} push />
+    return null
   }
 
   return <SessionWrapper>{children}</SessionWrapper>;

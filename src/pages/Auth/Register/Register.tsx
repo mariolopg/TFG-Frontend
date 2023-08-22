@@ -5,10 +5,15 @@ import InputForm from '../../../components/Inputs/InputForm';
 import '../auth.css'
 import useLogin from './hooks/useRegister';
 import { LOGIN_PATH } from '../../../constants';
+import LoadingSpinner from '../../../components/LoadingSpinner';
 
 const Register: React.FC = () => {
 
-  const { user, errors, setValue, handleSubmitRegister } = useLogin();
+  const { user, errors, spinner, setValue, handleSubmitRegister } = useLogin();
+
+  if (spinner) {
+    return <LoadingSpinner />
+  }
 
   return (
     <IonGrid fixed>

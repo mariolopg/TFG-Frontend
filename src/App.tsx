@@ -48,8 +48,12 @@ const App: React.FC = () => (
               <Route exact path={ROOT_PATH}>
                 <Redirect to={BUILD_LIST_PATH} />
               </Route>
-              <Route exact path={LOGIN_PATH} component={Login} />
-              <Route exact path={REGISTER_PATH} component={Register} />
+              <Route exact path={LOGIN_PATH} >
+                <AuthRoute><Login /></AuthRoute>
+              </Route>
+              <Route exact path={REGISTER_PATH} >
+                <AuthRoute><Register /></AuthRoute>
+              </Route>
               <Route exact path={BUILD_LIST_PATH}>
                 <AuthRoute><BuildList /></AuthRoute>
               </Route>

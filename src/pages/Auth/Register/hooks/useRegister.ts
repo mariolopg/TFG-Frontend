@@ -8,10 +8,13 @@ import {
   useRegisterMutation,
 } from "../../../../domain/api/apiSlice";
 import { LOGIN_PATH, ROOT_PATH } from "../../../../constants";
+import { useAppSelector } from "../../../../hooks/appHooks";
+import { selectToken } from "../../../../redux/authSlice";
 
 const useRegister = () => {
   const [register, responseRegister] = useRegisterMutation();
   const [login, responseLogin] = useLoginMutation();
+  const token = useAppSelector(selectToken);
 
   const [user, setUser] = useState<RegisterInterface>({
     username: "",
@@ -62,6 +65,7 @@ const useRegister = () => {
   return {
     user,
     errors,
+    spinner: !!token,
     setValue,
     handleSubmitRegister,
   };

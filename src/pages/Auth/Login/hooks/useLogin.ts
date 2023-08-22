@@ -3,9 +3,12 @@ import { LoginErrorsInterface, LoginInterface } from "../../../../domain/types";
 import { useLoginMutation } from "../../../../domain/api/apiSlice";
 import { useHistory } from "react-router";
 import { ROOT_PATH } from "../../../../constants";
+import { useAppSelector } from "../../../../hooks/appHooks";
+import { selectToken } from "../../../../redux/authSlice";
 
 const useLogin = () => {
   const navigate = useHistory();
+  const token = useAppSelector(selectToken);
 
   const [user, setUser] = useState<LoginInterface>({
     username: "",
@@ -32,7 +35,11 @@ const useLogin = () => {
     setUser({ ...user, [field]: event.target.value });
   };
 
-  return { user, errors, setValue, handleSubmitLogin };
+  if (!!token) {
+    window.location.replace(ROOT_PATH);
+  }
+
+  return { user, errors, spinner: !!token, setValue, handleSubmitLogin };
 };
 
 export default useLogin;
