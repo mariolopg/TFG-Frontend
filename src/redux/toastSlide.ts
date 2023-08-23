@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
-import { login, logout, register } from "../domain/api/apiSlice";
+import { deactivate, login, logout, register } from "../domain/api/apiSlice";
 import { LoginErrorsInterface, RegisterErrorsInterface } from "../domain/types";
 
 export interface ToastInterface {
@@ -71,6 +71,11 @@ const toastSlice = createSlice({
       state.isOpen = true;
       state.message = "No se pudo cerrar sesión";
       state.color = "danger";
+    });
+    builder.addMatcher(deactivate.matchFulfilled, (state) => {
+      state.isOpen = true;
+      state.message = "Cuenta eliminada correctamente";
+      state.color = "success";
     });
   },
 });

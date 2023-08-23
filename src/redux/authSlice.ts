@@ -89,7 +89,7 @@ export const selectSessionStatus = (state: RootState) => state.auth.status;
 export const selectToken = (state: RootState) => state.auth.token;
 export const selectIsLogged = (state: RootState) => !!state.auth.token;
 export const selectUserId = (state: RootState) =>
-  state.auth.user ? state.auth.user.pk : "";
+  state.auth.user ? state.auth.user.id : "";
 export const selectUserUsername = (state: RootState) =>
   state.auth.user ? state.auth.user.username : "";
 

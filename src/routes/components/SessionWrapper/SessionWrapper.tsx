@@ -3,14 +3,15 @@ import React, { ReactElement, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../hooks/appHooks';
 import { checkSession, selectSessionStatus } from '../../../redux/authSlice';
 import { QueryStatus } from '@reduxjs/toolkit/dist/query';
-import LoadingSpinner from '../../../components/LoadingSpinner';
 
 interface SessionWrapperProps {
   children: ReactElement;
+  sessionRequired?: boolean,
 }
 
-const SessionWrapper = ({ children }: SessionWrapperProps) => {
+const SessionWrapper = ({ children, sessionRequired }: SessionWrapperProps) => {
   const dispatch = useAppDispatch();
+  const requestStatus = useAppSelector(selectSessionStatus);
 
   useEffect(() => {
     const session = Cookies.get('session');
@@ -18,7 +19,14 @@ const SessionWrapper = ({ children }: SessionWrapperProps) => {
     dispatch(checkSession(parsedSession));
   }, []);
 
-  return children;
+  if (sessionRequired && requestStatus === QueryStatus.fulfilled) {
+    return children;
+  }
+
+  if (!sessionRequired) {
+    return children;
+  }
+
 };
 
 export default React.memo(SessionWrapper);

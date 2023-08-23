@@ -16,7 +16,7 @@ const BuildEdit: React.FC = () => {
     return null
   }
 
-  if (build.builder_data.pk != builderId) {
+  if (build.builder_data.id != builderId) {
     history.push(`${BUILD_BASE_PATH}/${build.id}`);
     location.reload();
   }

@@ -5,7 +5,6 @@ import { LOGIN_PATH } from '../constants';
 import { useAppSelector } from '../hooks/appHooks';
 import { selectToken } from '../redux/authSlice';
 import SessionWrapper from './components/SessionWrapper/SessionWrapper';
-import LoadingSpinner from '../components/LoadingSpinner';
 
 const AuthRoute = ({ children, sessionRequired }: { children: JSX.Element, sessionRequired?: boolean }) => {
   const session = Cookies.get('session');
@@ -24,7 +23,7 @@ const AuthRoute = ({ children, sessionRequired }: { children: JSX.Element, sessi
     return null
   }
 
-  return <SessionWrapper>{children}</SessionWrapper>;
+  return <SessionWrapper sessionRequired={sessionRequired}>{children}</SessionWrapper>;
 };
 
 export default React.memo(AuthRoute);
