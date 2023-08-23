@@ -1,7 +1,7 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
 import type { UserInterface } from "../domain/types";
-import { login, logout } from "../domain/api/apiSlice";
+import { deactivate, login, logout } from "../domain/api/apiSlice";
 import { RootState } from "../store";
 import { QueryStatus } from "@reduxjs/toolkit/dist/query";
 
@@ -73,6 +73,10 @@ const authSlice = createSlice({
       state.status = QueryStatus.rejected;
     });
     builder.addMatcher(logout.matchFulfilled, (state) => {
+      Cookies.set("session", "");
+      state = initialState;
+    });
+    builder.addMatcher(deactivate.matchFulfilled, (state) => {
       Cookies.set("session", "");
       state = initialState;
     });

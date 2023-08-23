@@ -112,7 +112,7 @@ export const apiSlice = createApi({
         method: "POST",
       }),
     }),
-    userDelete: builder.mutation({
+    deactivate: builder.mutation({
       query: () => ({
         url: `auth/deactivate/`,
         method: "DELETE",
@@ -124,7 +124,7 @@ export const apiSlice = createApi({
   }),
 });
 
-export const { login, register, logout } = apiSlice.endpoints;
+export const { login, register, logout, deactivate } = apiSlice.endpoints;
 
 export const {
   useGetBuildsQuery,
@@ -148,6 +148,6 @@ export const {
   useRegisterMutation,
   useLoginMutation,
   useLogoutMutation,
-  useUserDeleteMutation,
+  useDeactivateMutation,
   useUserProfileQuery,
 } = apiSlice;
