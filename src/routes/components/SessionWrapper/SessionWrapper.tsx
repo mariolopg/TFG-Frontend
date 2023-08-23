@@ -11,7 +11,6 @@ interface SessionWrapperProps {
 
 const SessionWrapper = ({ children }: SessionWrapperProps) => {
   const dispatch = useAppDispatch();
-  const requestStatus = useAppSelector(selectSessionStatus);
 
   useEffect(() => {
     const session = Cookies.get('session');
@@ -19,9 +18,7 @@ const SessionWrapper = ({ children }: SessionWrapperProps) => {
     dispatch(checkSession(parsedSession));
   }, []);
 
-  if (requestStatus === QueryStatus.fulfilled) {
-    return children;
-  }
+  return children;
 };
 
 export default React.memo(SessionWrapper);

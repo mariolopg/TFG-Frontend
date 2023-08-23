@@ -33,8 +33,9 @@ import BuildDetail from './pages/Build/BuildDetail/BuildDetail';
 import Configutator from './pages/Build/Configurator/Configurator';
 import BuildEdit from './pages/Build/BuildEdit/BuildEdit';
 import Layout from './pages/Layout/Layout';
-import { BUILD_DETAIL_EDIT_PATH, BUILD_DETAIL_PATH, BUILD_LIST_PATH, CONFIGURATOR_PATH, LOGIN_PATH, REGISTER_PATH, ROOT_PATH } from './constants';
+import { BUILD_DETAIL_EDIT_PATH, BUILD_DETAIL_PATH, BUILD_LIST_PATH, CONFIGURATOR_PATH, LOGIN_PATH, REGISTER_PATH, ROOT_PATH, USER_PROFILE_PATH } from './constants';
 import AuthRoute from './routes/AuthRoute';
+import UserProfile from './pages/UserProfile/UserProfile';
 
 setupIonicReact();
 
@@ -65,6 +66,9 @@ const App: React.FC = () => (
               </Route>
               <Route exact path={BUILD_DETAIL_EDIT_PATH} >
                 <AuthRoute sessionRequired><BuildEdit /></AuthRoute>
+              </Route>
+              <Route exact path={USER_PROFILE_PATH} >
+                <AuthRoute><UserProfile /></AuthRoute>
               </Route>
             </>
           </Layout>

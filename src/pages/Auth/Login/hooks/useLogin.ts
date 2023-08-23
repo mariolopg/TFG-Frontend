@@ -10,6 +10,7 @@ import { useHistory } from "react-router";
 const useLogin = () => {
   const history = useHistory();
   const isLogged = useAppSelector(selectIsLogged);
+  const [login, response] = useLoginMutation();
 
   const [user, setUser] = useState<LoginInterface>({
     username: "",
@@ -20,21 +21,22 @@ const useLogin = () => {
     undefined
   );
 
-  const [loginUser, response] = useLoginMutation();
-
-  const handleSubmitLogin = () => {
-    loginUser(user).then((value: any) => {
+  function handleSubmitLogin() {
+    login(user).then((value: any) => {
       if (value.error) {
         setErrors(value.error.data);
+      } else {
+        history.push(ROOT_PATH);
+        location.reload();
       }
     });
-  };
+  }
 
   const setValue = (field: string, event: any) => {
     setUser({ ...user, [field]: event.target.value });
   };
 
-  if (isLogged || response.isSuccess) {
+  if (isLogged) {
     history.push(ROOT_PATH);
     location.reload();
   }

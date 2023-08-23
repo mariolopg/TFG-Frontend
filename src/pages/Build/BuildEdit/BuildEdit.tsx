@@ -3,14 +3,22 @@ import { IonButton, IonButtons, IonCol, IonGrid, IonRow, IonToolbar } from '@ion
 
 import BuildForm from '../components/BuildForm';
 import useBuildEdit from './hooks/useBuildEdit';
+import { useHistory } from 'react-router';
+import { BUILD_BASE_PATH } from '../../../constants';
 
 
 const BuildEdit: React.FC = () => {
 
-  const { build, buildUpdates, images, errors, setBuildUpdates, setImages, handleSubmit, isSuccess } = useBuildEdit();
+  const history = useHistory();
+  const { builderId, build, buildUpdates, images, errors, setBuildUpdates, setImages, handleSubmit, isSuccess } = useBuildEdit();
 
   if (!isSuccess) {
     return null
+  }
+
+  if (build.builder_data.pk != builderId) {
+    history.push(`${BUILD_BASE_PATH}/${build.id}`);
+    location.reload();
   }
 
   return (

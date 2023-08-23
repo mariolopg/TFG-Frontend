@@ -49,6 +49,10 @@ const BuildForm = (props: BuildFormProps) => {
       <InputForm label="Nombre" value={props.build.name} onIonInput={(e: any) => props.setBuild({ ...props.build, name: e.target.value as string })} errors={props.errors.name} />
       <TextAreaForm label="Descripción" value={props.build.description} onIonInput={(e: any) => props.setBuild({ ...props.build, description: e.target.value as string })} errors={props.errors.description} />
 
+      <ImagesInput value={props.images} handleChange={handleChange} />
+
+      <GetImageSlider />
+
       <SelectForm label="Procesador" placeholder='Selecciona un procesador...' options={cpus} value={props.build.cpu} onIonChange={(e: any) => { props.setBuild({ ...props.build, cpu: e ? e['value'] : '' }) }} errors={props.errors.cpu} />
 
       <SelectForm label="Placa base" placeholder='Selecciona una placa base...' options={motherboards} value={props.build.motherboard} onIonChange={(e: any) => props.setBuild({ ...props.build, motherboard: e ? e['value'] : '' })} errors={props.errors.motherboard} />
@@ -68,10 +72,6 @@ const BuildForm = (props: BuildFormProps) => {
       <SelectForm label="Fuente de alimentación" placeholder='Selecciona una fuente de alimentación...' options={psus} value={props.build.psu} onIonChange={(e: any) => props.setBuild({ ...props.build, psu: e ? e['value'] : '' })} errors={props.errors.psu} />
 
       <SelectForm label="Chasis" placeholder='Selecciona un chasis...' options={cases} value={props.build.case} onIonChange={(e: any) => props.setBuild({ ...props.build, case: e ? e['value'] : '' })} errors={props.errors.case} />
-
-      <ImagesInput value={props.images} handleChange={handleChange} />
-
-      <GetImageSlider />
     </>
   );
 

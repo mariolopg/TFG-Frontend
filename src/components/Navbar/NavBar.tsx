@@ -11,7 +11,7 @@ import useNavBar from './hooks/useNavBar';
 import { PiDesktopTower } from "react-icons/pi"
 import { LiaToolsSolid, LiaUserCircle } from "react-icons/lia"
 import { BsShop } from "react-icons/bs"
-import { BUILD_LIST_PATH, CONFIGURATOR_PATH, LOGIN_PATH, REGISTER_PATH, ROOT_PATH, USER_PATH } from '../../constants';
+import { BUILD_LIST_PATH, CONFIGURATOR_PATH, LOGIN_PATH, REGISTER_PATH, ROOT_PATH, USER_PROFILE_BASE_PATH } from '../../constants';
 import { Redirect } from 'react-router';
 import { IonRouterLink } from '@ionic/react';
 
@@ -29,7 +29,7 @@ const NavBar: React.FC = () => {
     }
     return (
       <>
-        <MenuItem href={LOGIN_PATH}><a className='menu-item-link' href={USER_PATH}>Perfil</a></MenuItem>
+        <MenuItem href={LOGIN_PATH}><a className='menu-item-link' href={USER_PROFILE_BASE_PATH}>Perfil</a></MenuItem>
         <MenuItem onClick={handleLogout}>Cerrar Sesión</MenuItem>
       </>
     )

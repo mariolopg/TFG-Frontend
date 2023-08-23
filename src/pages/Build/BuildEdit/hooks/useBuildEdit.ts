@@ -8,10 +8,13 @@ import {
 import { useEffect, useState } from "react";
 import { BuildErrorsInterface, BuildInterface } from "../../../../domain/types";
 import { BUILD_BASE_PATH } from "../../../../constants";
+import { useAppSelector } from "../../../../hooks/appHooks";
+import { selectUserId } from "../../../../redux/authSlice";
 
 const useBuildEdit = () => {
   type params = { id: string };
   const { id } = useParams<params>();
+  const builderId = useAppSelector(selectUserId);
 
   const history = useHistory();
 
@@ -67,6 +70,7 @@ const useBuildEdit = () => {
   }
 
   return {
+    builderId,
     build,
     buildUpdates,
     images,

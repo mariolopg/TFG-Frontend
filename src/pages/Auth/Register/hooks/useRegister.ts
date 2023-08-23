@@ -58,6 +58,11 @@ const useRegister = () => {
     setUser({ ...user, [field]: event.target.value });
   };
 
+  if (isLogged) {
+    history.push(ROOT_PATH);
+    location.reload();
+  }
+
   return {
     user,
     errors,
