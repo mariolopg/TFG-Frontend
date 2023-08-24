@@ -1,22 +1,24 @@
 import React from 'react';
-import { IonAvatar, IonItem, IonTextarea } from '@ionic/react';
+import { IonItem, IonTextarea } from '@ionic/react';
 import './comment.css'
 
 interface CommentInputProps {
-    img: string,
-    alt: string,
+    firstName: string,
+    lastName: string,
     value: string,
     placeholder: string,
     onIonInput?: any
 }
 
 const CommentInput = (props: CommentInputProps) => {
+    const initials = `${props.firstName[0]}${props.lastName[0]}`.toUpperCase();
+
     return (
         <>
             <IonItem lines='none' className='avatar-top'>
-                <IonAvatar slot='start'>
-                    <img alt={props.alt} src={props.img} />
-                </IonAvatar>
+                <div className="initials-avatar">
+                    {initials}
+                </div>
                 <IonTextarea fill='outline' shape='round' autoGrow={true} value={props.value} placeholder={props.placeholder} onIonInput={props.onIonInput} />
             </IonItem>
         </>

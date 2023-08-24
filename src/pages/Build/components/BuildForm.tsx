@@ -36,7 +36,7 @@ const BuildForm = (props: BuildFormProps) => {
   }
 
   const GetImageSlider: React.FC = () => {
-    if (!props.build.images) return null;
+    if (!!!props.build.images.length) return null;
     return <ImageSlider label="Imágenes guardadas" images={props.build.images} editable={props.editable} />
   }
 

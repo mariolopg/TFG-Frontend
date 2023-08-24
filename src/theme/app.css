@@ -35,3 +35,21 @@ h1 {
   color: black;
   text-decoration: none;
 }
+
+.ion-label-padding {
+  padding-top: 7px;
+}
+
+.initials-avatar {
+  height: 60px;
+  width: 60px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  font-size: 25px;
+  font-family: roboto, arial;
+  color: white;
+  line-height: 60px;
+  text-align: center;
+  background: var(--ion-color-primary);
+  margin-right: 20px;
+}

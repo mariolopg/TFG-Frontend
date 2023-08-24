@@ -14,6 +14,8 @@ import { useAppSelector } from "../../../../hooks/appHooks";
 import {
   selectIsAdmin,
   selectIsLogged,
+  selectUserFirstName,
+  selectUserLastName,
   selectUserId,
   selectUserUsername,
 } from "../../../../redux/authSlice";
@@ -28,6 +30,8 @@ export const useBuildDetail = () => {
   const isAdmin = useAppSelector(selectIsAdmin);
   const builderId = useAppSelector(selectUserId);
   const isLogged = useAppSelector(selectIsLogged);
+  const firstName = useAppSelector(selectUserFirstName);
+  const lastName = useAppSelector(selectUserLastName);
 
   const modal = useRef<HTMLIonModalElement>(null);
 
@@ -76,6 +80,8 @@ export const useBuildDetail = () => {
     comments,
     errors,
     modal,
+    firstName,
+    lastName,
     isAdmin,
     isLogged,
     builderId,

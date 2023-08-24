@@ -15,7 +15,7 @@ import { BUILD_BASE_PATH, DEFAULT_AVATAR_IMG } from '../../../constants';
 
 const BuildDetail: React.FC = () => {
 
-  const { id, build, isAdmin, isLogged, builderId, builderUsername, isSuccess } = useBuildDetail()
+  const { id, build, firstName, lastName, isAdmin, isLogged, builderId, builderUsername, isSuccess } = useBuildDetail()
 
   if (!isSuccess) {
     return <LoadingSpinner />
@@ -27,7 +27,7 @@ const BuildDetail: React.FC = () => {
     const { comments, errors, comment, setValue, handleSubmitComment } = useBuildDetail()
     return (
       <>
-        <CommentInput img={DEFAULT_AVATAR_IMG} alt={`Avatar de ${builderUsername}`} placeholder='Añade un comentario...' value={comment} onIonInput={(e: any) => { setValue("comment", e) }} />
+        <CommentInput firstName={firstName} lastName={lastName} placeholder='Añade un comentario...' value={comment} onIonInput={(e: any) => { setValue("comment", e) }} />
         <IonItem lines='none'>
           <IonLabel slot='end'>
             <InputErrorMsg errors={errors?.comment!} />
@@ -37,7 +37,7 @@ const BuildDetail: React.FC = () => {
           </IonButtons>
         </IonItem>
         {comments.slice().reverse().map((comment: any) => (
-          <Comment img={DEFAULT_AVATAR_IMG} alt={`Avatar de ${builderUsername}`} author={builderUsername} comment={comment.comment} />
+          <Comment author={builderUsername} firstName={firstName} lastName={lastName} comment={comment.comment} />
         ))}
       </>
     )
@@ -86,7 +86,7 @@ const BuildDetail: React.FC = () => {
         <IonTitle>Comentarios</IonTitle>
         <GetCommentInput />
         {build.comments.slice().reverse().map((comment: any) => (
-          <Comment img={DEFAULT_AVATAR_IMG} alt={`Avatar de ${comment.builder_data.username}`} author={comment.builder_data.username} comment={comment.comment} />
+          <Comment author={comment.builder_data.username} firstName={comment.builder_data.first_name} lastName={comment.builder_data.last_name} comment={comment.comment} />
         ))}
       </IonGrid>
       <GetEditOptions />

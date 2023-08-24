@@ -11,8 +11,7 @@ import useNavBar from './hooks/useNavBar';
 import { PiDesktopTower } from "react-icons/pi"
 import { LiaToolsSolid, LiaUserCircle } from "react-icons/lia"
 import { BsShop } from "react-icons/bs"
-import { BUILD_LIST_PATH, CONFIGURATOR_PATH, LOGIN_PATH, REGISTER_PATH, ROOT_PATH, USER_PROFILE_BASE_PATH } from '../../constants';
-import { Redirect } from 'react-router';
+import { BUILD_LIST_PATH, CONFIGURATOR_PATH, LOGIN_PATH, REGISTER_PATH, ROOT_PATH, USER_PROFILE_PATH } from '../../constants';
 import { IonRouterLink } from '@ionic/react';
 
 const NavBar: React.FC = () => {
@@ -22,14 +21,14 @@ const NavBar: React.FC = () => {
     if (!isLogged) {
       return (
         <>
-          <MenuItem><a className='menu-item-link' href={LOGIN_PATH}>Iniciar sesión</a></MenuItem>
-          <MenuItem><a className='menu-item-link' href={REGISTER_PATH}>Crear cuenta</a></MenuItem>
+          <a className='menu-item-link' href={LOGIN_PATH}><MenuItem>Iniciar sesión</MenuItem></a>
+          <a className='menu-item-link' href={REGISTER_PATH}><MenuItem>Crear cuenta</MenuItem></a>
         </>
       )
     }
     return (
       <>
-        <MenuItem href={LOGIN_PATH}><a className='menu-item-link' href={USER_PROFILE_BASE_PATH}>Perfil</a></MenuItem>
+        <a className='menu-item-link' href={USER_PROFILE_PATH}><MenuItem href={LOGIN_PATH}>Perfil</MenuItem></a>
         <MenuItem onClick={handleLogout}>Cerrar Sesión</MenuItem>
       </>
     )

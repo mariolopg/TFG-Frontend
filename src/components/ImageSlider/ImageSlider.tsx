@@ -57,7 +57,7 @@ const ImageSlider = (props: ImageSliderProps) => {
 
   return (
     <IonLabel>
-      <h2>{props.label}</h2>
+      <h2 className="ion-label-padding">{props.label}</h2>
       <Swiper className="swiper" initialSlide={initialSlide} spaceBetween={20} navigation={true} modules={[Navigation]}
         breakpoints={{
           0: {

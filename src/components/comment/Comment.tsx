@@ -3,18 +3,20 @@ import { IonAvatar, IonItem, IonLabel } from '@ionic/react';
 import './comment.css'
 
 interface CommentProps {
-    img: string,
-    alt: string,
     author: string,
+    firstName: string,
+    lastName: string,
     comment: string,
 }
 
 const Comment = (props: CommentProps) => {
+    const initials = `${props.firstName[0]}${props.lastName[0]}`.toUpperCase();
+
     return (
         <IonItem lines='none' className='avatar-top'>
-            <IonAvatar slot='start' >
-                <img alt={props.alt} src={props.img} />
-            </IonAvatar>
+            <div className="initials-avatar">
+                {initials}
+            </div>
             <IonLabel className='ion-text-wrap'>
                 <h2>{props.author}</h2>
                 <p>{props.comment}</p>

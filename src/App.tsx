@@ -68,7 +68,7 @@ const App: React.FC = () => (
                 <AuthRoute sessionRequired><BuildEdit /></AuthRoute>
               </Route>
               <Route exact path={USER_PROFILE_PATH} >
-                <AuthRoute><UserProfile /></AuthRoute>
+                <AuthRoute sessionRequired><UserProfile /></AuthRoute>
               </Route>
             </>
           </Layout>

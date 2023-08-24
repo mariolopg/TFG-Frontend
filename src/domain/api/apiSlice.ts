@@ -119,7 +119,7 @@ export const apiSlice = createApi({
       }),
     }),
     userProfile: builder.query({
-      query: (id) => `auth/users/${id}/`,
+      query: (id) => `auth/user/${id}/`,
     }),
   }),
 });

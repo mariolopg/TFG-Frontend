@@ -87,6 +87,11 @@ export const { setSession, setStatus } = authSlice.actions;
 
 export const selectSessionStatus = (state: RootState) => state.auth.status;
 export const selectToken = (state: RootState) => state.auth.token;
+export const selectUser = (state: RootState) => state.auth.user;
+export const selectUserFirstName = (state: RootState) =>
+  state.auth.user ? state.auth.user.first_name : "";
+export const selectUserLastName = (state: RootState) =>
+  state.auth.user ? state.auth.user.last_name : "";
 export const selectIsLogged = (state: RootState) => !!state.auth.token;
 export const selectIsAdmin = (state: RootState) =>
   state.auth.user ? state.auth.user.is_admin : false;
@@ -94,5 +99,7 @@ export const selectUserId = (state: RootState) =>
   state.auth.user ? state.auth.user.pk : "";
 export const selectUserUsername = (state: RootState) =>
   state.auth.user ? state.auth.user.username : "";
+export const selectUserDateJoined = (state: RootState) =>
+  state.auth.user ? state.auth.user.date_joined : "";
 
 export default authSlice;

@@ -32,7 +32,7 @@ const SelectForm = (props: InputProps) => {
   return (
     <>
       <IonLabel>
-        <h2>{props.label}</h2>
+        <h2 className='ion-label-padding'>{props.label}</h2>
         <Select placeholder={props.placeholder}
           options={options}
           onChange={props.onIonChange}

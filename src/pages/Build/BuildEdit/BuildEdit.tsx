@@ -1,10 +1,11 @@
 import React from 'react';
-import { IonButton, IonButtons, IonCol, IonGrid, IonRow, IonToolbar } from '@ionic/react';
+import { IonButton, IonButtons, IonCol, IonFab, IonFabButton, IonGrid, IonIcon, IonRow, IonToolbar } from '@ionic/react';
 
 import BuildForm from '../components/BuildForm';
 import useBuildEdit from './hooks/useBuildEdit';
 import { useHistory } from 'react-router';
 import { BUILD_BASE_PATH } from '../../../constants';
+import { saveOutline } from 'ionicons/icons';
 
 
 const BuildEdit: React.FC = () => {
@@ -23,21 +24,23 @@ const BuildEdit: React.FC = () => {
   }
 
   return (
-    <IonGrid fixed>
-      <IonToolbar>
-        <h1>{build.name}</h1>
-        <IonButtons slot='end'>
-          <IonButton shape='round' fill='outline' onClick={handleSubmit} color='primary'>
-            Guardar cambios
-          </IonButton>
-        </IonButtons>
-      </IonToolbar>
-      <IonRow>
-        <IonCol>
-          <BuildForm build={buildUpdates} images={images} errors={errors ?? []} setBuild={setBuildUpdates} setImages={setImages} editable />
-        </IonCol>
-      </IonRow>
-    </IonGrid>
+    <>
+      <IonGrid fixed>
+        <IonToolbar>
+          <h1>{build.name}</h1>
+        </IonToolbar>
+        <IonRow>
+          <IonCol>
+            <BuildForm build={buildUpdates} images={images} errors={errors ?? []} setBuild={setBuildUpdates} setImages={setImages} editable />
+          </IonCol>
+        </IonRow>
+      </IonGrid>
+      <IonFab slot="fixed" vertical="bottom" horizontal="end">
+        <IonFabButton color={'primary'} onClick={handleSubmit}>
+          <IonIcon icon={saveOutline}></IonIcon>
+        </IonFabButton>
+      </IonFab>
+    </>
   );
 };
 
