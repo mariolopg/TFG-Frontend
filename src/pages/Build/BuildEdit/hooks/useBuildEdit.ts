@@ -9,12 +9,13 @@ import { useEffect, useState } from "react";
 import { BuildErrorsInterface, BuildInterface } from "../../../../domain/types";
 import { BUILD_BASE_PATH } from "../../../../constants";
 import { useAppSelector } from "../../../../hooks/appHooks";
-import { selectUserId } from "../../../../redux/authSlice";
+import { selectIsAdmin, selectUserId } from "../../../../redux/authSlice";
 
 const useBuildEdit = () => {
   type params = { id: string };
   const { id } = useParams<params>();
   const builderId = useAppSelector(selectUserId);
+  const isAdmin = useAppSelector(selectIsAdmin);
 
   const history = useHistory();
 
@@ -23,7 +24,6 @@ const useBuildEdit = () => {
   const [postImage, responseImage] = useCreateImageMutation();
 
   const [buildUpdates, setBuildUpdates] = useState<BuildInterface>({
-    id: id,
     name: "",
     description: "",
     cpu: "",
@@ -70,6 +70,7 @@ const useBuildEdit = () => {
   }
 
   return {
+    isAdmin,
     builderId,
     build,
     buildUpdates,

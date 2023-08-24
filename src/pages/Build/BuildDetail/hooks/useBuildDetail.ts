@@ -12,6 +12,7 @@ import { useHistory, useParams } from "react-router";
 import { BUILD_LIST_PATH } from "../../../../constants";
 import { useAppSelector } from "../../../../hooks/appHooks";
 import {
+  selectIsAdmin,
   selectIsLogged,
   selectUserId,
   selectUserUsername,
@@ -24,6 +25,7 @@ export const useBuildDetail = () => {
   const history = useHistory();
 
   const builderUsername = useAppSelector(selectUserUsername);
+  const isAdmin = useAppSelector(selectIsAdmin);
   const builderId = useAppSelector(selectUserId);
   const isLogged = useAppSelector(selectIsLogged);
 
@@ -74,6 +76,7 @@ export const useBuildDetail = () => {
     comments,
     errors,
     modal,
+    isAdmin,
     isLogged,
     builderId,
     builderUsername,

@@ -75,7 +75,8 @@ export interface LoginErrorsInterface {
 }
 
 export interface UserInterface {
-  id: string;
+  pk: string;
+  is_admin: boolean;
   username: string;
   email: string;
   first_name: string;

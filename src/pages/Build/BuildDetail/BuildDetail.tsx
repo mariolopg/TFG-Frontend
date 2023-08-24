@@ -15,7 +15,7 @@ import { BUILD_BASE_PATH, DEFAULT_AVATAR_IMG } from '../../../constants';
 
 const BuildDetail: React.FC = () => {
 
-  const { id, build, isLogged, builderId, builderUsername, isSuccess } = useBuildDetail()
+  const { id, build, isAdmin, isLogged, builderId, builderUsername, isSuccess } = useBuildDetail()
 
   if (!isSuccess) {
     return <LoadingSpinner />
@@ -45,7 +45,7 @@ const BuildDetail: React.FC = () => {
 
   function GetEditOptions() {
     const isOwner = build.builder == builderId
-    if (!isLogged || !isOwner) { return null }
+    if (!isOwner && !isAdmin) { return null }
 
     const { modal, handleDelete } = useBuildDetail()
 

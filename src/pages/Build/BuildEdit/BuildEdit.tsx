@@ -10,13 +10,14 @@ import { BUILD_BASE_PATH } from '../../../constants';
 const BuildEdit: React.FC = () => {
 
   const history = useHistory();
-  const { builderId, build, buildUpdates, images, errors, setBuildUpdates, setImages, handleSubmit, isSuccess } = useBuildEdit();
+  const { isAdmin, builderId, build, buildUpdates, images, errors, setBuildUpdates, setImages, handleSubmit, isSuccess } = useBuildEdit();
 
   if (!isSuccess) {
     return null
   }
 
-  if (build.builder_data.id != builderId) {
+  const isOwner = build.builder == builderId;
+  if (!isOwner && !isAdmin) {
     history.push(`${BUILD_BASE_PATH}/${build.id}`);
     location.reload();
   }
