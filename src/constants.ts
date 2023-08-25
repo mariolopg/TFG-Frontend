@@ -18,9 +18,10 @@ export const BUILDER_PATH = "/user/:id";
 export const USER_PROFILE_PATH = "/profile";
 
 // IMAGES
-export const DEFAULT_AVATAR_IMG =
-  "https://ionicframework.com/docs/img/demos/avatar.svg";
-export const DEFAULT_CARD_IMG =
-  "https://ionicframework.com/docs/img/demos/card-media.png";
+export const DEFAULT_CARD_IMG = "/images/card-default.png";
+export const DATE_ICON = "/images/date-range.svg";
+export const EMAIL_ICON = "/images/email.svg";
+export const ID_CARD_ICON = "/images/id-card.svg";
+export const PROFILE_ICON = "/images/person-circle-outline.svg";
 
 export const TOAST_TIMEOUT = 3000;

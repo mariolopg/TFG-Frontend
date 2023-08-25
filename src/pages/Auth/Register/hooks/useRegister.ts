@@ -14,9 +14,15 @@ import { useHistory } from "react-router";
 
 const useRegister = () => {
   const history = useHistory();
+  const isLogged = useAppSelector(selectIsLogged);
+
+  if (isLogged) {
+    history.push(ROOT_PATH);
+    location.reload();
+  }
+
   const [register, responseRegister] = useRegisterMutation();
   const [login, responseLogin] = useLoginMutation();
-  const isLogged = useAppSelector(selectIsLogged);
 
   const [user, setUser] = useState<RegisterInterface>({
     username: "",
@@ -57,11 +63,6 @@ const useRegister = () => {
   const setValue = (field: string, event: any) => {
     setUser({ ...user, [field]: event.target.value });
   };
-
-  if (isLogged) {
-    history.push(ROOT_PATH);
-    location.reload();
-  }
 
   return {
     user,

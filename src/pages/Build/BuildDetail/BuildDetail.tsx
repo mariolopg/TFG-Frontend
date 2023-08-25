@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonButton, IonButtons, IonFab, IonFabButton, IonFabList, IonGrid, IonIcon, IonItem, IonLabel, IonRow, IonTitle } from '@ionic/react';
+import { IonAvatar, IonButton, IonButtons, IonChip, IonFab, IonFabButton, IonFabList, IonGrid, IonIcon, IonItem, IonLabel, IonRouterLink, IonRow, IonTitle } from '@ionic/react';
 import Comment from '../../../components/Comment/Comment';
 import IonSubtitle from '../../../components/Inputs/IonSubtitle';
 import { create, options, trash } from 'ionicons/icons';
@@ -11,7 +11,7 @@ import LoadingSpinner from '../../../components/LoadingSpinner';
 import ImageSlider from '../../../components/ImageSlider/ImageSlider';
 import InputErrorMsg from '../../../components/Inputs/InputErrorMsg';
 import useBuildDetail from './hooks/useBuildDetail';
-import { BUILD_BASE_PATH, DEFAULT_AVATAR_IMG } from '../../../constants';
+import { BUILDER_BASE_PATH, BUILD_BASE_PATH, PROFILE_ICON } from '../../../constants';
 
 const BuildDetail: React.FC = () => {
 
@@ -74,8 +74,14 @@ const BuildDetail: React.FC = () => {
     <>
       <IonGrid fixed>
         <PageTitle title={build.name} />
-        <IonTitle>Autor</IonTitle>
-        <IonSubtitle text={build.builder_data.username} />
+        <IonRouterLink color="dark" href={`${BUILDER_BASE_PATH}/${build.builder}`} >
+          <IonChip style={{ marginLeft: 15 }}>
+            <IonAvatar>
+              <img src={PROFILE_ICON} />
+            </IonAvatar>
+            <IonLabel>{build.builder_data.username}</IonLabel>
+          </IonChip>
+        </IonRouterLink>
         <IonTitle>Descripción</IonTitle>
         <IonSubtitle text={build.description} />
         <IonTitle>Componentes</IonTitle>

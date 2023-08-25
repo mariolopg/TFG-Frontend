@@ -1,6 +1,15 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
-import { deactivate, login, logout, register } from "../domain/api/apiSlice";
+import {
+  login,
+  logout,
+  register,
+  deactivate,
+  createBuild,
+  updateBuild,
+  deleteBuild,
+  deleteBuildImage,
+} from "../domain/api/apiSlice";
 import { LoginErrorsInterface, RegisterErrorsInterface } from "../domain/types";
 
 export interface ToastInterface {
@@ -75,6 +84,31 @@ const toastSlice = createSlice({
     builder.addMatcher(deactivate.matchFulfilled, (state) => {
       state.isOpen = true;
       state.message = "Cuenta eliminada correctamente";
+      state.color = "success";
+    });
+    builder.addMatcher(deactivate.matchFulfilled, (state) => {
+      state.isOpen = true;
+      state.message = "Cuenta eliminada correctamente";
+      state.color = "success";
+    });
+    builder.addMatcher(createBuild.matchFulfilled, (state) => {
+      state.isOpen = true;
+      state.message = "Build creada correctamente";
+      state.color = "success";
+    });
+    builder.addMatcher(updateBuild.matchFulfilled, (state) => {
+      state.isOpen = true;
+      state.message = "Build actualizada correctamente";
+      state.color = "success";
+    });
+    builder.addMatcher(deleteBuild.matchFulfilled, (state) => {
+      state.isOpen = true;
+      state.message = "Build eliminada correctamente";
+      state.color = "success";
+    });
+    builder.addMatcher(deleteBuildImage.matchFulfilled, (state) => {
+      state.isOpen = true;
+      state.message = "Imagen eliminada correctamente";
       state.color = "success";
     });
   },

@@ -53,3 +53,8 @@ h1 {
   background: var(--ion-color-primary);
   margin-right: 20px;
 }
+
+.chip-not-button:hover {
+  cursor: auto;
+  background-color: rgba(0, 0, 0, 0.12);
+}
