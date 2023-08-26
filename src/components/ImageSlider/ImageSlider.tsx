@@ -1,5 +1,5 @@
-import React, { SetStateAction, useEffect, useRef, useState } from "react";
-import { IonButton, IonButtons, IonFabButton, IonIcon, IonLabel, IonModal } from "@ionic/react";
+import React, { useRef, useState } from "react";
+import { IonButton, IonIcon, IonLabel, IonModal } from "@ionic/react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css'

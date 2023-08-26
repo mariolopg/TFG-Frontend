@@ -11,7 +11,8 @@ import useNavBar from './hooks/useNavBar';
 import { PiDesktopTower } from "react-icons/pi"
 import { LiaToolsSolid, LiaUserCircle } from "react-icons/lia"
 import { BsShop } from "react-icons/bs"
-import { BUILD_LIST_PATH, CONFIGURATOR_PATH, LOGIN_PATH, REGISTER_PATH, ROOT_PATH, USER_PROFILE_PATH } from '../../constants';
+import { IoHardwareChipOutline } from "react-icons/io5"
+import { BUILD_LIST_PATH, CONFIGURATOR_PATH, HARDWARE_BASE_PATH, LOGIN_PATH, REGISTER_PATH, ROOT_PATH, USER_PROFILE_PATH } from '../../constants';
 import { IonRouterLink } from '@ionic/react';
 
 const NavBar: React.FC = () => {
@@ -86,6 +87,13 @@ const NavBar: React.FC = () => {
               href={BUILD_LIST_PATH}
             >
               <PiDesktopTower />
+            </IconButton>
+            <IconButton style={{ margin: "0 5px" }}
+              edge="end"
+              color="inherit"
+              href={HARDWARE_BASE_PATH}
+            >
+              <IoHardwareChipOutline />
             </IconButton>
             <GetConfiguratorLink />
             {/* <IconButton style={{ margin: "0 5px" }}

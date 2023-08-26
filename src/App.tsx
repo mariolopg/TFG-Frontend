@@ -33,10 +33,21 @@ import BuildDetail from './pages/Build/BuildDetail/BuildDetail';
 import Configutator from './pages/Build/Configurator/Configurator';
 import BuildEdit from './pages/Build/BuildEdit/BuildEdit';
 import Layout from './pages/Layout/Layout';
-import { BUILDER_PATH, BUILD_DETAIL_EDIT_PATH, BUILD_DETAIL_PATH, BUILD_LIST_PATH, CONFIGURATOR_PATH, LOGIN_PATH, REGISTER_PATH, ROOT_PATH, USER_PROFILE_PATH } from './constants';
+import { BUILDER_PATH, BUILD_DETAIL_EDIT_PATH, BUILD_DETAIL_PATH, BUILD_LIST_PATH, CONFIGURATOR_PATH, HARDWARE_AC_PATH, HARDWARE_BASE_PATH, HARDWARE_CASE_PATH, HARDWARE_CPU_PATH, HARDWARE_GPU_PATH, HARDWARE_HDD_PATH, HARDWARE_MB_PATH, HARDWARE_PSU_PATH, HARDWARE_RAM_PATH, HARDWARE_LC_PATH, HARDWARE_SSD_PATH, LOGIN_PATH, REGISTER_PATH, ROOT_PATH, USER_PROFILE_PATH } from './constants';
 import AuthRoute from './routes/AuthRoute';
 import UserProfile from './pages/UserProfile/UserProfile';
 import BuilderProfile from './pages/BuilderProfile/BuilderProfile';
+import Hardware from './pages/Hardware/Hardware';
+import CPUList from './pages/Hardware/CPUList/CPUList';
+import MBList from './pages/Hardware/MBList/MBList';
+import RAMList from './pages/Hardware/RAMList/RAMList';
+import GPUList from './pages/Hardware/GPUList/GPUList';
+import ACList from './pages/Hardware/ACList/ACList';
+import HDDList from './pages/Hardware/HDDList/HDDList';
+import PSUList from './pages/Hardware/SSDList/SSDList';
+import SSDList from './pages/Hardware/SSDList/SSDList';
+import CaseList from './pages/Hardware/CaseList/CaseList';
+import LCList from './pages/Hardware/LCList/LCList';
 
 setupIonicReact();
 
@@ -71,9 +82,41 @@ const App: React.FC = () => (
               <Route exact path={USER_PROFILE_PATH} >
                 <AuthRoute sessionRequired><UserProfile /></AuthRoute>
               </Route>
-
               <Route exact path={BUILDER_PATH} >
                 <AuthRoute><BuilderProfile /></AuthRoute>
+              </Route>
+              <Route exact path={HARDWARE_BASE_PATH} >
+                <AuthRoute><Hardware /></AuthRoute>
+              </Route>
+              <Route exact path={HARDWARE_CPU_PATH} >
+                <AuthRoute><CPUList /></AuthRoute>
+              </Route>
+              <Route exact path={HARDWARE_MB_PATH} >
+                <AuthRoute><MBList /></AuthRoute>
+              </Route>
+              <Route exact path={HARDWARE_RAM_PATH} >
+                <AuthRoute><RAMList /></AuthRoute>
+              </Route>
+              <Route exact path={HARDWARE_AC_PATH} >
+                <AuthRoute><ACList /></AuthRoute>
+              </Route>
+              <Route exact path={HARDWARE_LC_PATH} >
+                <AuthRoute><LCList /></AuthRoute>
+              </Route>
+              <Route exact path={HARDWARE_GPU_PATH} >
+                <AuthRoute><GPUList /></AuthRoute>
+              </Route>
+              <Route exact path={HARDWARE_HDD_PATH} >
+                <AuthRoute><HDDList /></AuthRoute>
+              </Route>
+              <Route exact path={HARDWARE_SSD_PATH} >
+                <AuthRoute><SSDList /></AuthRoute>
+              </Route>
+              <Route exact path={HARDWARE_PSU_PATH} >
+                <AuthRoute><PSUList /></AuthRoute>
+              </Route>
+              <Route exact path={HARDWARE_CASE_PATH} >
+                <AuthRoute><CaseList /></AuthRoute>
               </Route>
             </>
           </Layout>

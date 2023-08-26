@@ -5,17 +5,34 @@ export const API_BASE_URL = "http://localhost:8000/api/";
 // ROUTES CONSTANTS
 export const ROOT_PATH = "/";
 
+// AUTH ROUTES
 export const LOGIN_PATH = "/login";
 export const REGISTER_PATH = "/register";
 
+// BUILD ROUTES
 export const BUILD_BASE_PATH = "/build";
 export const BUILD_LIST_PATH = BUILD_BASE_PATH;
 export const BUILD_DETAIL_PATH = "/build/:id";
 export const BUILD_DETAIL_EDIT_PATH = "/build/:id/edit";
 export const CONFIGURATOR_PATH = "/configurator";
+
+// USER ROUTES
 export const BUILDER_BASE_PATH = "/user";
 export const BUILDER_PATH = "/user/:id";
 export const USER_PROFILE_PATH = "/profile";
+
+// HARDWARE DB ROUTES
+export const HARDWARE_BASE_PATH = "/hardware";
+export const HARDWARE_CPU_PATH = "/hardware/cpu";
+export const HARDWARE_MB_PATH = "/hardware/motherboard";
+export const HARDWARE_RAM_PATH = "/hardware/ram";
+export const HARDWARE_AC_PATH = "/hardware/air-cooler";
+export const HARDWARE_LC_PATH = "/hardware/liquid-cooler";
+export const HARDWARE_GPU_PATH = "/hardware/gpu";
+export const HARDWARE_HDD_PATH = "/hardware/hdd";
+export const HARDWARE_SSD_PATH = "/hardware/ssd";
+export const HARDWARE_PSU_PATH = "/hardware/psu";
+export const HARDWARE_CASE_PATH = "/hardware/case";
 
 // IMAGES
 export const DEFAULT_CARD_IMG = "/images/card-default.png";
