@@ -4,7 +4,6 @@ import useHDDList from './hooks/useHDDList';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import PageTitle from '../../../components/PageTitle';
 import ComponentsTable from '../../../components/ComponentsTable/ComponentsTable';
-import { HARDWARE_HDD_PATH } from '../../../constants';
 
 const HDDList: React.FC = () => {
 
@@ -35,7 +34,7 @@ const HDDList: React.FC = () => {
   return (
     <IonGrid fixed>
       <PageTitle center title='Discos duros' />
-      <ComponentsTable items={hdds} headCells={headCells} hrefBase={HARDWARE_HDD_PATH} />
+      <ComponentsTable items={hdds} headCells={headCells} />
     </IonGrid>
   )
 };

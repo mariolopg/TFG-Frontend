@@ -4,7 +4,6 @@ import useRAMList from './hooks/useRAMList';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import PageTitle from '../../../components/PageTitle';
 import ComponentsTable from '../../../components/ComponentsTable/ComponentsTable';
-import { HARDWARE_RAM_PATH } from '../../../constants';
 
 const RAMList: React.FC = () => {
 
@@ -40,7 +39,7 @@ const RAMList: React.FC = () => {
   return (
     <IonGrid fixed>
       <PageTitle center title='Procesadores' />
-      <ComponentsTable items={rams} headCells={headCells} hrefBase={HARDWARE_RAM_PATH} />
+      <ComponentsTable items={rams} headCells={headCells} />
     </IonGrid>
   )
 };

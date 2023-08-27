@@ -4,7 +4,6 @@ import useSSDList from './hooks/useSSDList';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import PageTitle from '../../../components/PageTitle';
 import ComponentsTable from '../../../components/ComponentsTable/ComponentsTable';
-import { HARDWARE_SSD_PATH } from '../../../constants';
 
 const PSUList: React.FC = () => {
 
@@ -35,7 +34,7 @@ const PSUList: React.FC = () => {
   return (
     <IonGrid fixed>
       <PageTitle center title='Unidades de estado sólido' />
-      <ComponentsTable items={ssds} headCells={headCells} hrefBase={HARDWARE_SSD_PATH} />
+      <ComponentsTable items={ssds} headCells={headCells} />
     </IonGrid>
   )
 };

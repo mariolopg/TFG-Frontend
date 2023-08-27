@@ -4,7 +4,6 @@ import useGPUList from './hooks/useGPUList';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import PageTitle from '../../../components/PageTitle';
 import ComponentsTable from '../../../components/ComponentsTable/ComponentsTable';
-import { HARDWARE_GPU_PATH } from '../../../constants';
 
 const GPUList: React.FC = () => {
 
@@ -35,7 +34,7 @@ const GPUList: React.FC = () => {
   return (
     <IonGrid fixed>
       <PageTitle center title='Tarjetas gráficas' />
-      <ComponentsTable items={gpus} headCells={headCells} hrefBase={HARDWARE_GPU_PATH} />
+      <ComponentsTable items={gpus} headCells={headCells} />
     </IonGrid>
   )
 };

@@ -4,7 +4,6 @@ import useLCList from './hooks/useLCList';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import PageTitle from '../../../components/PageTitle';
 import ComponentsTable from '../../../components/ComponentsTable/ComponentsTable';
-import { HARDWARE_LC_PATH } from '../../../constants';
 
 const LCList: React.FC = () => {
 
@@ -36,7 +35,7 @@ const LCList: React.FC = () => {
   return (
     <IonGrid fixed>
       <PageTitle center title='Refrigeraciones líquidas' />
-      <ComponentsTable items={liquidCoolers} headCells={headCells} hrefBase={HARDWARE_LC_PATH} />
+      <ComponentsTable items={liquidCoolers} headCells={headCells} />
     </IonGrid>
   )
 };

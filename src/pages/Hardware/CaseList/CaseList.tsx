@@ -4,7 +4,6 @@ import useCaseList from './hooks/useCaseList';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import PageTitle from '../../../components/PageTitle';
 import ComponentsTable from '../../../components/ComponentsTable/ComponentsTable';
-import { HARDWARE_CASE_PATH } from '../../../constants';
 
 const CaseList: React.FC = () => {
 
@@ -32,10 +31,28 @@ const CaseList: React.FC = () => {
     }
   ];
 
+  const aditionalInfo = [
+    {
+      id: 'width',
+      disablePadding: true,
+      label: 'Anchura (mm)',
+    },
+    {
+      id: 'depth',
+      disablePadding: false,
+      label: 'Profundidad (mm)',
+    },
+    {
+      id: 'height',
+      disablePadding: false,
+      label: 'Altura  (mm)',
+    }
+  ];
+
   return (
     <IonGrid fixed>
       <PageTitle center title='Cajas' />
-      <ComponentsTable items={cases} headCells={headCells} hrefBase={HARDWARE_CASE_PATH} />
+      <ComponentsTable items={cases} headCells={headCells} aditionalInfo={aditionalInfo} />
     </IonGrid>
   )
 };

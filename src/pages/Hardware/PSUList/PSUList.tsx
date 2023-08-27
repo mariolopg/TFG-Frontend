@@ -4,7 +4,6 @@ import usePSUList from './hooks/usePSUList';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import PageTitle from '../../../components/PageTitle';
 import ComponentsTable from '../../../components/ComponentsTable/ComponentsTable';
-import { HARDWARE_PSU_PATH } from '../../../constants';
 
 const PSUList: React.FC = () => {
 
@@ -40,7 +39,7 @@ const PSUList: React.FC = () => {
   return (
     <IonGrid fixed>
       <PageTitle center title='Fuentes de alimentación' />
-      <ComponentsTable items={psus} headCells={headCells} hrefBase={HARDWARE_PSU_PATH} />
+      <ComponentsTable items={psus} headCells={headCells} />
     </IonGrid>
   )
 };

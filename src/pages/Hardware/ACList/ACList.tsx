@@ -4,7 +4,6 @@ import useACList from './hooks/useACList';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import PageTitle from '../../../components/PageTitle';
 import ComponentsTable from '../../../components/ComponentsTable/ComponentsTable';
-import { HARDWARE_AC_PATH } from '../../../constants';
 
 const ACList: React.FC = () => {
 
@@ -36,7 +35,7 @@ const ACList: React.FC = () => {
   return (
     <IonGrid fixed>
       <PageTitle center title='Refrigeraciones por aire' />
-      <ComponentsTable items={airCoolers} headCells={headCells} hrefBase={HARDWARE_AC_PATH} />
+      <ComponentsTable items={airCoolers} headCells={headCells} />
     </IonGrid>
   )
 };

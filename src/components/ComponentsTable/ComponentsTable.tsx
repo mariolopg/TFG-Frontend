@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import Box from '@mui/material/Box';
+import Collapse from '@mui/material/Collapse';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -9,13 +10,15 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { visuallyHidden } from '@mui/utils';
-import { IonRouterLink, IonSearchbar } from '@ionic/react';
+import { IonSearchbar, IonText } from '@ionic/react';
 
 interface ComponentsTableProps {
   items: any,
   headCells: any,
-  hrefBase: string
+  aditionalInfo?: any,
 }
 
 const ComponentsTable = (props: ComponentsTableProps) => {
@@ -77,6 +80,7 @@ const ComponentsTable = (props: ComponentsTableProps) => {
     return (
       <TableHead>
         <TableRow>
+          {props.aditionalInfo ? <TableCell /> : null}
           {props.headCells.map((headCell: any) => (
             <TableCell
               key={headCell.id}
@@ -150,6 +154,84 @@ const ComponentsTable = (props: ComponentsTableProps) => {
     setFilteredValues(values)
   }
 
+  function AdditionalInfo(propsAditionalInfo: { row: any, open: boolean }) {
+    if (!props.aditionalInfo) { return null }
+    return (
+
+      <TableRow>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+          <Collapse in={propsAditionalInfo.open} timeout="auto" unmountOnExit>
+            <Box sx={{ margin: 1 }}>
+              <Table size="small" aria-label="purchases">
+                <TableHead>
+                  <TableRow>
+                    <TableCell />
+                    {props.aditionalInfo.map((headCell: any) => (
+                      <TableCell
+                        key={headCell.id}
+                        padding={headCell.disablePadding ? 'none' : 'normal'}
+                      >
+                        {headCell.label}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  <TableCell />
+                  {props.aditionalInfo.map((item: any, index: number) => {
+                    if (index != 0) {
+                      const text = Array.isArray(propsAditionalInfo.row[item.id]) ? (propsAditionalInfo.row[item.id] as []).join(', ') : propsAditionalInfo.row[item.id]
+                      return (<TableCell >{text}</TableCell>)
+                    }
+                    return (<TableCell component="th" scope="row" padding="none" >{propsAditionalInfo.row[item.id]}</TableCell>)
+                  })}
+                </TableBody>
+              </Table>
+            </Box>
+          </Collapse>
+        </TableCell>
+      </TableRow>
+    )
+  }
+
+  function Row(propsRow: { row: any }) {
+    const [open, setOpen] = React.useState(false);
+    return (
+      <>
+        <TableRow
+          hover
+          tabIndex={-1}
+          key={propsRow.row.id as number}
+          onClick={() => setOpen(!open)}
+          style={{ cursor: 'pointer' }}
+        >
+          {
+            props.aditionalInfo ?
+              <TableCell>
+                <IonText
+                  aria-label="expand row"
+                  color='medium'
+                >
+                  {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                </IonText>
+              </TableCell>
+              :
+              null
+          }
+
+          {props.headCells.map((item: any, index: number) => {
+            if (index != 0) {
+              const text = Array.isArray(propsRow.row[item.id]) ? (propsRow.row[item.id] as []).join(', ') : propsRow.row[item.id]
+              return (<TableCell >{text}</TableCell>)
+            }
+            return (<TableCell component="th" scope="row" padding="none" >{propsRow.row[item.id]}</TableCell>)
+          })}
+        </TableRow>
+        <AdditionalInfo row={propsRow.row} open={open} />
+      </>
+    );
+  }
+
   return (
     <>
       <IonSearchbar placeholder="Buscar componente..." class='custom' onKeyUp={handleSearch} onIonInput={(e: any) => { setSearchedValue(e.target.value) }}></IonSearchbar>
@@ -166,25 +248,7 @@ const ComponentsTable = (props: ComponentsTableProps) => {
             rowCount={filteredValues.length}
           />
           <TableBody>
-            {visibleRows.map((row, index) => {
-              return (
-                <TableRow
-                  hover
-                  tabIndex={-1}
-                  key={row.name as string}
-                >
-                  {props.headCells.map((item: any, index: number) => {
-                    if (index != 0) {
-                      const text = Array.isArray(row[item.id]) ? (row[item.id] as []).join(', ') : row[item.id]
-                      return (<TableCell >{text}</TableCell>)
-                    }
-                    return (<TableCell component="th" scope="row" padding="none" >
-                      <IonRouterLink href={`${props.hrefBase}/${row.id}`}>{row[item.id]}</IonRouterLink>
-                    </TableCell>)
-                  })}
-                </TableRow>
-              );
-            })}
+            {visibleRows.map((row, index) => (<Row row={row} key={row.id as number} />))}
             {emptyRows > 0 && (
               <TableRow
                 style={{

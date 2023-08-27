@@ -4,7 +4,6 @@ import useMBList from './hooks/useMBList';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import PageTitle from '../../../components/PageTitle';
 import ComponentsTable from '../../../components/ComponentsTable/ComponentsTable';
-import { HARDWARE_MB_PATH } from '../../../constants';
 
 const MBList: React.FC = () => {
 
@@ -40,7 +39,7 @@ const MBList: React.FC = () => {
   return (
     <IonGrid fixed>
       <PageTitle center title='Placas Base' />
-      <ComponentsTable items={mbs} headCells={headCells} hrefBase={HARDWARE_MB_PATH} />
+      <ComponentsTable items={mbs} headCells={headCells} />
     </IonGrid>
   )
 };

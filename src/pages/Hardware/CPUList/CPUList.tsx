@@ -4,7 +4,6 @@ import useCPUList from './hooks/useCPUList';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import PageTitle from '../../../components/PageTitle';
 import ComponentsTable from '../../../components/ComponentsTable/ComponentsTable';
-import { HARDWARE_CPU_PATH } from '../../../constants';
 
 const CPUList: React.FC = () => {
 
@@ -40,7 +39,7 @@ const CPUList: React.FC = () => {
   return (
     <IonGrid fixed>
       <PageTitle center title='Procesadores' />
-      <ComponentsTable items={cpus} headCells={headCells} hrefBase={HARDWARE_CPU_PATH} />
+      <ComponentsTable items={cpus} headCells={headCells} />
     </IonGrid>
   )
 };
