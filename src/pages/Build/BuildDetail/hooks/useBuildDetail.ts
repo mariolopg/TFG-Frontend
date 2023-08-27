@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   useCreateCommentMutation,
   useDeleteBuildMutation,
@@ -55,24 +55,28 @@ export const useBuildDetail = () => {
   };
 
   const handleSubmitComment = () => {
-    postComment(commentInput).then((value: any) => {
-      if (value.error) {
-        setErrors(value.error.data);
-      } else {
-        setComments([...comments, commentInput]);
-        setCommentInput({ ...commentInput, comment: "" });
-      }
-    });
+    postComment(commentInput);
   };
+
+  useEffect(() => {
+    if (responseComment.isSuccess) {
+      setComments([...comments, commentInput]);
+      setCommentInput({ ...commentInput, comment: "" });
+    } else if (responseComment.isError && "data" in responseComment.error) {
+      setErrors(responseComment.error.data as CommentErrorsInterface);
+    }
+  }, [responseComment]);
 
   const handleDelete = () => {
     deleteBuild(id);
   };
 
-  if (responseDelete.isSuccess) {
-    history.push(BUILD_LIST_PATH);
-    location.reload();
-  }
+  useEffect(() => {
+    if (responseDelete.isSuccess) {
+      history.push(BUILD_LIST_PATH);
+      location.reload();
+    }
+  }, [responseDelete]);
 
   return {
     id,

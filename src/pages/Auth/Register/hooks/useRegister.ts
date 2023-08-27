@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   RegisterErrorsInterface,
   RegisterInterface,
@@ -38,27 +38,31 @@ const useRegister = () => {
   );
 
   function handleSubmitRegister() {
-    register(user).then((value: any) => {
-      if (value.error) {
-        setErrors(value.error.data);
-      } else {
-        logUser();
-      }
-    });
+    register(user);
   }
+
+  useEffect(() => {
+    if (responseRegister.isSuccess) {
+      logUser();
+    } else if (responseRegister.isError && "data" in responseRegister.error) {
+      setErrors(responseRegister.error.data as RegisterErrorsInterface);
+    }
+  }, [responseRegister]);
 
   function logUser() {
     const loginUserData = {
       username: user.username,
       password: user.password1,
     };
-    login(loginUserData).then((value: any) => {
-      if (!value.error) {
-        history.push(ROOT_PATH);
-        location.reload();
-      }
-    });
+    login(loginUserData);
   }
+
+  useEffect(() => {
+    if (responseLogin.isSuccess) {
+      history.push(ROOT_PATH);
+      location.reload();
+    }
+  }, [responseLogin]);
 
   const setValue = (field: string, event: any) => {
     setUser({ ...user, [field]: event.target.value });

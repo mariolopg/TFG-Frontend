@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LoginErrorsInterface, LoginInterface } from "../../../../domain/types";
 import { useLoginMutation } from "../../../../domain/api/apiSlice";
 
@@ -28,15 +28,17 @@ const useLogin = () => {
   );
 
   function handleSubmitLogin() {
-    login(user).then((value: any) => {
-      if (value.error) {
-        setErrors(value.error.data);
-      } else {
-        history.push(ROOT_PATH);
-        location.reload();
-      }
-    });
+    login(user);
   }
+
+  useEffect(() => {
+    if (response.isSuccess) {
+      history.push(ROOT_PATH);
+      location.reload();
+    } else if (response.isError && "data" in response.error) {
+      setErrors(response.error.data as LoginErrorsInterface);
+    }
+  }, [response]);
 
   const setValue = (field: string, event: any) => {
     setUser({ ...user, [field]: event.target.value });

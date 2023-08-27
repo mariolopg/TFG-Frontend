@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   useCreateBuildMutation,
   useCreateImageMutation,
@@ -36,21 +36,23 @@ const useConfigurator = () => {
   );
 
   function handleSubmit() {
-    postBuild(build).then((value: any) => {
-      if (value.error) {
-        setErrors(value.error.data);
-      } else {
-        images?.map((image) => {
-          var formData = new FormData();
-          formData.append("build", value.data.id);
-          formData.append("image", image);
-          postImage(formData);
-        });
-        history.push(`${BUILD_BASE_PATH}/${value.data.id}`);
-        location.reload();
-      }
-    });
+    postBuild(build);
   }
+
+  useEffect(() => {
+    if (response.isSuccess) {
+      images?.map((image) => {
+        var formData = new FormData();
+        formData.append("build", response.data.id);
+        formData.append("image", image);
+        postImage(formData);
+      });
+      history.push(`${BUILD_BASE_PATH}/${response.data.id}`);
+      location.reload();
+    } else if (response.isError && "data" in response.error) {
+      setErrors(response.error.data as BuildErrorsInterface);
+    }
+  }, [response]);
 
   return { build, errors, images, handleSubmit, setBuild, setImages };
 };

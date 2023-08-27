@@ -4,36 +4,19 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
 import useNavBar from './hooks/useNavBar';
 
 import { PiDesktopTower } from "react-icons/pi"
-import { LiaToolsSolid, LiaUserCircle } from "react-icons/lia"
+import { LiaToolsSolid } from "react-icons/lia"
 import { BsShop } from "react-icons/bs"
 import { IoHardwareChipOutline } from "react-icons/io5"
-import { BUILD_LIST_PATH, CONFIGURATOR_PATH, HARDWARE_BASE_PATH, LOGIN_PATH, REGISTER_PATH, ROOT_PATH, USER_PROFILE_PATH } from '../../constants';
+import { BUILD_LIST_PATH, CONFIGURATOR_PATH, HARDWARE_BASE_PATH, ROOT_PATH } from '../../constants';
 import { IonRouterLink } from '@ionic/react';
+import DropdownUser from './components/DropdownMenu/DropdownUser';
+import DropdownLanguage from './components/DropdownLanguage/DropdownLanguage';
 
 const NavBar: React.FC = () => {
-  const { isLogged, menuId, anchorEl, isMenuOpen, handleProfileMenuOpen, handleMenuClose, handleLogout } = useNavBar();
-
-  function GetmenuItems() {
-    if (!isLogged) {
-      return (
-        <>
-          <a className='menu-item-link' href={LOGIN_PATH}><MenuItem>Iniciar sesión</MenuItem></a>
-          <a className='menu-item-link' href={REGISTER_PATH}><MenuItem>Crear cuenta</MenuItem></a>
-        </>
-      )
-    }
-    return (
-      <>
-        <a className='menu-item-link' href={USER_PROFILE_PATH}><MenuItem href={LOGIN_PATH}>Perfil</MenuItem></a>
-        <MenuItem onClick={handleLogout}>Cerrar Sesión</MenuItem>
-      </>
-    )
-  }
+  const { isLogged } = useNavBar();
 
   function GetConfiguratorLink() {
     if (!isLogged) { return null }
@@ -47,26 +30,6 @@ const NavBar: React.FC = () => {
       </IconButton>
     )
   }
-
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <GetmenuItems />
-    </Menu>
-  );
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -99,24 +62,14 @@ const NavBar: React.FC = () => {
             {/* <IconButton style={{ margin: "0 5px" }}
               edge="end"
               color="inherit"
-            >
+              >
               <BsShop />
             </IconButton> */}
-            <IconButton style={{ margin: "0 5px" }}
-              edge="end"
-              size='large'
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <LiaUserCircle />
-            </IconButton>
+            <DropdownLanguage />
+            <DropdownUser />
           </Box>
         </Toolbar>
       </AppBar>
-      {renderMenu}
     </Box>
   );
 };

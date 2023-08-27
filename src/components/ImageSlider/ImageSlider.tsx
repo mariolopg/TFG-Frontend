@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { IonButton, IonIcon, IonLabel, IonModal } from "@ionic/react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
@@ -37,7 +37,6 @@ const ImageSlider = (props: ImageSliderProps) => {
 
   function handleDeleteImage(idx: number) {
     deleteImage(images[idx].id).then((value: any) => {
-
       if (!value.error) {
         setImages(images.filter((_, i) => i !== idx))
         setInitialSlide(images.length % 2)

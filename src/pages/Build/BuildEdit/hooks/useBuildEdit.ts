@@ -44,30 +44,30 @@ const useBuildEdit = () => {
   );
 
   const handleSubmit = () => {
-    updateBuild({ id: id, body: buildUpdates }).then((value: any) => {
-      if (value.error) {
-        setErrors(value.error.data);
-      } else {
-        images?.map((image: any) => {
-          var formData = new FormData();
-          formData.append("build", value.data.id);
-          formData.append("image", image);
-          postImage(formData);
-        });
-      }
-    });
+    updateBuild({ id: id, body: buildUpdates });
   };
+
+  useEffect(() => {
+    if (response.isSuccess) {
+      images?.map((image: any) => {
+        var formData = new FormData();
+        formData.append("build", response.data.id);
+        formData.append("image", image);
+        postImage(formData);
+      });
+
+      history.push(`${BUILD_BASE_PATH}/${id}`);
+      location.reload();
+    } else if (response.isError && "data" in response.error) {
+      setErrors(response.error.data as BuildErrorsInterface);
+    }
+  }, [response]);
 
   useEffect(() => {
     if (build) {
       setBuildUpdates(build);
     }
   }, [build]);
-
-  if (response.isSuccess) {
-    history.push(`${BUILD_BASE_PATH}/${id}`);
-    location.reload();
-  }
 
   return {
     isAdmin,
