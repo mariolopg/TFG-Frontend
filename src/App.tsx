@@ -2,7 +2,7 @@ import { Provider } from 'react-redux';
 import { store } from './store';
 
 import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonIcon, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs, setupIonicReact } from '@ionic/react';
+import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 
 /* Core CSS required for Ionic components to work properly */
@@ -44,10 +44,10 @@ import RAMList from './pages/Hardware/RAMList/RAMList';
 import GPUList from './pages/Hardware/GPUList/GPUList';
 import ACList from './pages/Hardware/ACList/ACList';
 import HDDList from './pages/Hardware/HDDList/HDDList';
-import PSUList from './pages/Hardware/SSDList/SSDList';
 import SSDList from './pages/Hardware/SSDList/SSDList';
 import CaseList from './pages/Hardware/CaseList/CaseList';
 import LCList from './pages/Hardware/LCList/LCList';
+import PSUList from './pages/Hardware/PSUList/PSUList';
 
 setupIonicReact();
 

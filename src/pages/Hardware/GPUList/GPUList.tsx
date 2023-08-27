@@ -31,10 +31,33 @@ const GPUList: React.FC = () => {
     },
   ];
 
+  const aditionalInfo = [
+    {
+      id: 'tdp',
+      disablePadding: true,
+      label: 'TDP (W)',
+    },
+    {
+      id: 'length',
+      disablePadding: true,
+      label: 'Longitud (mm)',
+    },
+    {
+      id: '_8_pin_connectors',
+      disablePadding: true,
+      label: 'Conectores 8 pines',
+    },
+    {
+      id: '_6_pin_connectors',
+      disablePadding: true,
+      label: 'Conectores 6 pines',
+    },
+  ];
+
   return (
     <IonGrid fixed>
       <PageTitle center title='Tarjetas gráficas' />
-      <ComponentsTable items={gpus} headCells={headCells} />
+      <ComponentsTable items={gpus} headCells={headCells} aditionalInfo={aditionalInfo} />
     </IonGrid>
   )
 };

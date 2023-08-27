@@ -5,7 +5,7 @@ import LoadingSpinner from '../../../components/LoadingSpinner';
 import PageTitle from '../../../components/PageTitle';
 import ComponentsTable from '../../../components/ComponentsTable/ComponentsTable';
 
-const PSUList: React.FC = () => {
+const SSDList: React.FC = () => {
 
   const { ssds, isSuccess } = useSSDList();
 
@@ -39,4 +39,4 @@ const PSUList: React.FC = () => {
   )
 };
 
-export default React.memo(PSUList);
+export default React.memo(SSDList);

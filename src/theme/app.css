@@ -77,3 +77,7 @@ h1 {
 ion-searchbar.custom {
   --border-radius: 20px;
 }
+
+.searchbar-input.sc-ion-searchbar-md {
+  border: 2px solid var(--ion-color-medium);
+}

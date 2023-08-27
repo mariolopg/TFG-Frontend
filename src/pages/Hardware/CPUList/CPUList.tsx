@@ -34,6 +34,11 @@ const CPUList: React.FC = () => {
       disablePadding: false,
       label: 'Hebras',
     },
+    {
+      id: 'integrated_graphics',
+      disablePadding: false,
+      label: 'Gráficos integrados',
+    },
   ];
 
   return (

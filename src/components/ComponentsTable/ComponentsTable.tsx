@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
@@ -13,13 +14,26 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { visuallyHidden } from '@mui/utils';
-import { IonSearchbar, IonText } from '@ionic/react';
+import { IonIcon, IonSearchbar, IonText } from '@ionic/react';
+import { checkmarkOutline, closeOutline } from 'ionicons/icons';
+
 
 interface ComponentsTableProps {
   items: any,
   headCells: any,
   aditionalInfo?: any,
 }
+
+const StyledTableCell = styled(TableCell)(() => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: "var(--ion-color-medium-table-head)",
+    paddingLeft: "10px"
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+    paddingLeft: "10px"
+  },
+}));
 
 const ComponentsTable = (props: ComponentsTableProps) => {
 
@@ -42,8 +56,8 @@ const ComponentsTable = (props: ComponentsTableProps) => {
     order: Order,
     orderBy: Key,
   ): (
-    a: { [key in Key]: number | string | [] },
-    b: { [key in Key]: number | string | [] },
+    a: { [key in Key]: number | string | boolean | [] },
+    b: { [key in Key]: number | string | boolean | [] },
   ) => number {
     return order === 'desc'
       ? (a, b) => descendingComparator(a, b, orderBy)
@@ -80,9 +94,9 @@ const ComponentsTable = (props: ComponentsTableProps) => {
     return (
       <TableHead>
         <TableRow>
-          {props.aditionalInfo ? <TableCell /> : null}
+          {props.aditionalInfo ? <StyledTableCell /> : null}
           {props.headCells.map((headCell: any) => (
-            <TableCell
+            <StyledTableCell
               key={headCell.id}
               padding={headCell.disablePadding ? 'none' : 'normal'}
               sortDirection={orderBy === headCell.id ? order : false}
@@ -99,7 +113,7 @@ const ComponentsTable = (props: ComponentsTableProps) => {
                   </Box>
                 ) : null}
               </TableSortLabel>
-            </TableCell>
+            </StyledTableCell>
           ))}
         </TableRow>
       </TableHead>
@@ -154,42 +168,46 @@ const ComponentsTable = (props: ComponentsTableProps) => {
     setFilteredValues(values)
   }
 
+  function handleClear() {
+    setSearchedValue("")
+    setFilteredValues(props.items)
+  }
+
   function AdditionalInfo(propsAditionalInfo: { row: any, open: boolean }) {
     if (!props.aditionalInfo) { return null }
     return (
-
       <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+        <StyledTableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={propsAditionalInfo.open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell />
+                    <StyledTableCell />
                     {props.aditionalInfo.map((headCell: any) => (
-                      <TableCell
+                      <StyledTableCell
                         key={headCell.id}
                         padding={headCell.disablePadding ? 'none' : 'normal'}
                       >
                         {headCell.label}
-                      </TableCell>
+                      </StyledTableCell>
                     ))}
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  <TableCell />
+                  <StyledTableCell />
                   {props.aditionalInfo.map((item: any, index: number) => {
                     if (index != 0) {
                       const text = Array.isArray(propsAditionalInfo.row[item.id]) ? (propsAditionalInfo.row[item.id] as []).join(', ') : propsAditionalInfo.row[item.id]
-                      return (<TableCell >{text}</TableCell>)
+                      return (<StyledTableCell >{text}</StyledTableCell>)
                     }
-                    return (<TableCell component="th" scope="row" padding="none" >{propsAditionalInfo.row[item.id]}</TableCell>)
+                    return (<StyledTableCell component="th" scope="row" padding="none" >{propsAditionalInfo.row[item.id]}</StyledTableCell>)
                   })}
                 </TableBody>
               </Table>
             </Box>
           </Collapse>
-        </TableCell>
+        </StyledTableCell>
       </TableRow>
     )
   }
@@ -207,24 +225,30 @@ const ComponentsTable = (props: ComponentsTableProps) => {
         >
           {
             props.aditionalInfo ?
-              <TableCell>
+              <StyledTableCell>
                 <IonText
                   aria-label="expand row"
                   color='medium'
                 >
                   {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                 </IonText>
-              </TableCell>
+              </StyledTableCell>
               :
               null
           }
 
           {props.headCells.map((item: any, index: number) => {
             if (index != 0) {
-              const text = Array.isArray(propsRow.row[item.id]) ? (propsRow.row[item.id] as []).join(', ') : propsRow.row[item.id]
-              return (<TableCell >{text}</TableCell>)
+              let text = propsRow.row[item.id]
+              if (Array.isArray(propsRow.row[item.id])) {
+                text = (propsRow.row[item.id] as []).join(', ')
+              }
+              else if (typeof propsRow.row[item.id] === "boolean") {
+                text = propsRow.row[item.id] ? <IonIcon icon={checkmarkOutline} style={{ fontSize: 20 }} color="success" /> : <IonIcon icon={closeOutline} style={{ fontSize: 20 }} color="danger" />
+              }
+              return (<StyledTableCell >{text}</StyledTableCell>)
             }
-            return (<TableCell component="th" scope="row" padding="none" >{propsRow.row[item.id]}</TableCell>)
+            return (<StyledTableCell component="th" scope="row" padding="none" >{propsRow.row[item.id]}</StyledTableCell>)
           })}
         </TableRow>
         <AdditionalInfo row={propsRow.row} open={open} />
@@ -234,11 +258,11 @@ const ComponentsTable = (props: ComponentsTableProps) => {
 
   return (
     <>
-      <IonSearchbar placeholder="Buscar componente..." class='custom' onKeyUp={handleSearch} onIonInput={(e: any) => { setSearchedValue(e.target.value) }}></IonSearchbar>
+      <IonSearchbar placeholder="Buscar componente..." class='custom' onIonChange={handleSearch} onIonInput={(e: any) => { setSearchedValue(e.target.value) }} onIonClear={handleClear}></IonSearchbar>
       <TableContainer>
         <Table
           sx={{ minWidth: 750 }}
-          aria-labelledby="tableTitle"
+          aria-label="customized table"
           size='medium'
         >
           <EnhancedTableHead
@@ -255,7 +279,7 @@ const ComponentsTable = (props: ComponentsTableProps) => {
                   height: (53) * emptyRows,
                 }}
               >
-                <TableCell colSpan={6} />
+                <StyledTableCell colSpan={6} />
               </TableRow>
             )}
           </TableBody>

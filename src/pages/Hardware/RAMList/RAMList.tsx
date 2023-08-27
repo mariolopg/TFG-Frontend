@@ -34,6 +34,11 @@ const RAMList: React.FC = () => {
       disablePadding: false,
       label: 'Frecuencia (MHz)',
     },
+    {
+      id: 'units',
+      disablePadding: false,
+      label: 'Nº módulos',
+    },
   ];
 
   return (

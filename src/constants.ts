@@ -23,16 +23,16 @@ export const USER_PROFILE_PATH = "/profile";
 
 // HARDWARE DB ROUTES
 export const HARDWARE_BASE_PATH = "/hardware";
-export const HARDWARE_CPU_PATH = "/hardware/cpu";
-export const HARDWARE_MB_PATH = "/hardware/motherboard";
-export const HARDWARE_RAM_PATH = "/hardware/ram";
-export const HARDWARE_AC_PATH = "/hardware/air-cooler";
-export const HARDWARE_LC_PATH = "/hardware/liquid-cooler";
-export const HARDWARE_GPU_PATH = "/hardware/gpu";
-export const HARDWARE_HDD_PATH = "/hardware/hdd";
-export const HARDWARE_SSD_PATH = "/hardware/ssd";
-export const HARDWARE_PSU_PATH = "/hardware/psu";
-export const HARDWARE_CASE_PATH = "/hardware/case";
+export const HARDWARE_CPU_PATH = "/hardware/cpus";
+export const HARDWARE_MB_PATH = "/hardware/motherboards";
+export const HARDWARE_RAM_PATH = "/hardware/rams";
+export const HARDWARE_AC_PATH = "/hardware/air-coolers";
+export const HARDWARE_LC_PATH = "/hardware/liquid-coolers";
+export const HARDWARE_GPU_PATH = "/hardware/gpus";
+export const HARDWARE_HDD_PATH = "/hardware/hdds";
+export const HARDWARE_SSD_PATH = "/hardware/ssds";
+export const HARDWARE_PSU_PATH = "/hardware/psus";
+export const HARDWARE_CASE_PATH = "/hardware/cases";
 
 // IMAGES
 export const DEFAULT_CARD_IMG = "/images/card-default.png";

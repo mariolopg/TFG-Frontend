@@ -30,7 +30,7 @@ const PSUList: React.FC = () => {
       label: 'Voltios (W)',
     },
     {
-      id: 'efficiency_id',
+      id: 'efficiency',
       disablePadding: false,
       label: 'Eficiencia',
     }

@@ -32,10 +32,38 @@ const LCList: React.FC = () => {
     },
   ];
 
+  const aditionalInfo = [
+    {
+      id: '_80_mm_fans',
+      disablePadding: true,
+      label: 'Ventiladores de 80mm',
+    },
+    {
+      id: '_92_mm_fans',
+      disablePadding: true,
+      label: 'Ventiladores de 92mm',
+    },
+    {
+      id: '_120_mm_fans',
+      disablePadding: true,
+      label: 'Ventiladores de 120mm',
+    },
+    {
+      id: '_140_mm_fans',
+      disablePadding: true,
+      label: 'Ventiladores de 140mm',
+    },
+    {
+      id: '_200_mm_fans',
+      disablePadding: true,
+      label: 'Ventiladores de 200mm',
+    },
+  ];
+
   return (
     <IonGrid fixed>
       <PageTitle center title='Refrigeraciones líquidas' />
-      <ComponentsTable items={liquidCoolers} headCells={headCells} />
+      <ComponentsTable items={liquidCoolers} headCells={headCells} aditionalInfo={aditionalInfo} />
     </IonGrid>
   )
 };

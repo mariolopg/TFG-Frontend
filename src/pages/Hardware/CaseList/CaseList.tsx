@@ -22,13 +22,23 @@ const CaseList: React.FC = () => {
     {
       id: 'motherboard_size',
       disablePadding: false,
-      label: 'Tamaño de placa',
+      label: 'Placa',
     },
     {
       id: 'psu_size',
       disablePadding: false,
-      label: 'Tamaño de fuente',
-    }
+      label: 'Fuente',
+    },
+    {
+      id: 'gpu_length',
+      disablePadding: false,
+      label: 'L. gráfica (mm)',
+    },
+    {
+      id: 'air_cooler_height',
+      disablePadding: false,
+      label: 'A. disipador (mm)',
+    },
   ];
 
   const aditionalInfo = [
@@ -46,7 +56,42 @@ const CaseList: React.FC = () => {
       id: 'height',
       disablePadding: false,
       label: 'Altura  (mm)',
-    }
+    },
+    {
+      id: '_120_radiator_support',
+      disablePadding: false,
+      label: 'Radiador 120mm',
+    },
+    {
+      id: '_140_radiator_support',
+      disablePadding: false,
+      label: 'Radiador 140mm',
+    },
+    {
+      id: '_240_radiator_support',
+      disablePadding: false,
+      label: 'Radiador 240mm',
+    },
+    {
+      id: '_280_radiator_support',
+      disablePadding: false,
+      label: 'Radiador 280mm',
+    },
+    {
+      id: '_360_radiator_support',
+      disablePadding: false,
+      label: 'Radiador 360mm',
+    },
+    {
+      id: '_2_5_disk_slot',
+      disablePadding: false,
+      label: 'Bahías 2.5"',
+    },
+    {
+      id: '_3_5_disk_slot',
+      disablePadding: false,
+      label: 'Bahías 3.5"',
+    },
   ];
 
   return (

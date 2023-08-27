@@ -28,6 +28,11 @@ const HDDList: React.FC = () => {
       id: 'rpm',
       disablePadding: false,
       label: 'Velocidad (rpm)',
+    },
+    {
+      id: 'form_factor',
+      disablePadding: false,
+      label: 'Factor de forma',
     }
   ];
 
