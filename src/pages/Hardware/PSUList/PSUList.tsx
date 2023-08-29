@@ -4,9 +4,10 @@ import usePSUList from './hooks/usePSUList';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import PageTitle from '../../../components/PageTitle';
 import ComponentsTable from '../../../components/ComponentsTable/ComponentsTable';
+import { useTranslation } from 'react-i18next';
 
 const PSUList: React.FC = () => {
-
+  const { t, i18n } = useTranslation();
   const { psus, isSuccess } = usePSUList();
 
   if (!isSuccess) {
@@ -17,28 +18,28 @@ const PSUList: React.FC = () => {
     {
       id: 'name',
       disablePadding: true,
-      label: 'Nombre',
+      label: t('name', { ns: 'common' }),
     },
     {
       id: 'form_factor',
       disablePadding: false,
-      label: 'Factor de forma',
+      label: t('formFactor', { ns: 'components' }),
     },
     {
       id: 'watts',
       disablePadding: false,
-      label: 'Voltios (W)',
+      label: t('watts', { ns: 'components' }),
     },
     {
       id: 'efficiency',
       disablePadding: false,
-      label: 'Eficiencia',
+      label: t('efficiency', { ns: 'components' }),
     }
   ];
 
   return (
     <IonGrid fixed>
-      <PageTitle center title='Fuentes de alimentación' />
+      <PageTitle center title={t('psus', { ns: 'components' })} />
       <ComponentsTable items={psus} headCells={headCells} />
     </IonGrid>
   )

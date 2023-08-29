@@ -4,9 +4,10 @@ import useGPUList from './hooks/useGPUList';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import PageTitle from '../../../components/PageTitle';
 import ComponentsTable from '../../../components/ComponentsTable/ComponentsTable';
+import { useTranslation } from 'react-i18next';
 
 const GPUList: React.FC = () => {
-
+  const { t, i18n } = useTranslation();
   const { gpus, isSuccess } = useGPUList();
 
   if (!isSuccess) {
@@ -17,17 +18,17 @@ const GPUList: React.FC = () => {
     {
       id: 'name',
       disablePadding: true,
-      label: 'Nombre',
+      label: t('name', { ns: 'common' }),
     },
     {
       id: 'series',
       disablePadding: false,
-      label: 'Serie',
+      label: t('series', { ns: 'components' }),
     },
     {
       id: 'vram',
       disablePadding: false,
-      label: 'VRAM (GB)',
+      label: t('vram', { ns: 'components' }),
     },
   ];
 
@@ -35,28 +36,28 @@ const GPUList: React.FC = () => {
     {
       id: 'tdp',
       disablePadding: true,
-      label: 'TDP (W)',
+      label: t('tdp', { ns: 'components' }),
     },
     {
       id: 'length',
       disablePadding: true,
-      label: 'Longitud (mm)',
+      label: t('length', { ns: 'components' }),
     },
     {
       id: '_8_pin_connectors',
       disablePadding: true,
-      label: 'Conectores 8 pines',
+      label: t('8PinConnectors', { ns: 'components' }),
     },
     {
       id: '_6_pin_connectors',
       disablePadding: true,
-      label: 'Conectores 6 pines',
+      label: t('6PinConnectors', { ns: 'components' }),
     },
   ];
 
   return (
     <IonGrid fixed>
-      <PageTitle center title='Tarjetas gráficas' />
+      <PageTitle center title={t('gpus', { ns: 'components' })} />
       <ComponentsTable items={gpus} headCells={headCells} aditionalInfo={aditionalInfo} />
     </IonGrid>
   )

@@ -4,9 +4,10 @@ import useLCList from './hooks/useLCList';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import PageTitle from '../../../components/PageTitle';
 import ComponentsTable from '../../../components/ComponentsTable/ComponentsTable';
+import { useTranslation } from 'react-i18next';
 
 const LCList: React.FC = () => {
-
+  const { t, i18n } = useTranslation();
   const { liquidCoolers, isSuccess } = useLCList();
 
   if (!isSuccess) {
@@ -17,18 +18,18 @@ const LCList: React.FC = () => {
     {
       id: 'name',
       disablePadding: true,
-      label: 'Nombre',
+      label: t('name', { ns: 'common' }),
     },
     {
       id: 'radiator',
       disablePadding: false,
-      label: 'Radiador (mm)',
+      label: t('radiatorSize', { ns: 'components' }),
     },
     {
       id: 'supported_sockets',
       type: "array",
       disablePadding: false,
-      label: 'Sockets soportados',
+      label: t('supportedSockets', { ns: 'components' }),
     },
   ];
 
@@ -36,33 +37,33 @@ const LCList: React.FC = () => {
     {
       id: '_80_mm_fans',
       disablePadding: true,
-      label: 'Ventiladores de 80mm',
+      label: t('fans80', { ns: 'components' }),
     },
     {
       id: '_92_mm_fans',
       disablePadding: true,
-      label: 'Ventiladores de 92mm',
+      label: t('fans92', { ns: 'components' }),
     },
     {
       id: '_120_mm_fans',
       disablePadding: true,
-      label: 'Ventiladores de 120mm',
+      label: t('fans120', { ns: 'components' }),
     },
     {
       id: '_140_mm_fans',
       disablePadding: true,
-      label: 'Ventiladores de 140mm',
+      label: t('fans140', { ns: 'components' }),
     },
     {
       id: '_200_mm_fans',
       disablePadding: true,
-      label: 'Ventiladores de 200mm',
+      label: t('fans200', { ns: 'components' }),
     },
   ];
 
   return (
     <IonGrid fixed>
-      <PageTitle center title='Refrigeraciones líquidas' />
+      <PageTitle center title={t('liquidCoolers', { ns: 'components' })} />
       <ComponentsTable items={liquidCoolers} headCells={headCells} aditionalInfo={aditionalInfo} />
     </IonGrid>
   )

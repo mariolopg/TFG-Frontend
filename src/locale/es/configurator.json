@@ -1,0 +1,14 @@
+{
+  "newBuild": "Nueva configuración",
+  "editBuild": "Editar configuración",
+  "cpuSelector": "Seleccionar procesador...",
+  "mbSelector": "Seleccionar placa base...",
+  "ramSelector": "Seleccionar paquete de memorias RAM...",
+  "gpuSelector": "Seleccionar tarjeta gráfica...",
+  "acSelector": "Seleccionar refrigeración por aire...",
+  "lcSelector": "Seleccionar refrigeración líquida...",
+  "hddSelector": "Seleccionar disco duro...",
+  "ssdSelector": "Seleccionar disco de estado sólido...",
+  "psuSelector": "Seleccionar fuente de alimentación...",
+  "caseSelector": "Seleccionar caja..."
+}

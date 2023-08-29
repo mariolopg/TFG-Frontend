@@ -1,16 +1,17 @@
 import React from 'react';
-import { IonButton, IonButtons, IonCol, IonFab, IonFabButton, IonGrid, IonIcon, IonRow, IonToolbar } from '@ionic/react';
+import { IonCol, IonFab, IonFabButton, IonGrid, IonIcon, IonRow, IonToolbar } from '@ionic/react';
 
 import BuildForm from '../components/BuildForm';
 import useBuildEdit from './hooks/useBuildEdit';
 import { useHistory } from 'react-router';
 import { BUILD_BASE_PATH } from '../../../constants';
 import { saveOutline } from 'ionicons/icons';
+import { useTranslation } from 'react-i18next';
 
 
 const BuildEdit: React.FC = () => {
-
   const history = useHistory();
+  const { t, i18n } = useTranslation();
   const { isAdmin, builderId, build, buildUpdates, images, errors, setBuildUpdates, setImages, handleSubmit, isSuccess } = useBuildEdit();
 
   if (!isSuccess) {
@@ -27,7 +28,7 @@ const BuildEdit: React.FC = () => {
     <>
       <IonGrid fixed>
         <IonToolbar>
-          <h1>{build.name}</h1>
+          <h1>{t('editBuild', { ns: 'configurator' })}</h1>
         </IonToolbar>
         <IonRow>
           <IonCol>

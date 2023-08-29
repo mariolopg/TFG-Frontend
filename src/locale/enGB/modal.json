@@ -1,0 +1,7 @@
+{
+  "cancel": "Cancel",
+  "delete": "Delete",
+  "deleteBuild": "Delete this build?",
+  "deleteAccount": "Delete account?",
+  "deleteAccountMsg": "This action is irreversible!"
+}

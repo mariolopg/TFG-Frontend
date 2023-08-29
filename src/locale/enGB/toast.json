@@ -1,0 +1,10 @@
+{
+  "login": "Logged in successfully",
+  "register": "Signed up successfully",
+  "logout": "Logout successfully",
+  "accountDelete": "Account deleted successfully",
+  "buildCreate": "Build created successfully",
+  "buildUpdate": "Build updated successfully",
+  "buildDelete": "Build deleted successfully",
+  "imageDelete": "Image deleted successfully"
+}

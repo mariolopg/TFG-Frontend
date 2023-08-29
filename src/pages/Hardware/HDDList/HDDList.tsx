@@ -4,9 +4,10 @@ import useHDDList from './hooks/useHDDList';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import PageTitle from '../../../components/PageTitle';
 import ComponentsTable from '../../../components/ComponentsTable/ComponentsTable';
+import { useTranslation } from 'react-i18next';
 
 const HDDList: React.FC = () => {
-
+  const { t, i18n } = useTranslation();
   const { hdds, isSuccess } = useHDDList();
 
   if (!isSuccess) {
@@ -17,28 +18,28 @@ const HDDList: React.FC = () => {
     {
       id: 'name',
       disablePadding: true,
-      label: 'Nombre',
+      label: t('name', { ns: 'common' }),
     },
     {
       id: 'size',
       disablePadding: false,
-      label: 'Capacidad (TB)',
+      label: t('tbSize', { ns: 'components' }),
     },
     {
       id: 'rpm',
       disablePadding: false,
-      label: 'Velocidad (rpm)',
+      label: t('speed', { ns: 'components' }),
     },
     {
       id: 'form_factor',
       disablePadding: false,
-      label: 'Factor de forma',
+      label: t('formFactor', { ns: 'components' }),
     }
   ];
 
   return (
     <IonGrid fixed>
-      <PageTitle center title='Discos duros' />
+      <PageTitle center title={t('hdds', { ns: 'components' })} />
       <ComponentsTable items={hdds} headCells={headCells} />
     </IonGrid>
   )

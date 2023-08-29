@@ -1,0 +1,14 @@
+{
+  "newBuild": "New build",
+  "editBuild": "Edit build",
+  "cpuSelector": "Select processor...",
+  "mbSelector": "Select motherboard...",
+  "ramSelector": "Select memory kit...",
+  "gpuSelector": "Select graphics card...",
+  "acSelector": "Select air cooler...",
+  "lcSelector": "Select liquid cooler...",
+  "hddSelector": "Select hard drive...",
+  "ssdSelector": "Select solid state drive...",
+  "psuSelector": "Select power supply...",
+  "caseSelector": "Select case..."
+}

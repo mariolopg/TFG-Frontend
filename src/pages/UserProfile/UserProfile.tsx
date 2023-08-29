@@ -5,9 +5,10 @@ import useUserProfile from './hooks/useUserProfile';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import { trash } from 'ionicons/icons';
 import Profile from '../../components/Profile/Profile';
+import { useTranslation } from 'react-i18next';
 
 const UserProfile: React.FC = () => {
-
+  const { t, i18n } = useTranslation();
   const { user, isSuccess, modal, handleDelete } = useUserProfile()
 
   if (!isSuccess) {
@@ -24,7 +25,7 @@ const UserProfile: React.FC = () => {
           <IonIcon icon={trash}></IonIcon>
         </IonFabButton>
       </IonFab>
-      <DeleteModal reference={modal} trigger='open-delete-modal' message='¿Quieres eliminar tu cuenta?' additionalMessage='Esta acción es irreversible' onClick={handleDelete} />
+      <DeleteModal reference={modal} trigger='open-delete-modal' message={t('deleteAccount', { ns: 'modal' })} additionalMessage={t('deleteAccountMsg', { ns: 'modal' })} onClick={handleDelete} />
     </>
   );
 };

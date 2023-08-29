@@ -4,16 +4,22 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import { IoEarthOutline } from "react-icons/io5"
 import useDropdownLanguage from './hooks/useDropdownLanguage';
+import { useTranslation } from "react-i18next";
+
 
 const DropdownLanguage: React.FC = () => {
-
+  const { t, i18n } = useTranslation();
   const { currentLanguage, anchorEl, menuId, isMenuOpen, handleLanguageMenuOpen, handleMenuClose } = useDropdownLanguage()
+
+  function languageHandleChange() {
+    i18n.changeLanguage("es");
+  }
 
   function GetmenuItems() {
     return (
       <>
-        <MenuItem>Español</MenuItem>
-        <MenuItem>Inglés</MenuItem>
+        <MenuItem onClick={languageHandleChange}>{t('spanish', { ns: 'common' })}</MenuItem>
+        <MenuItem>{t('english', { ns: 'common' })}</MenuItem>
       </>
     )
   }

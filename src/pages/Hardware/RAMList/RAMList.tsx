@@ -4,9 +4,10 @@ import useRAMList from './hooks/useRAMList';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import PageTitle from '../../../components/PageTitle';
 import ComponentsTable from '../../../components/ComponentsTable/ComponentsTable';
+import { useTranslation } from 'react-i18next';
 
 const RAMList: React.FC = () => {
-
+  const { t, i18n } = useTranslation();
   const { rams, isSuccess } = useRAMList();
 
   if (!isSuccess) {
@@ -17,33 +18,33 @@ const RAMList: React.FC = () => {
     {
       id: 'name',
       disablePadding: true,
-      label: 'Nombre',
+      label: t('name', { ns: 'common' }),
     },
     {
       id: 'type',
       disablePadding: false,
-      label: 'Tipo',
+      label: t('ramType', { ns: 'components' }),
     },
     {
       id: 'size',
       disablePadding: false,
-      label: 'Tamaño (GB)',
+      label: t('gbSize', { ns: 'components' }),
     },
     {
       id: 'mhz',
       disablePadding: false,
-      label: 'Frecuencia (MHz)',
+      label: t('frecuency', { ns: 'components' }),
     },
     {
       id: 'units',
       disablePadding: false,
-      label: 'Nº módulos',
+      label: t('ramUnits', { ns: 'components' }),
     },
   ];
 
   return (
     <IonGrid fixed>
-      <PageTitle center title='Procesadores' />
+      <PageTitle center title={t('ram', { ns: 'components' })} />
       <ComponentsTable items={rams} headCells={headCells} />
     </IonGrid>
   )

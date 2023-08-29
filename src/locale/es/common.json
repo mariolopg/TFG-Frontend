@@ -1,0 +1,11 @@
+{
+  "name": "Nombre",
+  "description": "Descripción",
+  "images": "Imágenes",
+  "savedImages": "Imágenes guardadas",
+  "loading": "Cargando...",
+  "member": "Miembro desde",
+  "dateFormat": "d 'de' MMMM 'de' yyyy",
+  "spanish": "Español",
+  "english": "Inglés"
+}

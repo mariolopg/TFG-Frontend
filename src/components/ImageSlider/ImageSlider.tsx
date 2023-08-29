@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css'
 import 'swiper/css/navigation';
-
 import './ImageSlider.css'
 import { trash } from "ionicons/icons";
 import { useDeleteBuildImageMutation } from "../../domain/api/apiSlice";
@@ -83,7 +82,6 @@ const ImageSlider = (props: ImageSliderProps) => {
       </IonModal>
     </IonLabel>
   )
-
 };
 
 export default React.memo(ImageSlider);

@@ -6,8 +6,10 @@ import '../auth.css'
 import useLogin from './hooks/useLogin';
 import { REGISTER_PATH } from '../../../constants';
 import LoadingSpinner from '../../../components/LoadingSpinner';
+import { useTranslation } from 'react-i18next';
 
 const Login: React.FC = () => {
+  const { t, i18n } = useTranslation();
   const { user, errors, isLogged, setValue, handleSubmitLogin } = useLogin();
 
   if (isLogged) {
@@ -16,15 +18,15 @@ const Login: React.FC = () => {
 
   return (
     <IonGrid fixed>
-      <PageTitle title="Iniciar sesión" center />
-      <InputForm label="Nombre de usuario" value={user.username} onIonInput={(e: any) => { setValue('username', e) }} errors={errors?.username} />
-      <InputForm label="Contraseña" type="password" value={user.password} onIonInput={(e: any) => { setValue('password', e) }} errors={errors?.password} />
+      <PageTitle title={t('login', { ns: 'auth' })} center />
+      <InputForm label={t('username', { ns: 'auth' })} value={user.username} onIonInput={(e: any) => { setValue('username', e) }} errors={errors?.username} />
+      <InputForm label={t('password', { ns: 'auth' })} type="password" value={user.password} onIonInput={(e: any) => { setValue('password', e) }} errors={errors?.password} />
       <div className='center-content'>
-        <IonButton onClick={handleSubmitLogin}>Iniciar sesión</IonButton>
+        <IonButton onClick={handleSubmitLogin}>{t('login', { ns: 'auth' })}</IonButton>
       </div>
 
       <div className='center-content'>
-        <IonText>¿No tienes cuenta? <IonRouterLink color="primary" href={REGISTER_PATH} >Crear una</IonRouterLink></IonText>
+        <IonText>{t('notuser', { ns: 'auth' })} <IonRouterLink color="primary" href={REGISTER_PATH} >{t('register', { ns: 'auth' })}</IonRouterLink></IonText>
       </div>
     </IonGrid>
   );

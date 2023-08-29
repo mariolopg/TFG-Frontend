@@ -4,9 +4,10 @@ import useMBList from './hooks/useMBList';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import PageTitle from '../../../components/PageTitle';
 import ComponentsTable from '../../../components/ComponentsTable/ComponentsTable';
+import { useTranslation } from 'react-i18next';
 
 const MBList: React.FC = () => {
-
+  const { t, i18n } = useTranslation();
   const { mbs, isSuccess } = useMBList();
 
   if (!isSuccess) {
@@ -17,27 +18,27 @@ const MBList: React.FC = () => {
     {
       id: 'name',
       disablePadding: true,
-      label: 'Nombre',
+      label: t('name', { ns: 'common' }),
     },
     {
       id: 'chipset',
       disablePadding: false,
-      label: 'Chipset',
+      label: t('chipset', { ns: 'components' }),
     },
     {
       id: 'form_factor',
       disablePadding: false,
-      label: 'Tamaño',
+      label: t('formFactor', { ns: 'components' }),
     },
     {
       id: 'socket',
       disablePadding: false,
-      label: 'Socket',
+      label: t('socket', { ns: 'components' }),
     },
     {
       id: 'memory_type',
       disablePadding: false,
-      label: 'RAM',
+      label: t('ramType', { ns: 'components' }),
     },
   ];
 
@@ -45,33 +46,33 @@ const MBList: React.FC = () => {
     {
       id: 'ram_slots',
       disablePadding: true,
-      label: 'Nº ranuras RAM',
+      label: t('ramSlots', { ns: 'components' }),
     },
     {
       id: 'ram_capacity',
       disablePadding: true,
-      label: 'RAM soportada',
+      label: t('maxRam', { ns: 'components' }),
     },
     {
       id: 'm2_3_slots',
       disablePadding: true,
-      label: 'Puertos M.2 3.0',
+      label: t('m2v3Slots', { ns: 'components' }),
     },
     {
       id: 'm2_4_slots',
       disablePadding: true,
-      label: 'Puertos M.2 4.0',
+      label: t('m2v4Slots', { ns: 'components' }),
     },
     {
       id: 'sata_slots',
       disablePadding: true,
-      label: 'Puertos SATA',
+      label: t('sataPorts', { ns: 'components' }),
     },
   ];
 
   return (
     <IonGrid fixed>
-      <PageTitle center title='Placas Base' />
+      <PageTitle center title={t('mbs', { ns: 'components' })} />
       <ComponentsTable items={mbs} headCells={headCells} aditionalInfo={aditionalInfo} />
     </IonGrid>
   )

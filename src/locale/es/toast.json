@@ -1,0 +1,10 @@
+{
+  "login": "Sesión iniciada correctamente",
+  "register": "Cuenta creada correctamente",
+  "logout": "Sesión cerrada correctamente",
+  "accountDelete": "Cuenta eliminada correctamente",
+  "buildCreate": "Configuración creada correctamente",
+  "buildUpdate": "Configuración actualizada correctamente",
+  "buildDelete": "Configuración eliminada correctamente",
+  "imageDelete": "Imagen eliminada correctamente"
+}

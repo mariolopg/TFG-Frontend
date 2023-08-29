@@ -16,7 +16,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { visuallyHidden } from '@mui/utils';
 import { IonIcon, IonSearchbar, IonText } from '@ionic/react';
 import { checkmarkOutline, closeOutline } from 'ionicons/icons';
-
+import { useTranslation } from 'react-i18next';
 
 interface ComponentsTableProps {
   items: any,
@@ -36,7 +36,7 @@ const StyledTableCell = styled(TableCell)(() => ({
 }));
 
 const ComponentsTable = (props: ComponentsTableProps) => {
-
+  const { t, i18n } = useTranslation();
   const [searchedValue, setSearchedValue] = useState("")
   const [filteredValues, setFilteredValues] = useState(props.items)
 
@@ -258,7 +258,7 @@ const ComponentsTable = (props: ComponentsTableProps) => {
 
   return (
     <>
-      <IonSearchbar placeholder="Buscar componente..." class='custom' onIonChange={handleSearch} onIonInput={(e: any) => { setSearchedValue(e.target.value) }} onIonClear={handleClear}></IonSearchbar>
+      <IonSearchbar placeholder={t('search', { ns: 'components' })} class='custom' onIonChange={handleSearch} onIonInput={(e: any) => { setSearchedValue(e.target.value) }} onIonClear={handleClear}></IonSearchbar>
       <TableContainer>
         <Table
           sx={{ minWidth: 750 }}

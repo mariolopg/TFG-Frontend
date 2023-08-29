@@ -4,9 +4,10 @@ import useSSDList from './hooks/useSSDList';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import PageTitle from '../../../components/PageTitle';
 import ComponentsTable from '../../../components/ComponentsTable/ComponentsTable';
+import { useTranslation } from 'react-i18next';
 
 const SSDList: React.FC = () => {
-
+  const { t, i18n } = useTranslation();
   const { ssds, isSuccess } = useSSDList();
 
   if (!isSuccess) {
@@ -17,23 +18,23 @@ const SSDList: React.FC = () => {
     {
       id: 'name',
       disablePadding: true,
-      label: 'Nombre',
+      label: t('name', { ns: 'common' }),
     },
     {
       id: 'size',
       disablePadding: false,
-      label: 'Capacidad (GB)',
+      label: t('gbSize', { ns: 'components' }),
     },
     {
       id: 'form_factor',
       disablePadding: false,
-      label: 'Factor de forma',
+      label: t('formFactor', { ns: 'components' }),
     }
   ];
 
   return (
     <IonGrid fixed>
-      <PageTitle center title='Unidades de estado sólido' />
+      <PageTitle center title={t('ssds', { ns: 'components' })} />
       <ComponentsTable items={ssds} headCells={headCells} />
     </IonGrid>
   )

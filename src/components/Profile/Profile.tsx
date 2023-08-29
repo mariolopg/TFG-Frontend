@@ -3,13 +3,14 @@ import { IonAvatar, IonChip, IonItem, IonLabel, IonRouterLink } from '@ionic/rea
 import BuildListComponent from '../../components/BuildList/BuildListComponent';
 import useProfile from './hooks/useProfile';
 import { DATE_ICON, EMAIL_ICON, ID_CARD_ICON, PROFILE_ICON } from '../../constants';
+import { useTranslation } from 'react-i18next';
 
 interface ProfileProps {
   user: any
 }
 
 const Profile = (props: ProfileProps) => {
-
+  const { t, i18n } = useTranslation();
   const { initials, dateJoined } = useProfile()
 
   return (
@@ -43,7 +44,7 @@ const Profile = (props: ProfileProps) => {
             <IonAvatar>
               <img src={DATE_ICON} />
             </IonAvatar>
-            <IonLabel>Miembro desde: {dateJoined(props.user.date_joined)}</IonLabel>
+            <IonLabel>{t('member', { ns: 'common' })} {dateJoined(props.user.date_joined)}</IonLabel>
           </IonChip>
         </IonLabel>
       </IonItem>

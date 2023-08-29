@@ -6,9 +6,10 @@ import '../auth.css'
 import useLogin from './hooks/useRegister';
 import { LOGIN_PATH } from '../../../constants';
 import LoadingSpinner from '../../../components/LoadingSpinner';
+import { useTranslation } from 'react-i18next';
 
 const Register: React.FC = () => {
-
+  const { t, i18n } = useTranslation();
   const { user, errors, isLogged, setValue, handleSubmitRegister } = useLogin();
 
   if (isLogged) {
@@ -17,18 +18,18 @@ const Register: React.FC = () => {
 
   return (
     <IonGrid fixed>
-      <PageTitle title="Crear cuenta" center />
-      <InputForm label="Nombre de usuario" value={user.username} onIonInput={(e: any) => { setValue('username', e) }} errors={errors?.username} />
-      <InputForm label="Correo electrónico" type="email" value={user.email} onIonInput={(e: any) => { setValue('email', e) }} errors={errors?.email} />
-      <InputForm label="Nombre" value={user.first_name} onIonInput={(e: any) => { setValue('first_name', e) }} errors={errors?.first_name} />
-      <InputForm label="Apellidos" value={user.last_name} onIonInput={(e: any) => { setValue('last_name', e) }} errors={errors?.last_name} />
-      <InputForm label="Contraseña" type="password" value={user.password1} onIonInput={(e: any) => { setValue('password1', e) }} errors={errors?.password1} />
-      <InputForm label="Confirmar contraseña" value={user.password2} type="password" onIonInput={(e: any) => { setValue('password2', e) }} errors={errors?.password2} />
+      <PageTitle title={t('register', { ns: 'auth' })} center />
+      <InputForm label={t('username', { ns: 'auth' })} value={user.username} onIonInput={(e: any) => { setValue('username', e) }} errors={errors?.username} />
+      <InputForm label={t('email', { ns: 'auth' })} type="email" value={user.email} onIonInput={(e: any) => { setValue('email', e) }} errors={errors?.email} />
+      <InputForm label={t('firstName', { ns: 'auth' })} value={user.first_name} onIonInput={(e: any) => { setValue('first_name', e) }} errors={errors?.first_name} />
+      <InputForm label={t('lastName', { ns: 'auth' })} value={user.last_name} onIonInput={(e: any) => { setValue('last_name', e) }} errors={errors?.last_name} />
+      <InputForm label={t('password', { ns: 'auth' })} type="password" value={user.password1} onIonInput={(e: any) => { setValue('password1', e) }} errors={errors?.password1} />
+      <InputForm label={t('passwordConfirmation', { ns: 'auth' })} value={user.password2} type="password" onIonInput={(e: any) => { setValue('password2', e) }} errors={errors?.password2} />
       <div className='center-content'>
-        <IonButton onClick={handleSubmitRegister}>Crear cuenta</IonButton>
+        <IonButton onClick={handleSubmitRegister}>{t('register', { ns: 'auth' })}</IonButton>
       </div>
       <div className='center-content'>
-        <IonText>¿Ya tienes cuenta? <IonRouterLink color="primary" href={LOGIN_PATH} >Iniciar sesión</IonRouterLink></IonText>
+        <IonText>{t('alreadyUser', { ns: 'auth' })} <IonRouterLink color="primary" href={LOGIN_PATH} >{t('login', { ns: 'auth' })}</IonRouterLink></IonText>
       </div>
     </IonGrid>
   )

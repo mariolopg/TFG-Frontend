@@ -40,7 +40,7 @@ const toastSlice = createSlice({
     builder.addMatcher(login.matchFulfilled, (state) => {
       if (!state.isOpen) {
         state.isOpen = true;
-        state.message = "Sesión iniciada correctamente";
+        state.message = "login";
         state.color = "success";
       }
     });
@@ -57,7 +57,7 @@ const toastSlice = createSlice({
     builder.addMatcher(register.matchFulfilled, (state) => {
       if (!state.isOpen) {
         state.isOpen = true;
-        state.message = "Cuenta creada correctamente";
+        state.message = "register";
         state.color = "success";
       }
     });
@@ -73,42 +73,32 @@ const toastSlice = createSlice({
     });
     builder.addMatcher(logout.matchFulfilled, (state) => {
       state.isOpen = true;
-      state.message = "Sesión cerrada correctamente";
-      state.color = "success";
-    });
-    builder.addMatcher(logout.matchRejected, (state, { payload }) => {
-      state.isOpen = true;
-      state.message = "No se pudo cerrar sesión";
-      state.color = "danger";
-    });
-    builder.addMatcher(deactivate.matchFulfilled, (state) => {
-      state.isOpen = true;
-      state.message = "Cuenta eliminada correctamente";
+      state.message = "logout";
       state.color = "success";
     });
     builder.addMatcher(deactivate.matchFulfilled, (state) => {
       state.isOpen = true;
-      state.message = "Cuenta eliminada correctamente";
+      state.message = "accountDelete";
       state.color = "success";
     });
     builder.addMatcher(createBuild.matchFulfilled, (state) => {
       state.isOpen = true;
-      state.message = "Build creada correctamente";
+      state.message = "buildCreate";
       state.color = "success";
     });
     builder.addMatcher(updateBuild.matchFulfilled, (state) => {
       state.isOpen = true;
-      state.message = "Build actualizada correctamente";
+      state.message = "buildUpdate";
       state.color = "success";
     });
     builder.addMatcher(deleteBuild.matchFulfilled, (state) => {
       state.isOpen = true;
-      state.message = "Build eliminada correctamente";
+      state.message = "buildDelete";
       state.color = "success";
     });
     builder.addMatcher(deleteBuildImage.matchFulfilled, (state) => {
       state.isOpen = true;
-      state.message = "Imagen eliminada correctamente";
+      state.message = "imageDelete";
       state.color = "success";
     });
   },

@@ -4,9 +4,10 @@ import useCaseList from './hooks/useCaseList';
 import LoadingSpinner from '../../../components/LoadingSpinner';
 import PageTitle from '../../../components/PageTitle';
 import ComponentsTable from '../../../components/ComponentsTable/ComponentsTable';
+import { useTranslation } from 'react-i18next';
 
 const CaseList: React.FC = () => {
-
+  const { t, i18n } = useTranslation();
   const { cases, isSuccess } = useCaseList();
 
   if (!isSuccess) {
@@ -17,27 +18,27 @@ const CaseList: React.FC = () => {
     {
       id: 'name',
       disablePadding: true,
-      label: 'Nombre',
+      label: t('name', { ns: 'common' }),
     },
     {
       id: 'motherboard_size',
       disablePadding: false,
-      label: 'Placa',
+      label: t('mb', { ns: 'components' }),
     },
     {
       id: 'psu_size',
       disablePadding: false,
-      label: 'Fuente',
+      label: t('psu', { ns: 'components' }),
     },
     {
       id: 'gpu_length',
       disablePadding: false,
-      label: 'L. gráfica (mm)',
+      label: t('gpuCaseSize', { ns: 'components' }),
     },
     {
       id: 'air_cooler_height',
       disablePadding: false,
-      label: 'A. disipador (mm)',
+      label: t('acCaseHeight', { ns: 'components' }),
     },
   ];
 
@@ -45,52 +46,52 @@ const CaseList: React.FC = () => {
     {
       id: 'width',
       disablePadding: true,
-      label: 'Anchura (mm)',
+      label: t('width', { ns: 'components' }),
     },
     {
       id: 'depth',
       disablePadding: false,
-      label: 'Profundidad (mm)',
+      label: t('depth', { ns: 'components' }),
     },
     {
       id: 'height',
       disablePadding: false,
-      label: 'Altura  (mm)',
+      label: t('height', { ns: 'components' }),
     },
     {
       id: '_120_radiator_support',
       disablePadding: false,
-      label: 'Radiador 120mm',
+      label: t('radiator120', { ns: 'components' }),
     },
     {
       id: '_140_radiator_support',
       disablePadding: false,
-      label: 'Radiador 140mm',
+      label: t('radiator140', { ns: 'components' }),
     },
     {
       id: '_240_radiator_support',
       disablePadding: false,
-      label: 'Radiador 240mm',
+      label: t('radiator240', { ns: 'components' }),
     },
     {
       id: '_280_radiator_support',
       disablePadding: false,
-      label: 'Radiador 280mm',
+      label: t('radiator280', { ns: 'components' }),
     },
     {
       id: '_360_radiator_support',
       disablePadding: false,
-      label: 'Radiador 360mm',
+      label: t('radiator360', { ns: 'components' }),
     },
     {
       id: '_2_5_disk_slot',
       disablePadding: false,
-      label: 'Bahías 2.5"',
+      label: t('25slots', { ns: 'components' }),
     },
     {
       id: '_3_5_disk_slot',
       disablePadding: false,
-      label: 'Bahías 3.5"',
+      label: t('35slots', { ns: 'components' }),
     },
   ];
 

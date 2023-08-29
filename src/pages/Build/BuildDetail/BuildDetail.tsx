@@ -12,9 +12,10 @@ import ImageSlider from '../../../components/ImageSlider/ImageSlider';
 import InputErrorMsg from '../../../components/Inputs/InputErrorMsg';
 import useBuildDetail from './hooks/useBuildDetail';
 import { BUILDER_BASE_PATH, BUILD_BASE_PATH, PROFILE_ICON } from '../../../constants';
+import { useTranslation } from 'react-i18next';
 
 const BuildDetail: React.FC = () => {
-
+  const { t, i18n } = useTranslation();
   const { id, build, firstName, lastName, isAdmin, isLogged, builderId, builderUsername, isSuccess } = useBuildDetail()
 
   if (!isSuccess) {
@@ -27,13 +28,13 @@ const BuildDetail: React.FC = () => {
     const { comments, errors, comment, setValue, handleSubmitComment } = useBuildDetail()
     return (
       <>
-        <CommentInput firstName={firstName} lastName={lastName} placeholder='Añade un comentario...' value={comment} onIonInput={(e: any) => { setValue("comment", e) }} />
+        <CommentInput firstName={firstName} lastName={lastName} placeholder={t('addComment', { ns: 'build' })} value={comment} onIonInput={(e: any) => { setValue("comment", e) }} />
         <IonItem lines='none'>
           <IonLabel slot='end'>
             <InputErrorMsg errors={errors?.comment!} />
           </IonLabel>
           <IonButtons slot='end'>
-            <IonButton size='default' fill='outline' shape='round' color='primary' disabled={!!!comment} onClick={handleSubmitComment}>Comentar</IonButton>
+            <IonButton size='default' fill='outline' shape='round' color='primary' disabled={!!!comment} onClick={handleSubmitComment}>{t('comment', { ns: 'build' })}</IonButton>
           </IonButtons>
         </IonItem>
         {comments.slice().reverse().map((comment: any) => (
@@ -65,7 +66,7 @@ const BuildDetail: React.FC = () => {
           </IonFabList>
         </IonFab>
 
-        <DeleteModal reference={modal} trigger='open-delete-modal' message='¿Quieres eliminar esta build?' onClick={handleDelete} />
+        <DeleteModal reference={modal} trigger='open-delete-modal' message={t('deleteBuild', { ns: 'modal' })} onClick={handleDelete} />
       </>
     )
   }
@@ -82,14 +83,14 @@ const BuildDetail: React.FC = () => {
             <IonLabel>{build.builder_data.username}</IonLabel>
           </IonChip>
         </IonRouterLink>
-        <IonTitle>Descripción</IonTitle>
+        <IonTitle>{t('description', { ns: 'common' })}</IonTitle>
         <IonSubtitle text={build.description} />
-        <IonTitle>Componentes</IonTitle>
+        <IonTitle>{t('components', { ns: 'components' })}</IonTitle>
         <IonRow>
           <BuildComponents build={build} />
         </IonRow>
         <ImageSlider images={build.images} />
-        <IonTitle>Comentarios</IonTitle>
+        <IonTitle>{t('comments', { ns: 'build' })}</IonTitle>
         <GetCommentInput />
         {build.comments.slice().reverse().map((comment: any) => (
           <Comment author={comment.builder_data.username} firstName={comment.builder_data.first_name} lastName={comment.builder_data.last_name} comment={comment.comment} />
