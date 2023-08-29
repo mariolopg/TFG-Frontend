@@ -3,11 +3,13 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 import { apiSlice } from "./domain/api/apiSlice";
 import authSlice from "./redux/authSlice";
 import toastSlice from "./redux/toastSlice";
+import languageSlice from "./redux/languageSlice";
 
 export const store = configureStore({
   reducer: {
     [authSlice.name]: authSlice.reducer,
     [toastSlice.name]: toastSlice.reducer,
+    [languageSlice.name]: languageSlice.reducer,
     [apiSlice.reducerPath]: apiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>

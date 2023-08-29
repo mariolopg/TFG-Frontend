@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 
 const DropdownLanguage: React.FC = () => {
   const { t, i18n } = useTranslation();
-  const { currentLanguage, anchorEl, menuId, isMenuOpen, handleLanguageMenuOpen, handleMenuClose } = useDropdownLanguage()
+  const { handleLanguageChange, anchorEl, menuId, isMenuOpen, handleLanguageMenuOpen, handleMenuClose } = useDropdownLanguage()
 
   function languageHandleChange() {
     i18n.changeLanguage("es");
@@ -18,8 +18,8 @@ const DropdownLanguage: React.FC = () => {
   function GetmenuItems() {
     return (
       <>
-        <MenuItem onClick={languageHandleChange}>{t('spanish', { ns: 'common' })}</MenuItem>
-        <MenuItem>{t('english', { ns: 'common' })}</MenuItem>
+        <MenuItem onClick={() => { handleLanguageChange("es") }}>{t('spanish', { ns: 'common' })}</MenuItem>
+        <MenuItem onClick={() => { handleLanguageChange("enGB") }}>{t('english', { ns: 'common' })}</MenuItem>
       </>
     )
   }
