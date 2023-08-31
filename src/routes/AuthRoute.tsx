@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 import React, { useEffect } from 'react';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { LOGIN_PATH } from '../constants';
 import { useAppSelector } from '../hooks/appHooks';
 import { selectToken } from '../redux/authSlice';

@@ -9,7 +9,7 @@ import { selectLanguage } from "../../../redux/languageSlice";
 // LANGUAGES
 const LANGUAGE_CODES: Record<string, Locale> = {
   es: es,
-  enGB: enGB,
+  en: enGB,
 };
 
 const useProfile = () => {

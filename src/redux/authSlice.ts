@@ -27,12 +27,13 @@ export const checkSession = createAsyncThunk(
 interface AuthState {
   status: QueryStatus;
   token: string;
-  user?: UserInterface | null;
+  user: UserInterface | null;
 }
 
 const initialState: AuthState = {
   status: QueryStatus.uninitialized,
   token: "",
+  user: null,
 };
 
 const authSlice = createSlice({

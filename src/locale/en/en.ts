@@ -6,7 +6,7 @@ import configurator from "./configurator.json";
 import modal from "./modal.json";
 import toast from "./toast.json";
 
-const enGBResources = {
+const enResources = {
   common: common,
   auth: auth,
   components: components,
@@ -16,4 +16,4 @@ const enGBResources = {
   toast: toast,
 };
 
-export default enGBResources;
+export default enResources;

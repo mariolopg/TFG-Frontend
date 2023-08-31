@@ -286,6 +286,7 @@ const ComponentsTable = (props: ComponentsTableProps) => {
         </Table>
       </TableContainer >
       <TablePagination
+        labelRowsPerPage={t('rowsPerPage', { ns: 'common' })}
         rowsPerPageOptions={[25, 50, 100, 200, filteredValues.length]}
         component="div"
         count={filteredValues.length}

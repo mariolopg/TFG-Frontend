@@ -11,15 +11,11 @@ const DropdownLanguage: React.FC = () => {
   const { t, i18n } = useTranslation();
   const { handleLanguageChange, anchorEl, menuId, isMenuOpen, handleLanguageMenuOpen, handleMenuClose } = useDropdownLanguage()
 
-  function languageHandleChange() {
-    i18n.changeLanguage("es");
-  }
-
   function GetmenuItems() {
     return (
       <>
         <MenuItem onClick={() => { handleLanguageChange("es") }}>{t('spanish', { ns: 'common' })}</MenuItem>
-        <MenuItem onClick={() => { handleLanguageChange("enGB") }}>{t('english', { ns: 'common' })}</MenuItem>
+        <MenuItem onClick={() => { handleLanguageChange("en") }}>{t('english', { ns: 'common' })}</MenuItem>
       </>
     )
   }

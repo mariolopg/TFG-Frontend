@@ -6,6 +6,7 @@
   "loading": "Loading...",
   "member": "Member since",
   "dateFormat": "d MMMM yyyy",
+  "rowsPerPage": "Rows per page:",
   "spanish": "Spanish",
   "english": "English"
 }

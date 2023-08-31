@@ -1,17 +1,17 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
-import enGBResources from "./locale/enGB/enGB";
+import enResources from "./locale/en/en";
 import esResources from "./locale/es/es";
 
 const resources = {
-  enGB: enGBResources,
+  en: enResources,
   es: esResources,
 };
 
 i18n.use(initReactI18next).init({
   resources,
-  lng: "es",
+  lng: "en",
   keySeparator: false,
   interpolation: {
     escapeValue: false,

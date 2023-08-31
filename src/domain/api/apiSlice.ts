@@ -8,8 +8,12 @@ export const apiSlice = createApi({
     baseUrl: API_BASE_URL,
     prepareHeaders: (headers, { getState }) => {
       const { token } = (getState() as RootState).auth;
+      const { lng } = (getState() as RootState).language;
       if (!!token) {
         headers.set("Authorization", `Token ${token}`);
+      }
+      if (!!lng) {
+        headers.set("Accept-Language", lng);
       }
       return headers;
     },

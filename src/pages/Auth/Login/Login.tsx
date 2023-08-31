@@ -26,7 +26,7 @@ const Login: React.FC = () => {
       </div>
 
       <div className='center-content'>
-        <IonText>{t('notuser', { ns: 'auth' })} <IonRouterLink color="primary" href={REGISTER_PATH} >{t('register', { ns: 'auth' })}</IonRouterLink></IonText>
+        <IonText>{t('notUser', { ns: 'auth' })} <IonRouterLink color="primary" href={REGISTER_PATH} >{t('register', { ns: 'auth' })}</IonRouterLink></IonText>
       </div>
     </IonGrid>
   );
