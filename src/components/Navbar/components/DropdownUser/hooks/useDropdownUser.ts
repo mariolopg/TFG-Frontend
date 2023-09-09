@@ -29,7 +29,7 @@ const useDropdownUser = () => {
     if (response.isSuccess) {
       setAnchorEl(null);
       history.push(ROOT_PATH);
-      // location.reload();
+      location.reload();
     }
   }, [response]);
 
